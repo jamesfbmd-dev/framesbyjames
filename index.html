@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Doe | Photography</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+        <!-- Link to external CSS for styling -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="antialiased">
+
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">JANE DOE</a>
+            <nav class="desktop-nav">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="mobile-nav-toggle">
+                 <button id="mobile-menu-button" class="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+         <div id="mobile-menu" class="mobile-menu-dropdown hidden">
+            <a href="#work" class="mobile-nav-link">Work</a>
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </header>
+    
+    <main>
+        <section id="hero" class="hero-section">
+            <h1 class="hero-title font-serif-display">
+                Photography<br><span class="italic">Portfolio</span>
+            </h1>
+        </section>
+
+        <section id="work" class="work-section">
+            <div class="section-header">
+                <p class="section-tag">My Work</p>
+                <h2 class="section-title font-serif-display">Gallery</h2>
+            </div>
+            
+            <div id="filter-buttons" class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="portraits">Portraits</button>
+                <button class="filter-btn" data-filter="landscapes">Landscapes</button>
+                <button class="filter-btn" data-filter="street">Street</button>
+            </div>
+
+            <div id="gallery" class="gallery">
+                <!-- Gallery items will be injected here by script.js -->
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-image-col">
+                    <img src="https://placehold.co/600x800/e2e8f0/312F2C?text=Jane+Doe" alt="Portrait of Jane Doe" class="about-image">
+                </div>
+                <div class="about-text-col">
+                     <p class="section-tag">About Me</p>
+                    <h2 class="section-title font-serif-display mb-6">Capturing Moments,<br>Telling Stories</h2>
+                    <p class="about-paragraph">
+                        Hello! I'm Jane Doe, a passionate photographer based in Melbourne. My journey into photography began over a decade ago, driven by a desire to capture the fleeting beauty of everyday life. I specialize in creating authentic and evocative images that resonate with emotion and tell a compelling story.
+                    </p>
+                    <p class="about-paragraph">
+                        Whether it's the raw honesty of a portrait, the majestic tranquility of a landscape, or the vibrant energy of the streets, I strive to find the extraordinary in the ordinary. My goal is to not just take a picture, but to create a timeless piece of art that you can cherish forever.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+             <div class="contact-container">
+                 <p class="section-tag">Get In Touch</p>
+                 <h2 class="section-title font-serif-display mb-6">Have a Project in Mind?</h2>
+                 <p class="contact-paragraph">
+                     I'm currently available for freelance projects and commissions. If you're interested in working together or just want to say hello, feel free to reach out.
+                 </p>
+                 <a href="mailto:hello@janedoe.com" class="contact-button">
+                    Email Me
+                 </a>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Jane Doe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Full-size view" class="lightbox-image">
+            
+            <button id="lightbox-close" class="lightbox-btn close-btn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <button id="lightbox-prev" class="lightbox-btn prev-btn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="lightbox-next" class="lightbox-btn next-btn">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="scripts/script.js" defer></script>
+</body>
+</html>
