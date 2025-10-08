@@ -152,14 +152,15 @@ body {
     background-size: cover;
     background-position: center;
 
-    /* The spotlight mask effect */
+    /* Solid circle spotlight */
     mask-image: radial-gradient(
-        circle 50px at var(--mouse-x) var(--mouse-y),
-        black,
-        transparent 100%
+      circle 75px at var(--mouse-x) var(--mouse-y),
+      black 100%,   /* solid fill until the edge */
+      transparent 100%  /* immediate cutoff */
     );
-    mask-size: 100% 100%; /* Cover the entire element */
     mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
 
     opacity: var(--mouse-opacity);
     transition: opacity 0.3s ease;
