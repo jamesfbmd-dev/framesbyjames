@@ -203,4 +203,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render
     renderGallery();
+
+    // Hero Section Mouse Follow Spotlight Effect
+    const heroSection = document.getElementById('hero');
+    const heroSpotlight = document.getElementById('hero-spotlight');
+
+    if (heroSection && heroSpotlight) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Calculate position as a percentage
+            const mouseX = (x / rect.width) * 100;
+            const mouseY = (y / rect.height) * 100;
+
+            // Apply properties to the spotlight layer
+            heroSpotlight.style.setProperty('--mouse-x', `${mouseX}%`);
+            heroSpotlight.style.setProperty('--mouse-y', `${mouseY}%`);
+            heroSpotlight.style.setProperty('--mouse-opacity', '1');
+        });
+
+        heroSection.addEventListener('mouseleave', () => {
+            // Hide the spotlight layer
+            heroSpotlight.style.setProperty('--mouse-opacity', '0');
+        });
+    }
 });

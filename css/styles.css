@@ -125,14 +125,45 @@ body {
 
 /* --- HERO SECTION --- */
 .hero-section {
+    position: relative; /* Establish positioning context */
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center; /* Center content horizontally */
+    text-align: center;
     padding: 0 1.5rem;
-    max-width: 1280px;
-    margin: 0 auto;
+    background-color: var(--color-background); /* Solid background for text */
+    overflow: hidden; /* Prevent any accidental overflow */
+}
+
+.hero-spotlight {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --mouse-opacity: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0; /* Sit behind the text */
+
+    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+
+    /* Solid circle spotlight */
+    mask-image: radial-gradient(
+      circle 75px at var(--mouse-x) var(--mouse-y),
+      black 100%,   /* solid fill until the edge */
+      transparent 100%  /* immediate cutoff */
+    );
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+
+    opacity: var(--mouse-opacity);
+    transition: opacity 0.3s ease;
 }
 
 .hero-title {
@@ -140,13 +171,10 @@ body {
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: -0.025em;
-    color: transparent;
-    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
-    -webkit-background-clip: text;
-    background-clip: text;
+    color: var(--color-text); /* Ensure text is always visible */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
+    position: relative; /* Ensure it's in the stacking context */
+    z-index: 1; /* Sit on top of the spotlight div */
 }
 
 @media (min-width: 640px) {
