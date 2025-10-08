@@ -142,7 +142,7 @@ body {
 
     /* Spotlight effect */
     mask-image: radial-gradient(
-        circle 75px at var(--mouse-x) var(--mouse-y),
+        circle 50px at var(--mouse-x) var(--mouse-y),
         black,
         transparent 100%
     );
@@ -155,8 +155,8 @@ body {
 .hero-content {
     background-color: var(--color-background);
     mix-blend-mode: screen;
-    padding: 2rem 1.5rem; /* Apply padding here instead of hero-section */
-    width: 100%; /* Ensure the container spans the full width */
+    padding: 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-title {
