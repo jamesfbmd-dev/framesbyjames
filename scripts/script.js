@@ -12,7 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'https://images.unsplash.com/photo-1583565929583-c5aa76ab16f3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 3', ratio: '4x3' },
         { src: 'https://images.unsplash.com/photo-1642740737476-5a7758172d2f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 4', ratio: '3x4' },
         { src: 'https://images.unsplash.com/photo-1545405197-2964efafb2c6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 4', ratio: '4x3' },
-        { src: 'https://images.unsplash.com/photo-1611840717112-30daa589f13b?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 4', ratio: '3x4' }
+        { src: 'https://images.unsplash.com/photo-1611840717112-30daa589f13b?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 4', ratio: '3x4' },
+        { src: 'images/photos/photo-1.jpg', category: 'landscapes', alt: 'Landscape 5', ratio: '4x3' },
+        { src: 'images/photos/photo-2.jpg', category: 'landscapes', alt: 'Landscape 6', ratio: '4x3' },
+        { src: 'images/photos/photo-3.jpg', category: 'landscapes', alt: 'Landscape 7', ratio: '4x3' },
+        { src: 'images/photos/photo-4.jpg', category: 'landscapes', alt: 'Landscape 8', ratio: '4x3' },
+        { src: 'images/photos/photo-5.jpg', category: 'landscapes', alt: 'Landscape 9', ratio: '4x3' },
+        { src: 'images/photos/photo-6.jpg', category: 'landscapes', alt: 'Landscape 10', ratio: '4x3' }
     ];
 
     const gallery = document.getElementById('gallery');
@@ -207,8 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hero Section Mouse Follow Spotlight Effect
     const heroSection = document.getElementById('hero');
     const heroSpotlight = document.getElementById('hero-spotlight');
+    const heroTitleWhite = document.getElementById('hero-title-white');
 
-    if (heroSection && heroSpotlight) {
+    if (heroSection && heroSpotlight && heroTitleWhite) {
         heroSection.addEventListener('mousemove', (e) => {
             const rect = heroSection.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -218,15 +225,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const mouseX = (x / rect.width) * 100;
             const mouseY = (y / rect.height) * 100;
 
-            // Apply properties to the spotlight layer
-            heroSpotlight.style.setProperty('--mouse-x', `${mouseX}%`);
-            heroSpotlight.style.setProperty('--mouse-y', `${mouseY}%`);
-            heroSpotlight.style.setProperty('--mouse-opacity', '1');
+            // Apply properties to both the spotlight and the white text overlay
+            const styleProps = {
+                '--mouse-x': `${mouseX}%`,
+                '--mouse-y': `${mouseY}%`,
+                '--mouse-opacity': '1'
+            };
+
+            Object.assign(heroSpotlight.style, styleProps);
+            Object.assign(heroTitleWhite.style, styleProps);
         });
 
         heroSection.addEventListener('mouseleave', () => {
-            // Hide the spotlight layer
+            // Hide both layers
             heroSpotlight.style.setProperty('--mouse-opacity', '0');
+            heroTitleWhite.style.setProperty('--mouse-opacity', '0');
         });
     }
 });

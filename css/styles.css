@@ -166,6 +166,11 @@ body {
     transition: opacity 0.3s ease;
 }
 
+.hero-text-container {
+    position: relative; /* Context for the absolute white title */
+    z-index: 1; /* Sits on top of the spotlight */
+}
+
 .hero-title {
     font-size: 6rem; /* sm:text-8xl, md:text-9xl */
     font-weight: 600;
@@ -173,8 +178,29 @@ body {
     letter-spacing: -0.025em;
     color: var(--color-text); /* Ensure text is always visible */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
-    position: relative; /* Ensure it's in the stacking context */
-    z-index: 1; /* Sit on top of the spotlight div */
+    margin: 0; /* Remove default margin for alignment */
+}
+
+.hero-title-white {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    z-index: 2; /* Sits on top of the black text */
+
+    /* The mask reveals the white text */
+    mask-image: radial-gradient(
+      circle 75px at var(--mouse-x) var(--mouse-y),
+      black 100%,
+      transparent 100%
+    );
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+
+    opacity: var(--mouse-opacity);
+    transition: opacity 0.3s ease; /* Sync with spotlight fade out */
 }
 
 @media (min-width: 640px) {
