@@ -251,9 +251,9 @@ body {
     }
 }
 
-@media (min-width: 768px) { /* md breakpoint (3 columns requested) */
+@media (min-width: 768px) { 
     #gallery {
-        column-count: 3;
+        column-count: 2;
     }
     /* When filtered, use 2 columns to avoid awkward gaps */
     #gallery.gallery-filtered {
