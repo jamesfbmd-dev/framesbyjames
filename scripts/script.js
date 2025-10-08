@@ -213,33 +213,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hero Section Mouse Follow Spotlight Effect
     const heroSection = document.getElementById('hero');
     const heroSpotlight = document.getElementById('hero-spotlight');
-    const heroTitleWhite = document.getElementById('hero-title-white');
 
-    if (heroSection && heroSpotlight && heroTitleWhite) {
+    if (heroSection && heroSpotlight) {
         heroSection.addEventListener('mousemove', (e) => {
             const rect = heroSection.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Calculate position as a percentage
-            const mouseX = (x / rect.width) * 100;
-            const mouseY = (y / rect.height) * 100;
-
-            // Apply properties to both the spotlight and the white text overlay
-            const styleProps = {
-                '--mouse-x': `${mouseX}%`,
-                '--mouse-y': `${mouseY}%`,
-                '--mouse-opacity': '1'
-            };
-
-            Object.assign(heroSpotlight.style, styleProps);
-            Object.assign(heroTitleWhite.style, styleProps);
+            // Apply properties to the spotlight layer using pixel values
+            heroSpotlight.style.setProperty('--mouse-x', `${x}px`);
+            heroSpotlight.style.setProperty('--mouse-y', `${y}px`);
+            heroSpotlight.style.setProperty('--mouse-opacity', '1');
         });
 
         heroSection.addEventListener('mouseleave', () => {
-            // Hide both layers
+            // Hide the spotlight layer
             heroSpotlight.style.setProperty('--mouse-opacity', '0');
-            heroTitleWhite.style.setProperty('--mouse-opacity', '0');
         });
     }
 });
