@@ -146,7 +146,7 @@ body {
     background-position: center;
     -webkit-background-clip: text;
     background-clip: text;
-    padding-bottom: 1rem; /* Fix for descender clipping */
+    padding-bottom: 2.4rem; /* Fix for descender clipping */
 }
 
 @media (min-width: 640px) {
@@ -163,7 +163,7 @@ body {
 
 @media (min-width: 1024px) {
     .hero-title {
-        font-size: 10rem;
+        font-size: 11rem;
     }
 }
 
@@ -254,6 +254,10 @@ body {
 @media (min-width: 768px) { /* md breakpoint (3 columns requested) */
     #gallery {
         column-count: 3;
+    }
+    /* When filtered, use 2 columns to avoid awkward gaps */
+    #gallery.gallery-filtered {
+        column-count: 2;
     }
 }
 
@@ -469,6 +473,11 @@ body {
 
 .lightbox-btn:hover {
     background-color: #f0f0f0;
+}
+
+.lightbox-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .close-btn {
