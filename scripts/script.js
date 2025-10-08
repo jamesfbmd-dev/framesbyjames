@@ -148,6 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const filter = button.dataset.filter;
             currentFilter = filter;
+
+            // Add or remove a class to the gallery for responsive column adjustments
+            if (filter === 'all') {
+                gallery.classList.remove('gallery-filtered');
+            } else {
+                gallery.classList.add('gallery-filtered');
+            }
             
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');

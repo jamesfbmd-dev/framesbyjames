@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /* Base Reset and Fonts */
 :root {
     --color-background: #FDFBF8;
@@ -124,9 +128,11 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
     padding: 0 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 .hero-title {
@@ -134,6 +140,13 @@ body {
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: -0.025em;
+    color: transparent;
+    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    padding-bottom: 2.4rem; /* Fix for descender clipping */
 }
 
 @media (min-width: 640px) {
@@ -150,7 +163,7 @@ body {
 
 @media (min-width: 1024px) {
     .hero-title {
-        font-size: 10rem;
+        font-size: 11rem;
     }
 }
 
@@ -238,9 +251,13 @@ body {
     }
 }
 
-@media (min-width: 768px) { /* md breakpoint (3 columns requested) */
+@media (min-width: 768px) { 
     #gallery {
-        column-count: 3;
+        column-count: 2;
+    }
+    /* When filtered, use 2 columns to avoid awkward gaps */
+    #gallery.gallery-filtered {
+        column-count: 2;
     }
 }
 
@@ -440,21 +457,27 @@ body {
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
+    border: 30px solid white;
 }
 
 .lightbox-btn {
     position: absolute;
-    color: white;
-    border-radius: 9999px;
-    padding: 0.5rem;
+    color: var(--color-text);
+    border-radius: 0;
+    padding: 0.75rem;
     border: none;
     cursor: pointer;
-    background-color: rgba(49, 47, 44, 0.5);
+    background-color: white;
     transition: background-color 0.2s ease;
 }
 
 .lightbox-btn:hover {
-    background-color: rgba(49, 47, 44, 0.8);
+    background-color: #f0f0f0;
+}
+
+.lightbox-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .close-btn {
