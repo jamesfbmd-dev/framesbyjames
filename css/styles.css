@@ -125,14 +125,38 @@ body {
 
 /* --- HERO SECTION --- */
 .hero-section {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --mouse-opacity: 0;
+
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    text-align: left;
+    justify-content: center; /* Center the title horizontally */
+    text-align: center; /* Center text for smaller screens */
     padding: 0 1.5rem;
-    max-width: 1280px;
-    margin: 0 auto;
+
+    /* New background and mask properties */
+    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+
+    /* Spotlight effect */
+    mask-image: radial-gradient(
+        circle 75px at var(--mouse-x) var(--mouse-y),
+        black,
+        transparent 100%
+    );
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    opacity: var(--mouse-opacity);
+    transition: opacity 0.3s ease;
+}
+
+.hero-content {
+    background-color: var(--color-background);
+    mix-blend-mode: screen;
+    padding: 2rem; /* Add some padding around the text */
 }
 
 .hero-title {
@@ -140,13 +164,11 @@ body {
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: -0.025em;
-    color: transparent;
-    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
-    -webkit-background-clip: text;
-    background-clip: text;
+    color: var(--color-text); /* Make text visible */
+    background: black; /* This is the key to the punch-out effect */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
+    max-width: 1280px; /* Constrain width */
+    margin: 0 auto; /* Center in the hero-content */
 }
 
 @media (min-width: 640px) {
