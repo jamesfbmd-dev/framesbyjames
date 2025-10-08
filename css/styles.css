@@ -134,6 +134,12 @@ body {
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: -0.025em;
+    color: transparent;
+    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 @media (min-width: 640px) {
@@ -440,21 +446,22 @@ body {
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
+    border: 30px solid white;
 }
 
 .lightbox-btn {
     position: absolute;
-    color: white;
-    border-radius: 9999px;
-    padding: 0.5rem;
+    color: var(--color-text);
+    border-radius: 0;
+    padding: 0.75rem;
     border: none;
     cursor: pointer;
-    background-color: rgba(49, 47, 44, 0.5);
+    background-color: white;
     transition: background-color 0.2s ease;
 }
 
 .lightbox-btn:hover {
-    background-color: rgba(49, 47, 44, 0.8);
+    background-color: #f0f0f0;
 }
 
 .close-btn {
