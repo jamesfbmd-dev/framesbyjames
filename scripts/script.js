@@ -206,7 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hero Section Mouse Follow Spotlight Effect
     const heroSection = document.getElementById('hero');
-    if (heroSection) {
+    const heroSpotlight = document.getElementById('hero-spotlight');
+
+    if (heroSection && heroSpotlight) {
         heroSection.addEventListener('mousemove', (e) => {
             const rect = heroSection.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -216,13 +218,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const mouseX = (x / rect.width) * 100;
             const mouseY = (y / rect.height) * 100;
 
-            heroSection.style.setProperty('--mouse-x', `${mouseX}%`);
-            heroSection.style.setProperty('--mouse-y', `${mouseY}%`);
-            heroSection.style.setProperty('--mouse-opacity', '1');
+            // Apply properties to the spotlight layer
+            heroSpotlight.style.setProperty('--mouse-x', `${mouseX}%`);
+            heroSpotlight.style.setProperty('--mouse-y', `${mouseY}%`);
+            heroSpotlight.style.setProperty('--mouse-opacity', '1');
         });
 
         heroSection.addEventListener('mouseleave', () => {
-            heroSection.style.setProperty('--mouse-opacity', '0');
+            // Hide the spotlight layer
+            heroSpotlight.style.setProperty('--mouse-opacity', '0');
         });
     }
 });
