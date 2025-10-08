@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /* Base Reset and Fonts */
 :root {
     --color-background: #FDFBF8;
@@ -142,6 +146,7 @@ body {
     background-position: center;
     -webkit-background-clip: text;
     background-clip: text;
+    padding-bottom: 1rem; /* Fix for descender clipping */
 }
 
 @media (min-width: 640px) {
