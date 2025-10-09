@@ -134,6 +134,9 @@ body {
     .mobile-nav-toggle {
         display: none;
     }
+    .mobile-menu-dropdown {
+        display: none !important;
+    }
     .logo {
         font-size: 1.5rem;
     }
