@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/photos/photo-8.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
         { src: 'images/photos/photo-9.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
         { src: 'images/photos/photo-10.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
-        { src: 'images/photos/photo-11.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' }
+        { src: 'images/photos/photo-11.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
+        { src: 'images/photos/photo-12.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' }
     ];
 
     const gallery = document.getElementById('gallery');
