@@ -1,24 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Gallery Data with high-contrast placeholders
     const imageData = [
-        { src: 'https://images.unsplash.com/photo-1546868762-b61266729c8a?q=80&w=1285&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 1', ratio: '3x4' },
-        { src: 'https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 1', ratio: '4x3' },
-        { src: 'https://images.unsplash.com/photo-1562162315-823bc0b8a3dd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 1', ratio: '3x4' },
-        { src: 'https://images.unsplash.com/photo-1543557211-135d718a528c?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 2', ratio: '3x4' },
-        { src: 'https://plus.unsplash.com/premium_photo-1733317231152-4018bb2ad04a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 2', ratio: '4x3' },
-        { src: 'https://images.unsplash.com/photo-1587968916653-f52a46826407?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 2', ratio: '3x4' },
-        { src: 'https://images.unsplash.com/photo-1515199232915-d74ea00e6149?q=80&w=1484&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 3', ratio: '3x4' },
-        { src: 'https://images.unsplash.com/photo-1594025376982-e0b77ef22c26?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 3', ratio: '4x3' },
-        { src: 'https://images.unsplash.com/photo-1583565929583-c5aa76ab16f3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 3', ratio: '4x3' },
-        { src: 'https://images.unsplash.com/photo-1642740737476-5a7758172d2f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 4', ratio: '3x4' },
-        { src: 'https://images.unsplash.com/photo-1545405197-2964efafb2c6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 4', ratio: '4x3' },
-        { src: 'https://images.unsplash.com/photo-1611840717112-30daa589f13b?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 4', ratio: '3x4' },
+        // { src: 'https://images.unsplash.com/photo-1546868762-b61266729c8a?q=80&w=1285&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 1', ratio: '3x4' },
+        // { src: 'https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 1', ratio: '4x3' },
+        // { src: 'https://images.unsplash.com/photo-1562162315-823bc0b8a3dd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 1', ratio: '3x4' },
+        // { src: 'https://images.unsplash.com/photo-1543557211-135d718a528c?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 2', ratio: '3x4' },
+        // { src: 'https://plus.unsplash.com/premium_photo-1733317231152-4018bb2ad04a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 2', ratio: '4x3' },
+        // { src: 'https://images.unsplash.com/photo-1587968916653-f52a46826407?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 2', ratio: '3x4' },
+        // { src: 'https://images.unsplash.com/photo-1515199232915-d74ea00e6149?q=80&w=1484&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 3', ratio: '3x4' },
+        // { src: 'https://images.unsplash.com/photo-1594025376982-e0b77ef22c26?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 3', ratio: '4x3' },
+        // { src: 'https://images.unsplash.com/photo-1583565929583-c5aa76ab16f3?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 3', ratio: '4x3' },
+        // { src: 'https://images.unsplash.com/photo-1642740737476-5a7758172d2f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 4', ratio: '3x4' },
+        // { src: 'https://images.unsplash.com/photo-1545405197-2964efafb2c6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 4', ratio: '4x3' },
+        // { src: 'https://images.unsplash.com/photo-1611840717112-30daa589f13b?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 4', ratio: '3x4' },
         { src: 'images/photos/photo-1.jpg', category: 'landscapes', alt: 'Landscape 5', ratio: '4x3' },
         { src: 'images/photos/photo-2.jpg', category: 'landscapes', alt: 'Landscape 6', ratio: '4x3' },
         { src: 'images/photos/photo-3.jpg', category: 'landscapes', alt: 'Landscape 7', ratio: '4x3' },
         { src: 'images/photos/photo-4.jpg', category: 'landscapes', alt: 'Landscape 8', ratio: '4x3' },
         { src: 'images/photos/photo-5.jpg', category: 'landscapes', alt: 'Landscape 9', ratio: '4x3' },
-        { src: 'images/photos/photo-6.jpg', category: 'landscapes', alt: 'Landscape 10', ratio: '4x3' }
+        { src: 'images/photos/photo-6.jpg', category: 'landscapes', alt: 'Landscape 10', ratio: '4x3' },
+        { src: 'images/photos/photo-7.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
+        { src: 'images/photos/photo-8.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
+        { src: 'images/photos/photo-9.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
+        { src: 'images/photos/photo-10.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
+        { src: 'images/photos/photo-11.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' }
     ];
 
     const gallery = document.getElementById('gallery');
@@ -30,9 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxNext = document.getElementById('lightbox-next');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const arrowLink = document.getElementById('hero-arrow-link');
 
     let currentImageIndex = 0;
     let currentFilter = 'all';
+
+
+    // HERO ARROW SCROLL BEHAVIOUR
+    const offset = 250; // distance in pixels from the top
+
+    arrowLink.addEventListener('click', function(e) {
+        e.preventDefault(); // prevent default jump
+
+        const target = document.getElementById('gallery');
+        const topPos = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: topPos,
+            behavior: 'smooth'
+        });
+    });
 
     /**
      * Renders the gallery items based on the active filter.
@@ -43,7 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter the images based on the active category
         const filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category === filter);
         
-        filteredImages.forEach((data, index) => {
+        // RANDOMISE ORDER OF IMAGES
+        const filteredImagesRandomOrder = [...filteredImages];
+
+        for (let i = filteredImagesRandomOrder.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [filteredImagesRandomOrder[i], filteredImagesRandomOrder[j]] = [filteredImagesRandomOrder[j], filteredImagesRandomOrder[i]];
+        }
+
+        // Use 'filteredImages' if you want to have them appear in order.
+        // Use 'filteredImagesRandomOrder' if you want them to appear in a random order.
+        filteredImagesRandomOrder.forEach((data, index) => {
             const item = document.createElement('div');
             item.className = 'gallery-item'; // Styles handled by CSS
             item.dataset.category = data.category;

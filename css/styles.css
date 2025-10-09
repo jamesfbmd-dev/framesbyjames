@@ -13,6 +13,10 @@
     --spacing-lg: 6rem;   /* 24 units in Tailwind (96px) */
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -134,6 +138,7 @@ body {
     padding: 0 1.5rem;
     background-color: var(--color-background); /* Solid background for text */
     overflow: hidden; /* Prevent any accidental overflow */
+    cursor: none;
 }
 
 .hero-spotlight {
@@ -170,6 +175,26 @@ body {
     position: relative; /* Ensure it's in the stacking context */
     z-index: 1; /* Sit below the spotlight div */
 }
+
+@keyframes arrowDownTwice {
+  0%   { transform: translateY(0); }
+  5%   { transform: translateY(10px); }   /* first down */
+  10%  { transform: translateY(0); }      /* back up */
+  15%  { transform: translateY(10px); }   /* second down */
+  20%  { transform: translateY(0); }      /* back up */
+  100% { transform: translateY(0); }      /* rest at start */
+}
+
+.hero-arrow {
+    position: absolute;
+    bottom: 20px;
+    animation: arrowDownTwice 5s ease-in-out infinite;
+}
+
+.hero-arrow a {
+    cursor: none;
+}
+
 
 @media (min-width: 640px) {
     .hero-title {
