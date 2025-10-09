@@ -241,15 +241,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Apply properties to the spotlight layer using pixel values
-            heroSpotlight.style.setProperty('--mouse-x', `${x}px`);
-            heroSpotlight.style.setProperty('--mouse-y', `${y}px`);
-            heroSpotlight.style.setProperty('--mouse-opacity', '1');
+            // Apply properties to the parent hero section using pixel values
+            heroSection.style.setProperty('--mouse-x', `${x}px`);
+            heroSection.style.setProperty('--mouse-y', `${y}px`);
+            heroSection.style.setProperty('--mouse-opacity', '1');
         });
 
         heroSection.addEventListener('mouseleave', () => {
             // Hide the spotlight layer
-            heroSpotlight.style.setProperty('--mouse-opacity', '0');
+            heroSection.style.setProperty('--mouse-opacity', '0');
         });
     }
 });

@@ -156,29 +156,64 @@ body {
     justify-content: center; /* Center content horizontally */
     text-align: center;
     padding: 0 1.5rem;
-    background-color: var(--color-background); /* Solid background for text */
+    background-color: #111; /* Dark fallback background */
     overflow: hidden; /* Prevent any accidental overflow */
     cursor: none;
-}
 
-.hero-spotlight {
+    /* Define variables on the parent for child elements to inherit */
     --mouse-x: 50%;
     --mouse-y: 50%;
     --mouse-opacity: 0;
+}
 
+/* This is the sharp, revealed image layer. It's masked. */
+.hero-background-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1; /* Sits above the blurred background */
+    background-image: url('../images/photos/photo-3.jpg');
+    background-size: cover;
+    background-position: center;
+
+    /* The magic: use the spotlight's position to create a mask */
+    mask-image: radial-gradient(
+        circle 125px at var(--mouse-x) var(--mouse-y),
+        black 100%,
+        transparent
+    );
+    -webkit-mask-image: radial-gradient(
+        circle 125px at var(--mouse-x) var(--mouse-y),
+        black 100%,
+        transparent
+    );
+}
+
+/* This pseudo-element is the blurred background layer */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0; /* Sits at the very back */
+    background-image: url('../images/photos/photo-3.jpg'); /* Must be same image */
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px) brightness(0.8);
+}
+
+.hero-spotlight {
     position: absolute;
     left: var(--mouse-x);
     top: var(--mouse-y);
     transform: translate(-50%, -50%);
 
-    width: 75px;
-    height: 75px;
+    /* The spotlight is now a border framing the revealed image area */
+    width: 250px; /* Corresponds to the mask size */
+    height: 250px; /* Corresponds to the mask size */
     border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
 
-    background-color: white;
-    mix-blend-mode: difference;
-
-    z-index: 2; /* Above the text */
+    z-index: 3; /* Above both image layers */
     pointer-events: none; /* Don't capture mouse events */
 
     opacity: var(--mouse-opacity);
@@ -190,10 +225,11 @@ body {
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: -0.025em;
-    color: var(--color-text); /* Ensure text is always visible */
+    color: white; /* Changed to white for better contrast */
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); /* Add shadow for legibility */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
     position: relative; /* Ensure it's in the stacking context */
-    z-index: 1; /* Sit below the spotlight div */
+    z-index: 2; /* Sit above the revealed image but below the spotlight border */
 }
 
 @keyframes arrowDownTwice {
