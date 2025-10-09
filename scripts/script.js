@@ -13,18 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // { src: 'https://images.unsplash.com/photo-1642740737476-5a7758172d2f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'portraits', alt: 'Portrait 4', ratio: '3x4' },
         // { src: 'https://images.unsplash.com/photo-1545405197-2964efafb2c6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'landscapes', alt: 'Landscape 4', ratio: '4x3' },
         // { src: 'https://images.unsplash.com/photo-1611840717112-30daa589f13b?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', category: 'street', alt: 'Street 4', ratio: '3x4' },
-        { src: 'images/photos/photo-1.jpg', category: 'landscapes', alt: 'Landscape 5', ratio: '4x3' },
-        { src: 'images/photos/photo-2.jpg', category: 'landscapes', alt: 'Landscape 6', ratio: '4x3' },
-        { src: 'images/photos/photo-3.jpg', category: 'landscapes', alt: 'Landscape 7', ratio: '4x3' },
-        { src: 'images/photos/photo-4.jpg', category: 'landscapes', alt: 'Landscape 8', ratio: '4x3' },
-        { src: 'images/photos/photo-5.jpg', category: 'landscapes', alt: 'Landscape 9', ratio: '4x3' },
-        { src: 'images/photos/photo-6.jpg', category: 'landscapes', alt: 'Landscape 10', ratio: '4x3' },
-        { src: 'images/photos/photo-7.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
-        { src: 'images/photos/photo-8.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
-        { src: 'images/photos/photo-9.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
-        { src: 'images/photos/photo-10.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
-        { src: 'images/photos/photo-11.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' },
-        { src: 'images/photos/photo-12.jpg', category: 'portraits', alt: 'Landscape 10', ratio: '3x4' }
+        { src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Landscape 5', ratio: '4x3' },
+        { src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Landscape 6', ratio: '4x3' },
+        { src: 'images/photos/photo-3.jpg', category: ['landscapes'], alt: 'Landscape 7', ratio: '4x3' },
+        { src: 'images/photos/photo-4.jpg', category: ['landscapes', 'street'], alt: 'Landscape 8', ratio: '4x3' },
+        { src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Landscape 9', ratio: '4x3' },
+        { src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Landscape 10', ratio: '4x3' },
+        { src: 'images/photos/photo-7.jpg', category: ['portraits', 'street'], alt: 'Portrait 1', ratio: '3x4' },
+        { src: 'images/photos/photo-8.jpg', category: ['portraits'], alt: 'Portrait 2', ratio: '3x4' },
+        { src: 'images/photos/photo-9.jpg', category: ['portraits'], alt: 'Portrait 3', ratio: '3x4' },
+        { src: 'images/photos/photo-10.jpg', category: ['portraits'], alt: 'Portrait 4', ratio: '3x4' },
+        { src: 'images/photos/photo-11.jpg', category: ['portraits'], alt: 'Portrait 5', ratio: '3x4' },
+        { src: 'images/photos/photo-12.jpg', category: ['portraits', 'street'], alt: 'Portrait 6', ratio: '3x4' }
     ];
 
     const gallery = document.getElementById('gallery');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderGallery(filter = 'all') {
         gallery.innerHTML = '';
         // Filter the images based on the active category
-        const filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category === filter);
+        const filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category.includes(filter));
         
         // RANDOMISE ORDER OF IMAGES
         const filteredImagesRandomOrder = [...filteredImages];
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter images based on the current filter setting
         const currentGalleryImages = (currentFilter === 'all') 
             ? imageData 
-            : imageData.filter(img => img.category === currentFilter);
+            : imageData.filter(img => img.category.includes(currentFilter));
 
         // Find the index of the currently viewed image within the filtered list
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showImage(direction) {
-        const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category === currentFilter);
+        const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
         
         if (currentGalleryImages.length === 0) return;
 
