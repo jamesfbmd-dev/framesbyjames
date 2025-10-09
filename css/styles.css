@@ -12,11 +12,6 @@
     --spacing-md: 2.5rem; /* 10 units in Tailwind (40px) */
     --spacing-lg: 6rem;   /* 24 units in Tailwind (96px) */
 
-    /* Breakpoints */
-    --breakpoint-xs: 560px;
-    --breakpoint-sm: 561px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 1040px;
 }
 
 html {
