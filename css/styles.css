@@ -13,6 +13,10 @@
     --spacing-lg: 6rem;   /* 24 units in Tailwind (96px) */
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -134,6 +138,7 @@ body {
     padding: 0 1.5rem;
     background-color: var(--color-background); /* Solid background for text */
     overflow: hidden; /* Prevent any accidental overflow */
+    cursor: none;
 }
 
 .hero-spotlight {
@@ -142,28 +147,22 @@ body {
     --mouse-opacity: 0;
 
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0; /* Sit behind the text */
+    left: var(--mouse-x);
+    top: var(--mouse-y);
+    transform: translate(-50%, -50%);
 
-    background-image: url('https://plus.unsplash.com/premium_photo-1733317293766-5606f74b765b?q=80&w=2748&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
 
-    /* Solid circle spotlight */
-    mask-image: radial-gradient(
-      circle 75px at var(--mouse-x) var(--mouse-y),
-      black 100%,   /* solid fill until the edge */
-      transparent 100%  /* immediate cutoff */
-    );
-    mask-repeat: no-repeat;
-    mask-size: 100% 100%;
+    background-color: white;
+    mix-blend-mode: difference;
 
+    z-index: 2; /* Above the text */
+    pointer-events: none; /* Don't capture mouse events */
 
     opacity: var(--mouse-opacity);
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.1s ease-out;
 }
 
 .hero-title {
@@ -174,8 +173,28 @@ body {
     color: var(--color-text); /* Ensure text is always visible */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
     position: relative; /* Ensure it's in the stacking context */
-    z-index: 1; /* Sit on top of the spotlight div */
+    z-index: 1; /* Sit below the spotlight div */
 }
+
+@keyframes arrowDownTwice {
+  0%   { transform: translateY(0); }
+  5%   { transform: translateY(10px); }   /* first down */
+  10%  { transform: translateY(0); }      /* back up */
+  15%  { transform: translateY(10px); }   /* second down */
+  20%  { transform: translateY(0); }      /* back up */
+  100% { transform: translateY(0); }      /* rest at start */
+}
+
+.hero-arrow {
+    position: absolute;
+    bottom: 20px;
+    animation: arrowDownTwice 5s ease-in-out infinite;
+}
+
+.hero-arrow a {
+    cursor: none;
+}
+
 
 @media (min-width: 640px) {
     .hero-title {
