@@ -121,7 +121,7 @@ body {
 }
 
 /* Media Query for Desktop Nav */
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: 769px) {
     .desktop-nav {
         display: flex;
     }
@@ -202,19 +202,19 @@ body {
 }
 
 
-@media (min-width: var(--breakpoint-sm)) {
+@media (min-width: 561px) {
     .hero-title {
         font-size: 8rem;
     }
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: 769px) {
     .hero-title {
         font-size: 9rem;
     }
 }
 
-@media (min-width: var(--breakpoint-lg)) {
+@media (min-width: 1041px) {
     .hero-title {
         font-size: 11rem;
     }
@@ -251,7 +251,7 @@ body {
     font-weight: 600;
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: 769px) {
     .section-title {
         font-size: 3rem; /* 5xl */
     }
@@ -298,13 +298,13 @@ body {
     column-gap: var(--spacing-sm); 
 }
 
-@media (min-width: var(--breakpoint-sm)) { /* sm breakpoint */
+@media (min-width: 561px) { /* sm breakpoint */
     #gallery {
         column-count: 2;
     }
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: 769px) {
     #gallery {
         column-count: 2;
     }
@@ -403,7 +403,7 @@ body {
     align-items: center;
 }
 
-@media (min-width: var(--breakpoint-md)) {
+@media (min-width: 769px) {
     .about-container {
         grid-template-columns: 2fr 3fr; /* md:grid-cols-5 split */
     }
