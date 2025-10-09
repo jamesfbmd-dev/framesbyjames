@@ -95,9 +95,20 @@ body {
 }
 
 .mobile-menu-dropdown {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 100%; /* Position it right below the header's bottom edge */
+    left: 0;
+    right: 0;
     background-color: var(--color-background);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #EFEFEF;
+    z-index: 39; /* Sit behind the main header content but above page content */
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none;
 }
 
 .mobile-nav-link {
@@ -122,6 +133,9 @@ body {
     }
     .mobile-nav-toggle {
         display: none;
+    }
+    .mobile-menu-dropdown {
+        display: none !important;
     }
     .logo {
         font-size: 1.5rem;
