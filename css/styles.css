@@ -529,13 +529,20 @@ body {
     width: 100%;
 }
 
+.lightbox-body {
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .lightbox-image {
-    max-width: 90vw;
-    max-height: 80vh; /* Adjust max-height to account for header/nav */
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     border: none; /* Remove border to maximize image area */
-    flex-grow: 1;
-    min-height: 0; /* Important for flex-grow in a column */
 }
 
 .lightbox-btn {
