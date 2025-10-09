@@ -11,6 +11,12 @@
     --spacing-sm: 1.5rem; /* 6 units in Tailwind (24px) */
     --spacing-md: 2.5rem; /* 10 units in Tailwind (40px) */
     --spacing-lg: 6rem;   /* 24 units in Tailwind (96px) */
+
+    /* Breakpoints */
+    --breakpoint-xs: 560px;
+    --breakpoint-sm: 561px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1040px;
 }
 
 html {
@@ -115,7 +121,7 @@ body {
 }
 
 /* Media Query for Desktop Nav */
-@media (min-width: 768px) {
+@media (min-width: var(--breakpoint-md)) {
     .desktop-nav {
         display: flex;
     }
@@ -196,19 +202,19 @@ body {
 }
 
 
-@media (min-width: 640px) {
+@media (min-width: var(--breakpoint-sm)) {
     .hero-title {
         font-size: 8rem;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: var(--breakpoint-md)) {
     .hero-title {
         font-size: 9rem;
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: var(--breakpoint-lg)) {
     .hero-title {
         font-size: 11rem;
     }
@@ -245,7 +251,7 @@ body {
     font-weight: 600;
 }
 
-@media (min-width: 768px) {
+@media (min-width: var(--breakpoint-md)) {
     .section-title {
         font-size: 3rem; /* 5xl */
     }
@@ -292,13 +298,13 @@ body {
     column-gap: var(--spacing-sm); 
 }
 
-@media (min-width: 640px) { /* sm breakpoint */
+@media (min-width: var(--breakpoint-sm)) { /* sm breakpoint */
     #gallery {
         column-count: 2;
     }
 }
 
-@media (min-width: 768px) { 
+@media (min-width: var(--breakpoint-md)) {
     #gallery {
         column-count: 2;
     }
@@ -397,7 +403,7 @@ body {
     align-items: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: var(--breakpoint-md)) {
     .about-container {
         grid-template-columns: 2fr 3fr; /* md:grid-cols-5 split */
     }
