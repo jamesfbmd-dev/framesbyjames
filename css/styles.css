@@ -542,7 +542,7 @@ body {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    border: none; /* Remove border to maximize image area */
+    border: 10px solid white;
 }
 
 .lightbox-btn {
@@ -575,4 +575,22 @@ body {
 
 .next-btn {
     /* right property is no longer needed */
+}
+
+@media (min-width: 561px) {
+    .lightbox-image {
+        border-width: 15px;
+    }
+}
+
+@media (min-width: 769px) {
+    .lightbox-image {
+        border-width: 20px;
+    }
+}
+
+@media (min-width: 1041px) {
+    .lightbox-image {
+        border-width: 30px;
+    }
 }
