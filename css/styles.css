@@ -209,11 +209,58 @@ body {
   100% { transform: translateY(0); }      /* rest at start */
 }
 
+.hero-wave {
+    position: absolute;
+    /*Behind arrow and text, but above parallax layers*/
+    z-index: 9;
+    bottom: -5px;
+    width: 100%;
+    height: auto;
+}
+
+/*WAVE responsive*/
+/*@media (min-width: 561px) {
+    .hero-wave {
+        bottom: -5px;
+    }
+}
+*/
+@media (min-width: 769px) {
+    .hero-wave {
+        bottom: -10px;
+    }
+}
+
+@media (min-width: 1041px) {
+    .hero-wave {
+        bottom: -20px;
+    }
+}
+
+
 .hero-arrow {
     z-index: 10;
     position: absolute;
-    bottom: 20px;
+    bottom: 60px;
     animation: arrowDownTwice 5s ease-in-out infinite;
+}
+
+@media (min-width: 561px) {
+    .hero-arrow {
+        bottom: 75px;
+    }
+}
+
+@media (min-width: 769px) {
+    .hero-arrow {
+        bottom: 90px;
+    }
+}
+
+@media (min-width: 1041px) {
+    .hero-arrow {
+        bottom: 120px;
+    }
 }
 
 .hero-arrow a {
