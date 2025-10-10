@@ -160,6 +160,15 @@ body {
     overflow: hidden; /* Prevent any accidental overflow */
 }
 
+.hero-gradient {
+    height: 100%;
+    width: 100%;
+    /*Just below arrow and title*/
+    z-index: 8;
+    position: absolute;
+    background: linear-gradient(to top, #0000007a 0%, transparent 12%);
+}
+
 .hero-parallax-layer {
     position: absolute;
     top: 0;
@@ -188,7 +197,7 @@ body {
     color: var(--color-light-gray); /* Ensure text is always visible */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
     position: relative; /* Ensure it's in the stacking context */
-    z-index: 3; /* Sit above the parallax layers */
+    z-index: 10; /* Sit above the parallax layers */
 }
 
 @keyframes arrowDownTwice {
