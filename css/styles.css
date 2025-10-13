@@ -244,6 +244,11 @@ body {
     height: auto;
 }
 
+.hero-wave svg {
+    max-height: 270px;
+    width: 100%;
+}
+
 /*WAVE responsive*/
 /*@media (min-width: 561px) {
     .hero-wave {
