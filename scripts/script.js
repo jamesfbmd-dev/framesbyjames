@@ -231,25 +231,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render
     renderGallery();
 
-    // Hero Section Mouse Follow Spotlight Effect
-    const heroSection = document.getElementById('hero');
-    const heroSpotlight = document.getElementById('hero-spotlight');
+    // Hero Section Parallax Effect
+    const heroBg = document.getElementById('hero-bg');
+    const parallax1 = document.getElementById('hero-parallax-1');
+    const parallax2 = document.getElementById('hero-parallax-2');
 
-    if (heroSection && heroSpotlight) {
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = heroSection.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
 
-            // Apply properties to the spotlight layer using pixel values
-            heroSpotlight.style.setProperty('--mouse-x', `${x}px`);
-            heroSpotlight.style.setProperty('--mouse-y', `${y}px`);
-            heroSpotlight.style.setProperty('--mouse-opacity', '1');
-        });
-
-        heroSection.addEventListener('mouseleave', () => {
-            // Hide the spotlight layer
-            heroSpotlight.style.setProperty('--mouse-opacity', '0');
-        });
-    }
+        // Check if elements exist before trying to style them
+        if (heroBg) {
+            heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
+        }
+        if (parallax1) {
+            parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
+        }
+        if (parallax2) {
+            parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
+        }
+    });
 });
+

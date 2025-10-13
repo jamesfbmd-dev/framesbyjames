@@ -20,7 +20,7 @@
             <a href="#" class="logo">FRAMES BY JAMES</a>
             <nav class="desktop-nav">
                 <a href="#work" class="nav-link">Work</a>
-                <a href="#about" class="nav-link">About</a>
+                <!-- <a href="#about" class="nav-link">About</a> -->
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <div class="mobile-nav-toggle">
@@ -35,14 +35,17 @@
         </div>
          <div id="mobile-menu" class="mobile-menu-dropdown hidden">
             <a href="#work" class="mobile-nav-link">Work</a>
-            <a href="#about" class="mobile-nav-link">About</a>
+            <!-- <a href="#about" class="mobile-nav-link">About</a> -->
             <a href="#contact" class="mobile-nav-link">Contact</a>
         </div>
     </header>
     
     <main>
         <section id="hero" class="hero-section">
-            <div id="hero-spotlight" class="hero-spotlight"></div>
+            <div class="hero-gradient"></div>
+            <img src="images/hero/background.png" id="hero-bg" class="hero-parallax-layer" alt="Background">
+            <img src="images/hero/background-parallax-1.png" id="hero-parallax-1" class="hero-parallax-layer" alt="Parallax Layer 1">
+            <img src="images/hero/background-parallax-2.png" id="hero-parallax-2" class="hero-parallax-layer" alt="Parallax Layer 2">
             <div id="hero-text-container" class="hero-text-container">
                 <h1 class="hero-title font-serif-display">
                     Frames<br><i>by</i> James
@@ -50,11 +53,16 @@
             </div>
             <div class="hero-arrow">
                 <a id="hero-arrow-link" href="#work">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="80" viewBox="0 0 40 80" fill="none" stroke="black" stroke-width="2" stroke-linecap="butt" stroke-linejoin="butt">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="80" viewBox="0 0 40 80" fill="none" stroke="white" stroke-width="1" stroke-linecap="butt" stroke-linejoin="butt">
                   <line x1="20" y1="5" x2="20" y2="70" />
                   <polyline points="10,60 20,70 30,60" />
                 </svg>
                 </a>
+            </div>
+            <div class="hero-wave">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 220" preserveAspectRatio="none">
+                  <path fill="#fdfbf9" d="M0,160L80,150C160,140,320,120,480,120C640,120,800,140,960,145C1120,150,1280,140,1360,135L1440,130L1440,220L1360,220C1280,220,1120,220,960,220C800,220,640,220,480,220C320,220,160,220,80,220L0,220Z"></path>
+                </svg>
             </div>
         </section>
 
