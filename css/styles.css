@@ -14,6 +14,39 @@
 
 }
 
+/* --- KEYFRAME ANIMATIONS --- */
+@keyframes focus-in-out {
+    /* Focus-in-out (The stronger intensity) - from 0% to 50% */
+    0%   { filter: blur(12px); transform: scale(1.05); }   /* start of cycle 1 */
+    2.5% { filter: blur(6px); transform: scale(1.025); }
+    5%   { filter: blur(1.5px); transform: scale(1.0); }
+    7.5% { filter: blur(3.5px); transform: scale(1.01); } /* overshoot */
+    10%  { filter: blur(0); transform: scale(1.0); }
+    40%  { filter: blur(0); transform: scale(1.0); }       /* hold focus */
+    45%  { filter: blur(2px); transform: scale(1.005); }
+    50%  { filter: blur(12px); transform: scale(1.05); }   /* end of cycle 1, same as start of cycle 2 */
+
+    /* Focus-in-out2 (The lighter intensity) - from 50% to 100% */
+    50%  { filter: blur(12px); transform: scale(1.05); }   /* start of cycle 2 (use previous endpoint for smooth transition) */
+    52.5%{ filter: blur(3px); transform: scale(1.0125); }
+    55%  { filter: blur(1.5px); transform: scale(1.00625); }
+    57.5%{ filter: blur(4px); transform: scale(1.0167); }  /* overshoot */
+    60%  { filter: blur(0); transform: scale(1.0); }
+    90%  { filter: blur(0); transform: scale(1.0); }       /* hold focus */
+    95%  { filter: blur(4px); transform: scale(1.0167); }
+    100% { filter: blur(12px); transform: scale(1.05); }   /* end of cycle 2, back to start */
+}
+
+
+@keyframes arrowDownTwice {
+  0%   { transform: translateY(0); }
+  5%   { transform: translateY(10px); }   /* first down */
+  10%  { transform: translateY(0); }      /* back up */
+  15%  { transform: translateY(10px); }   /* second down */
+  20%  { transform: translateY(0); }      /* back up */
+  100% { transform: translateY(0); }      /* rest at start */
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -198,15 +231,8 @@ body {
     padding-bottom: 2.4rem; /* Fix for descender clipping */
     position: relative; /* Ensure it's in the stacking context */
     z-index: 10; /* Sit above the parallax layers */
-}
-
-@keyframes arrowDownTwice {
-  0%   { transform: translateY(0); }
-  5%   { transform: translateY(10px); }   /* first down */
-  10%  { transform: translateY(0); }      /* back up */
-  15%  { transform: translateY(10px); }   /* second down */
-  20%  { transform: translateY(0); }      /* back up */
-  100% { transform: translateY(0); }      /* rest at start */
+    animation: focus-in-out 14s ease-in-out infinite;
+    animation-fill-mode: both;
 }
 
 .hero-wave {
@@ -236,7 +262,6 @@ body {
         bottom: -20px;
     }
 }
-
 
 .hero-arrow {
     z-index: 10;
