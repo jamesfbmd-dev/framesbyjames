@@ -158,31 +158,35 @@ body {
     padding: 0 1.5rem;
     background-color: var(--color-background); /* Solid background for text */
     overflow: hidden; /* Prevent any accidental overflow */
-    cursor: none;
 }
 
-.hero-spotlight {
-    --mouse-x: 50%;
-    --mouse-y: 50%;
-    --mouse-opacity: 0;
-
+.hero-gradient {
+    height: 100%;
+    width: 100%;
+    /*Just below arrow and title*/
+    z-index: 8;
     position: absolute;
-    left: var(--mouse-x);
-    top: var(--mouse-y);
-    transform: translate(-50%, -50%);
+    background: linear-gradient(to top, #0000007a 0%, transparent 12%);
+}
 
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
+.hero-parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Make sure they don't interfere with mouse events */
+}
 
-    background-color: white;
-    mix-blend-mode: difference;
-
-    z-index: 2; /* Above the text */
-    pointer-events: none; /* Don't capture mouse events */
-
-    opacity: var(--mouse-opacity);
-    transition: opacity 0.3s ease, transform 0.1s ease-out;
+#hero-bg {
+    z-index: 0;
+}
+#hero-parallax-1 {
+    z-index: 1;
+}
+#hero-parallax-2 {
+    z-index: 2;
 }
 
 .hero-title {
@@ -190,10 +194,10 @@ body {
     font-weight: 600;
     line-height: 0.9;
     letter-spacing: -0.025em;
-    color: var(--color-text); /* Ensure text is always visible */
+    color: var(--color-light-gray); /* Ensure text is always visible */
     padding-bottom: 2.4rem; /* Fix for descender clipping */
     position: relative; /* Ensure it's in the stacking context */
-    z-index: 1; /* Sit below the spotlight div */
+    z-index: 10; /* Sit above the parallax layers */
 }
 
 @keyframes arrowDownTwice {
@@ -205,14 +209,62 @@ body {
   100% { transform: translateY(0); }      /* rest at start */
 }
 
-.hero-arrow {
+.hero-wave {
     position: absolute;
-    bottom: 20px;
+    /*Behind arrow and text, but above parallax layers*/
+    z-index: 9;
+    bottom: -5px;
+    width: 100%;
+    height: auto;
+}
+
+/*WAVE responsive*/
+/*@media (min-width: 561px) {
+    .hero-wave {
+        bottom: -5px;
+    }
+}
+*/
+@media (min-width: 769px) {
+    .hero-wave {
+        bottom: -10px;
+    }
+}
+
+@media (min-width: 1041px) {
+    .hero-wave {
+        bottom: -20px;
+    }
+}
+
+
+.hero-arrow {
+    z-index: 10;
+    position: absolute;
+    bottom: 60px;
     animation: arrowDownTwice 5s ease-in-out infinite;
 }
 
+@media (min-width: 561px) {
+    .hero-arrow {
+        bottom: 75px;
+    }
+}
+
+@media (min-width: 769px) {
+    .hero-arrow {
+        bottom: 90px;
+    }
+}
+
+@media (min-width: 1041px) {
+    .hero-arrow {
+        bottom: 120px;
+    }
+}
+
 .hero-arrow a {
-    cursor: none;
+    cursor: pointer;
 }
 
 
