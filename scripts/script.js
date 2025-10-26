@@ -1,18 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Gallery Data with high-contrast placeholders
+
+    //Categories available:
+    // - landscapes
+    // - street
+    // - human nature
+    // - architecture
+
     const imageData = [
-        { src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Landscape 5', ratio: '4x3' },
-        { src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Landscape 6', ratio: '4x3' },
-        { src: 'images/photos/photo-3.jpg', category: ['landscapes', 'human nature'], alt: 'Landscape 7', ratio: '4x3' },
-        { src: 'images/photos/photo-4.jpg', category: ['landscapes'], alt: 'Landscape 8', ratio: '4x3' },
-        { src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Landscape 9', ratio: '4x3' },
-        { src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Landscape 10', ratio: '4x3' },
-        { src: 'images/photos/photo-7.jpg', category: ['human nature'], alt: 'Portrait 1', ratio: '3x4' },
-        { src: 'images/photos/photo-8.jpg', category: ['street', 'architecture'], alt: 'Portrait 2', ratio: '3x4' },
-        { src: 'images/photos/photo-9.jpg', category: ['human nature'], alt: 'Portrait 3', ratio: '3x4' },
-        { src: 'images/photos/photo-10.jpg', category: ['human nature'], alt: 'Portrait 4', ratio: '3x4' },
-        { src: 'images/photos/photo-11.jpg', category: ['street'], alt: 'Portrait 5', ratio: '3x4' },
-        { src: 'images/photos/photo-12.jpg', category: ['architecture'], alt: 'Portrait 6', ratio: '3x4' }
+        { src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Lyttleton Harbour', ratio: '4x3' },
+        { src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Christchurch Hills', ratio: '4x3' },
+        { src: 'images/photos/photo-3.jpg', category: ['landscapes', 'human nature'], alt: 'Christchurch Gondola', ratio: '4x3' },
+        { src: 'images/photos/photo-4.jpg', category: ['landscapes'], alt: 'Views of New Brighton', ratio: '4x3' },
+        { src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Christchurch', ratio: '4x3' },
+        { src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Christchurch Hills Path', ratio: '4x3' },
+        { src: 'images/photos/photo-7.jpg', category: ['human nature'], alt: 'Land Sea and Boardwalk', ratio: '3x4' },
+        { src: 'images/photos/photo-8.jpg', category: ['street', 'architecture'], alt: 'St Kilda Pier Building', ratio: '3x4' },
+        { src: 'images/photos/photo-9.jpg', category: ['human nature'], alt: 'St Kilda Pier Steps', ratio: '3x4' },
+        // { src: 'images/photos/photo-10.jpg', category: ['human nature'], alt: 'Melbourne Skyline', ratio: '3x4' },
+        { src: 'images/photos/photo-11.jpg', category: ['street'], alt: 'Luna Park', ratio: '3x4' },
+        { src: 'images/photos/photo-12.jpg', category: ['architecture'], alt: 'Australian War Memorial', ratio: '3x4' },
+        { src: 'images/photos/photo-13.jpg', category: ['landscapes'], alt: 'Engelberg', ratio: '3x4' },
+        { src: 'images/photos/photo-14b.jpg', category: ['architecture', 'street'], alt: 'Asakusa Street', ratio: '3x4', positionOverride: 'bottom' },
+        { src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
+        { src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
+        { src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
     ];
 
     const gallery = document.getElementById('gallery');
@@ -93,7 +105,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 relativeWrapper.style.backgroundColor = '#312F2C'; 
                 relativeWrapper.innerHTML = '<span style="color:white; font-size: 1.125rem; text-transform:uppercase; display:flex; align-items:center; justify-content:center; width:100%; height:100%;">Error</span>';
             };
-            img.className = 'img-thumbnail'; // Pure CSS class for w-full h-full object-cover
+
+            if(data.positionOverride) {
+                if(data.positionOverride == 'bottom') {
+                    img.className = 'img-thumbnail img-bottom';
+                }
+            } else {
+               img.className = 'img-thumbnail'; // Pure CSS class for w-full h-full object-cover
+            }
+
             img.alt = data.alt;
             img.loading = 'lazy';
 

@@ -488,6 +488,10 @@ body {
     transform: scale(1.05);
 }
 
+.gallery-item .img-bottom {
+    object-position: center bottom;
+}
+
 
 /* --- ABOUT SECTION --- */
 .about-container {
