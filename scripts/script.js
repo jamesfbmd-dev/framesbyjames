@@ -38,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
         { src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
         { src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
+        { src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
+        { src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
     ];
 
     const gallery = document.getElementById('gallery');
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const img = document.createElement('img');
             img.src = data.src;
+            img.loading = 'lazy';
             img.onerror = function() {
                 // Fallback for visual cue if image fails
                 console.error("Image failed to load: " + this.src);
