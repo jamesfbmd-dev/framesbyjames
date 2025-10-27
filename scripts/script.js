@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxPrevMobile = document.getElementById('lightbox-prev-mobile');
+    const lightboxNextMobile = document.getElementById('lightbox-next-mobile');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const arrowLink = document.getElementById('hero-arrow-link');
@@ -212,8 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lightbox Controls
     lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', () => showImage('prev'));
-    lightboxNext.addEventListener('click', () => showImage('next'));
+
+    lightboxPrev && lightboxPrev.addEventListener('click', () => showImage('prev'));
+    lightboxNext && lightboxNext.addEventListener('click', () => showImage('next'));
+    lightboxPrevMobile && lightboxPrevMobile.addEventListener('click', () => showImage('prev'));
+    lightboxNextMobile && lightboxNextMobile.addEventListener('click', () => showImage('next'));
     
     // Close lightbox on backdrop click
     lightbox.addEventListener('click', (e) => {
