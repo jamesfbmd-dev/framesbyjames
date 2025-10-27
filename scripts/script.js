@@ -21,29 +21,142 @@ document.addEventListener('DOMContentLoaded', () => {
     // - architecture
 
     const imageData = [
-        { src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Lyttleton Harbour', ratio: '4x3' },
-        { src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Christchurch Hills', ratio: '4x3' },
-        { src: 'images/photos/photo-3.jpg', category: ['landscapes', 'human nature'], alt: 'Christchurch Gondola', ratio: '4x3' },
-        { src: 'images/photos/photo-4.jpg', category: ['landscapes'], alt: 'Views of New Brighton', ratio: '4x3' },
-        { src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Christchurch', ratio: '4x3' },
-        { src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Christchurch Hills Path', ratio: '4x3' },
-        { src: 'images/photos/photo-7.jpg', category: ['human nature'], alt: 'Land Sea and Boardwalk', ratio: '3x4' },
-        { src: 'images/photos/photo-8.jpg', category: ['street', 'architecture'], alt: 'St Kilda Pier Building', ratio: '3x4' },
-        { src: 'images/photos/photo-9.jpg', category: ['human nature'], alt: 'St Kilda Pier Steps', ratio: '3x4' },
-        // { src: 'images/photos/photo-10.jpg', category: ['human nature'], alt: 'Melbourne Skyline', ratio: '3x4' },
-        { src: 'images/photos/photo-11.jpg', category: ['street'], alt: 'Luna Park', ratio: '3x4' },
-        { src: 'images/photos/photo-12.jpg', category: ['architecture'], alt: 'Australian War Memorial', ratio: '3x4' },
-        { src: 'images/photos/photo-13.jpg', category: ['landscapes'], alt: 'Engelberg', ratio: '3x4' },
-        { src: 'images/photos/photo-14b.jpg', category: ['architecture', 'street'], alt: 'Asakusa Street', ratio: '3x4', positionOverride: 'bottom' },
-        { src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
-        { src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
-        { src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
+        {
+            src: 'images/photos/photo-1.jpg',
+            category: ['landscapes'],
+            alt: 'Lyttleton Harbour',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-2.jpg',
+            category: ['landscapes'],
+            alt: 'Christchurch Hills',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-3.jpg',
+            category: ['landscapes', 'human nature'],
+            alt: 'Christchurch Gondola',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-4.jpg',
+            category: ['landscapes'],
+            alt: 'Views of New Brighton',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-5.jpg',
+            category: ['landscapes'],
+            alt: 'Christchurch',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-6.jpg',
+            category: ['landscapes'],
+            alt: 'Christchurch Hills Path',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-7.jpg',
+            category: ['human nature'],
+            alt: 'Land Sea and Boardwalk',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-8.jpg',
+            category: ['street', 'architecture'],
+            alt: 'St Kilda Pier Building',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-9.jpg',
+            category: ['human nature'],
+            alt: 'St Kilda Pier Steps',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-11.jpg',
+            category: ['street'],
+            alt: 'Luna Park',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-12.jpg',
+            category: ['architecture'],
+            alt: 'Australian War Memorial',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-13.jpg',
+            category: ['landscapes'],
+            alt: 'Engelberg',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-14b.jpg',
+            category: ['architecture', 'street'],
+            alt: 'Asakusa Street',
+            ratio: '3x4',
+            positionOverride: 'bottom',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-15.jpg',
+            category: ['human nature'],
+            alt: 'Kyoto Pond',
+            ratio: '4x3',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-16.jpg',
+            category: ['human nature'],
+            alt: 'Hakone Shrine',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
+        {
+            src: 'images/photos/photo-17.jpg',
+            category: ['street'],
+            alt: 'Asakusa Road',
+            ratio: '3x4',
+            imageData: { camera: 'Canon R50', lens: 'Canon RF-S 18-45mm', aperture: 'AP', shutterSpeed: 'SH', iso: 'ISO' },
+            location: 'PLACE'
+        },
     ];
 
     const gallery = document.getElementById('gallery');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
@@ -180,6 +293,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         lightboxImg.src = imageData[currentImageIndex].src;
+
+        const captionData = imageData[currentImageIndex];
+        lightboxCaption.innerHTML = `
+            <strong>Camera:</strong> ${captionData.imageData.camera}<br>
+            <strong>Lens:</strong> ${captionData.imageData.lens}<br>
+            <strong>Aperture:</strong> ${captionData.imageData.aperture}<br>
+            <strong>Shutter Speed:</strong> ${captionData.imageData.shutterSpeed}<br>
+            <strong>ISO:</strong> ${captionData.imageData.iso}<br>
+            <strong>Location:</strong> ${captionData.location}
+        `;
     }
 
     function showImage(direction) {

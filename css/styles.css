@@ -724,3 +724,13 @@ body {
         border-width: 30px;
     }
 }
+
+.lightbox-caption {
+    color: white;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.lightbox-caption span {
+    margin: 0 0.5rem;
+}
