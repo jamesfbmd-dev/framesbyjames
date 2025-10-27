@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Device scaling detector (should work on modern browsers running Windows)
+    const scale = window.devicePixelRatio;
+
+    if (scale === 1.25) {
+      document.body.classList.add('scale-125');
+      console.log('scaling')
+    } else if (scale === 1.5) {
+      document.body.classList.add('scale-150');
+      console.log('scaling')
+    }
+
+
     // Gallery Data with high-contrast placeholders
 
     //Categories available:
