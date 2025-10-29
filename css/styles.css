@@ -446,6 +446,14 @@ body {
     break-inside: avoid-column; 
     overflow: hidden;
     position: relative;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.gallery-item--hidden,
+.gallery--loading .gallery-item {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none; /* Prevent interaction while hidden */
 }
 
 /* Aspect Ratio Padding Hack */

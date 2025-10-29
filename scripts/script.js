@@ -212,19 +212,40 @@ document.addEventListener('DOMContentLoaded', () => {
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.dataset.filter;
+            if (button.classList.contains('active')) return; // Don't re-filter if already active
+
             currentFilter = filter;
 
-            // Add or remove a class to the gallery for responsive column adjustments
+            // Update active button state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Adjust gallery class for responsive columns
             if (filter === 'all') {
                 gallery.classList.remove('gallery-filtered');
             } else {
                 gallery.classList.add('gallery-filtered');
             }
-            
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
 
-            renderGallery(filter);
+            // Animate out existing items by adding a class
+            gallery.querySelectorAll('.gallery-item').forEach(item => {
+                item.classList.add('gallery-item--hidden');
+            });
+
+            // After fade-out animation, re-render and fade in new items
+            setTimeout(() => {
+                // Set the gallery to a "loading" state to hide new items initially
+                gallery.classList.add('gallery--loading');
+
+                renderGallery(filter); // Re-build the gallery content
+
+                // Use a minimal timeout to allow the browser to apply the 'loading' state
+                // before we remove it to trigger the fade-in transition.
+                setTimeout(() => {
+                    gallery.classList.remove('gallery--loading');
+                }, 15); // A small delay for the next paint cycle
+
+            }, 300); // Match CSS transition duration
         });
     });
 
