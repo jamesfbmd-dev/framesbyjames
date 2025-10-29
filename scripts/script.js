@@ -280,15 +280,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Check if elements exist before trying to style them
-        if (heroBg) {
-            heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
-        }
-        if (parallax1) {
-            parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
-        }
-        if (parallax2) {
-            parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
+        // Only apply parallax if scrolling down the page
+        if (scrollY >= 0) {
+            // Check if elements exist before trying to style them
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
+            }
+            if (parallax1) {
+                parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+            if (parallax2) {
+                parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
+            }
         }
     });
 });
