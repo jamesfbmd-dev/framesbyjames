@@ -259,6 +259,8 @@ body {
     z-index: 10; /* Sit above the parallax layers */
     animation: focus-in-out 14s ease-in-out infinite;
     animation-fill-mode: both;
+    will-change: transform, filter;
+    transform: translateZ(0); /* force GPU layer */
 }
 
 .hero-wave {
