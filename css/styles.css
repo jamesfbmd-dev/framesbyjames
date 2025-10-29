@@ -73,6 +73,32 @@ body {
     padding-right: var(--spacing-sm);
 }
 
+/*HELPER CLASSES*/
+@media (min-width: 0px) and (max-width: 560px) {
+    .hide-xs {
+        display: none!important;
+    }
+}
+
+@media (min-width: 561px) and (max-width: 768px) {
+    .hide-sm {
+        display: none!important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1040px) {
+    .hide-md {
+        display: none!important;
+    }
+}
+
+@media (min-width: 1041px) {
+    .hide-lg {
+        display: none!important;
+    }
+}
+
+
 /* --- HEADER AND NAVIGATION --- */
 .header {
     position: fixed;
@@ -233,6 +259,8 @@ body {
     z-index: 10; /* Sit above the parallax layers */
     animation: focus-in-out 14s ease-in-out infinite;
     animation-fill-mode: both;
+    will-change: transform, filter;
+    transform: translateZ(0); /* force GPU layer */
 }
 
 .hero-wave {
@@ -372,6 +400,7 @@ body {
     background-color: transparent;
     cursor: pointer;
     transition: all 0.2s ease;
+    color: var(--color-text);
 }
 
 .filter-btn.active {
@@ -417,6 +446,14 @@ body {
     break-inside: avoid-column; 
     overflow: hidden;
     position: relative;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.gallery-item--hidden,
+.gallery--loading .gallery-item {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none; /* Prevent interaction while hidden */
 }
 
 /* Aspect Ratio Padding Hack */
@@ -586,7 +623,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
@@ -613,6 +650,13 @@ body {
     width: 100%;
 }
 
+.lightbox-nav-mobile {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
 .lightbox-nav {
     display: flex;
     justify-content: center;
@@ -627,6 +671,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (min-width: 769px) {
+    .lightbox-body {
+        justify-content: space-between;
+    }
 }
 
 .lightbox-image {

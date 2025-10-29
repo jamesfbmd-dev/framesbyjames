@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Device scaling detector (should work on modern browsers running Windows)
+    const scale = window.devicePixelRatio;
+
+    if (scale === 1.25) {
+      document.body.classList.add('scale-125');
+      console.log('scaling')
+    } else if (scale === 1.5) {
+      document.body.classList.add('scale-150');
+      console.log('scaling')
+    }
+
+
     // Gallery Data with high-contrast placeholders
 
     //Categories available:
@@ -25,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
         { src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
         { src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
+        { src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
+        { src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
     ];
 
     const gallery = document.getElementById('gallery');
@@ -34,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxPrevMobile = document.getElementById('lightbox-prev-mobile');
+    const lightboxNextMobile = document.getElementById('lightbox-next-mobile');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const arrowLink = document.getElementById('hero-arrow-link');
@@ -98,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const img = document.createElement('img');
             img.src = data.src;
+            img.loading = 'lazy';
             img.onerror = function() {
                 // Fallback for visual cue if image fails
                 console.error("Image failed to load: " + this.src);
@@ -194,26 +212,50 @@ document.addEventListener('DOMContentLoaded', () => {
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.dataset.filter;
+            if (button.classList.contains('active')) return; // Don't re-filter if already active
+
             currentFilter = filter;
 
-            // Add or remove a class to the gallery for responsive column adjustments
+            // Update active button state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Adjust gallery class for responsive columns
             if (filter === 'all') {
                 gallery.classList.remove('gallery-filtered');
             } else {
                 gallery.classList.add('gallery-filtered');
             }
-            
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
 
-            renderGallery(filter);
+            // Animate out existing items by adding a class
+            gallery.querySelectorAll('.gallery-item').forEach(item => {
+                item.classList.add('gallery-item--hidden');
+            });
+
+            // After fade-out animation, re-render and fade in new items
+            setTimeout(() => {
+                // Set the gallery to a "loading" state to hide new items initially
+                gallery.classList.add('gallery--loading');
+
+                renderGallery(filter); // Re-build the gallery content
+
+                // Use a minimal timeout to allow the browser to apply the 'loading' state
+                // before we remove it to trigger the fade-in transition.
+                setTimeout(() => {
+                    gallery.classList.remove('gallery--loading');
+                }, 15); // A small delay for the next paint cycle
+
+            }, 300); // Match CSS transition duration
         });
     });
 
     // Lightbox Controls
     lightboxClose.addEventListener('click', closeLightbox);
-    lightboxPrev.addEventListener('click', () => showImage('prev'));
-    lightboxNext.addEventListener('click', () => showImage('next'));
+
+    lightboxPrev && lightboxPrev.addEventListener('click', () => showImage('prev'));
+    lightboxNext && lightboxNext.addEventListener('click', () => showImage('next'));
+    lightboxPrevMobile && lightboxPrevMobile.addEventListener('click', () => showImage('prev'));
+    lightboxNextMobile && lightboxNextMobile.addEventListener('click', () => showImage('next'));
     
     // Close lightbox on backdrop click
     lightbox.addEventListener('click', (e) => {
@@ -259,15 +301,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
-        // Check if elements exist before trying to style them
-        if (heroBg) {
-            heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
-        }
-        if (parallax1) {
-            parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
-        }
-        if (parallax2) {
-            parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
+        // Only apply parallax if scrolling down the page
+        if (scrollY >= 0) {
+            // Check if elements exist before trying to style them
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
+            }
+            if (parallax1) {
+                parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
+            }
+            if (parallax2) {
+                parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
+            }
         }
     });
 });
