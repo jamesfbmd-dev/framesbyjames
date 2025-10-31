@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
         { src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
         { src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
+        { src: 'images/photos/photo-19.jpg', category: ['landscapes', 'human nature'], alt: 'Kyoto Shrine', ratio: '4x3'},
     ];
 
     const gallery = document.getElementById('gallery');
