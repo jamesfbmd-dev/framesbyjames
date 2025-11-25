@@ -1,42 +1,3 @@
-// Gallery Data with high-contrast placeholders
-
-//Categories available:
-// - landscapes
-// - street
-// - human nature
-// - architecture
-
-// ratio:
-// '3x4' or '4x3'
-// Dictates how images appears on masonry
-
-window.imageData = [
-    { id: 1, src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Lyttleton Harbour', ratio: '4x3' },
-    { id: 2, src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Christchurch Hills', ratio: '4x3' },
-    { id: 3, src: 'images/photos/photo-3.jpg', category: ['landscapes', 'human nature'], alt: 'Christchurch Gondola', ratio: '4x3' },
-    { id: 4, src: 'images/photos/photo-4.jpg', category: ['landscapes'], alt: 'Views of New Brighton', ratio: '4x3' },
-    { id: 5, src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Christchurch', ratio: '4x3' },
-    { id: 6, src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Christchurch Hills Path', ratio: '4x3' },
-    { id: 7, src: 'images/photos/photo-7.jpg', category: ['human nature'], alt: 'Land Sea and Boardwalk', ratio: '3x4' },
-    { id: 8, src: 'images/photos/photo-8.jpg', category: ['street', 'architecture'], alt: 'St Kilda Pier Building', ratio: '3x4' },
-    { id: 9, src: 'images/photos/photo-9.jpg', category: ['human nature'], alt: 'St Kilda Pier Steps', ratio: '3x4' },
-    //id: 10,  { src: 'images/photos/photo-10.jpg', category: ['human nature'], alt: 'Melbourne Skyline', ratio: '3x4' },
-    { id: 11, src: 'images/photos/photo-11.jpg', category: ['street'], alt: 'Luna Park', ratio: '3x4' },
-    { id: 12, src: 'images/photos/photo-12.jpg', category: ['architecture'], alt: 'Australian War Memorial', ratio: '3x4' },
-    { id: 13, src: 'images/photos/photo-13.jpg', category: ['landscapes'], alt: 'Engelberg', ratio: '3x4' },
-    { id: 14, src: 'images/photos/photo-14b.jpg', category: ['architecture', 'street'], alt: 'Asakusa Street', ratio: '3x4', positionOverride: 'bottom' },
-    { id: 15, src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
-    { id: 16, src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
-    { id: 17, src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
-    { id: 18, src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
-    { id: 19, src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
-    { id: 20, src: 'images/photos/photo-20.jpg', category: ['landscapes', 'human nature'], alt: 'Kyoto Shrine', ratio: '4x3'},
-    { id: 21, src: 'images/photos/photo-21.jpg', category: ['landscapes'], alt: 'Twelve Apostles', ratio: '4x3'},
-    { id: 22, src: 'images/photos/photo-22.jpg', category: ['landscapes', 'human nature'], alt: 'Great Ocean Road', ratio: '4x3'},
-    { id: 23, src: 'images/photos/photo-23.jpg', category: ['landscapes'], alt: 'Apollo Bay', ratio: '4x3'},
-    { id: 24, src: 'images/photos/photo-24.jpg', category: ['street'], alt: 'Akihabara Street', ratio: '3x4'},
-];
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // Device scaling detector (should work on modern browsers running Windows)
@@ -54,20 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Override for showing only curated images (dev use)
     const dev = document.getElementById('dev');
 
-    dev.style.position = 'absolute';
-    dev.style.opacity = '0'
-    dev.style.top = '100px';
-    dev.style.right = '20px';
-    dev.style.width = '30px';
-    dev.style.height = '30px';
-    dev.style.zIndex = '9999';
+    if (dev) {
+        dev.style.position = 'absolute';
+        dev.style.opacity = '0'
+        dev.style.top = '100px';
+        dev.style.right = '20px';
+        dev.style.width = '30px';
+        dev.style.height = '30px';
+        dev.style.zIndex = '9999';
 
-    const override = [1, 3, 8, 9, 15, 16, 21, 22, 23]
+        const override = [1, 3, 8, 9, 15, 16, 21, 22, 23]
 
-    dev.addEventListener('click', () => {
-        console.log('Curated')
-        renderGallery('all', override)
-    })
+        dev.addEventListener('click', () => {
+            console.log('Curated')
+            renderGallery('all', override)
+        })
+    }
 
 
 
@@ -89,19 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // HERO ARROW SCROLL BEHAVIOUR
-    const offset = 250; // distance in pixels from the top
+    if (arrowLink) {
+        const offset = 250; // distance in pixels from the top
 
-    arrowLink.addEventListener('click', function(e) {
-        e.preventDefault(); // prevent default jump
+        arrowLink.addEventListener('click', function(e) {
+            e.preventDefault(); // prevent default jump
 
-        const target = document.getElementById('gallery');
-        const topPos = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            const target = document.getElementById('gallery');
+            const topPos = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-        window.scrollTo({
-            top: topPos,
-            behavior: 'smooth'
+            window.scrollTo({
+                top: topPos,
+                behavior: 'smooth'
+            });
         });
-    });
+    }
 
     /**
      * Renders the gallery items based on the active filter.
@@ -329,29 +294,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial render
-    renderGallery();
+    if (gallery) {
+        renderGallery();
+    }
 
     // Hero Section Parallax Effect
     const heroBg = document.getElementById('hero-bg');
     const parallax1 = document.getElementById('hero-parallax-1');
     const parallax2 = document.getElementById('hero-parallax-2');
 
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
+    if (heroBg && parallax1 && parallax2) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
 
-        // Only apply parallax if scrolling down the page
-        if (scrollY >= 0) {
-            // Check if elements exist before trying to style them
-            if (heroBg) {
-                heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
+            // Only apply parallax if scrolling down the page
+            if (scrollY >= 0) {
+                // Check if elements exist before trying to style them
+                if (heroBg) {
+                    heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
+                }
+                if (parallax1) {
+                    parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
+                }
+                if (parallax2) {
+                    parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
+                }
             }
-            if (parallax1) {
-                parallax1.style.transform = `translateY(${scrollY * 0.5}px)`;
-            }
-            if (parallax2) {
-                parallax2.style.transform = `translateY(${scrollY * 0.2}px)`;
-            }
-        }
-    });
+        });
+    }
 });
 
