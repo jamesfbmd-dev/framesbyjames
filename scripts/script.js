@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // - human nature
     // - architecture
 
+    // ratio:
+    // '3x4' or '4x3'
+    // Dictates how images appears on masonry
+
     const imageData = [
         { src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Lyttleton Harbour', ratio: '4x3' },
         { src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Christchurch Hills', ratio: '4x3' },
@@ -40,7 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
         { src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
         { src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
-        { src: 'images/photos/photo-19.jpg', category: ['landscapes', 'human nature'], alt: 'Kyoto Shrine', ratio: '4x3'},
+        { src: 'images/photos/photo-20.jpg', category: ['landscapes', 'human nature'], alt: 'Kyoto Shrine', ratio: '4x3'},
+        { src: 'images/photos/photo-21.jpg', category: ['landscapes'], alt: 'Twelve Apostles', ratio: '4x3'},
+        { src: 'images/photos/photo-22.jpg', category: ['landscapes', 'human nature'], alt: 'Great Ocean Road', ratio: '4x3'},
+        { src: 'images/photos/photo-23.jpg', category: ['landscapes'], alt: 'Apollo Bay', ratio: '4x3'},
+        { src: 'images/photos/photo-24.jpg', category: ['street'], alt: 'Akihabara Street', ratio: '3x4'},
     ];
 
     const gallery = document.getElementById('gallery');
