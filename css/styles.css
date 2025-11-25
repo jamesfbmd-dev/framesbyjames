@@ -545,6 +545,130 @@ body {
     object-position: center bottom;
 }
 
+/* --- TRIP PAGE --- */
+.trip-page {
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+}
+
+.trip-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    z-index: 10;
+    color: white;
+}
+
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.trip-title {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.trip-gallery-container {
+    display: flex;
+    height: 100%;
+    width: max-content;
+    will-change: transform;
+}
+
+.trip-gallery-item {
+    height: 100vh;
+    height: 100dvh;
+    width: auto;
+    padding: 3rem;
+}
+
+.trip-gallery-item img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+
+/* --- TRIPS SECTION --- */
+.trips-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.trips-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+@media (min-width: 769px) {
+    .trips-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1041px) {
+    .trips-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.trip-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    aspect-ratio: 4 / 3;
+}
+
+.trip-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.trip-card:hover .trip-card-bg {
+    transform: scale(1.05);
+}
+
+.trip-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    transition: background-color 0.3s ease;
+}
+
+.trip-card:hover .trip-card-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 50%);
+}
+
+.trip-card-title {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Cormorant Garamond', serif;
+}
 
 /* --- ABOUT SECTION --- */
 .about-container {
