@@ -47,6 +47,14 @@
   100% { transform: translateY(0); }      /* rest at start */
 }
 
+@keyframes rotate-indefinitely {
+    0% { transform: rotate(0deg); }
+/*    25% { transform: rotate(90deg); }
+    50% { transform: rotate(180deg); }
+    75% { transform: rotate(270deg); }*/
+    100% { transform: rotate(360deg); }
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -120,13 +128,23 @@ body {
     align-items: center;
 }
 
-.logo {
-    font-size: 1.25rem; /* md:text-2xl */
-    font-weight: 600;
-    letter-spacing: 0.05em; /* tracking-wider */
-    text-decoration: none;
-    color: var(--color-text);
+.logo-link {
+    max-width: 50px;
 }
+
+.logo-link img {
+    width: 100%;
+    content: url("../images/hero/fj-logo.png");
+    transition: 0.5s ease-in-out;
+}
+
+.logo-link img:hover {
+    content: url("../images/hero/fj-logo-split.png");
+    /*transform: rotate(2deg);*/
+    transition: 0.5s ease-in-out;
+    animation: rotate-indefinitely 5s infinite;
+}
+
 
 .desktop-nav {
     display: none;
