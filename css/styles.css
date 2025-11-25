@@ -49,9 +49,6 @@
 
 @keyframes rotate-indefinitely {
     0% { transform: rotate(0deg); }
-/*    25% { transform: rotate(90deg); }
-    50% { transform: rotate(180deg); }
-    75% { transform: rotate(270deg); }*/
     100% { transform: rotate(360deg); }
 }
 
@@ -267,6 +264,7 @@ body {
 }
 
 .hero-title {
+    pointer-events: none;
     font-size: 6rem; /* sm:text-8xl, md:text-9xl */
     font-weight: 600;
     line-height: 0.9;
