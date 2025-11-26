@@ -1,0 +1,147 @@
+/* --- FILTER BUTTONS --- */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid #ccc;
+    border-radius: 9999px; /* rounded-full */
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: $color-text;
+}
+
+.filter-btn.active {
+    background-color: $color-text;
+    color: $color-background;
+    border-color: $color-text;
+}
+
+.filter-btn:hover:not(.active) {
+    background-color: #eee;
+}
+
+
+/* --- GALLERY (TRUE MASONRY) --- */
+
+/* * Masonry Layout using CSS Multi-Column
+ */
+#gallery {
+    column-count: 1;
+    column-gap: $spacing-sm;
+}
+
+@media (min-width: 561px) { /* sm breakpoint */
+    #gallery {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 769px) {
+    #gallery {
+        column-count: 2;
+    }
+    /* When filtered, use 2 columns to avoid awkward gaps */
+    #gallery.gallery-filtered {
+        column-count: 2;
+    }
+}
+
+.gallery-item {
+    margin-bottom: $spacing-sm;
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid-column;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.gallery-item--hidden,
+.gallery--loading .gallery-item {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none; /* Prevent interaction while hidden */
+}
+
+/* Aspect Ratio Padding Hack */
+.aspect-ratio-container {
+    position: relative;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: $color-light-gray;
+}
+
+.ratio-4x3 {
+    padding-top: 75%; /* 3 / 4 = 0.75 */
+}
+
+.ratio-3x4 {
+    padding-top: 133.33%; /* 4 / 3 = 1.3333 */
+}
+
+/* Absolute filler that takes up the space defined by padding */
+.aspect-ratio-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* CRITICAL FIX: Relative wrapper for correct overlay containment */
+.relative-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.relative-wrapper::after {
+    content: 'View Photo';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(49, 47, 44, 0.7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 1.125rem;
+    z-index: 10;
+}
+
+.gallery-item:hover .relative-wrapper::after {
+    opacity: 1;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item .img-bottom {
+    object-position: center bottom;
+}

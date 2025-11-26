@@ -1,0 +1,40 @@
+.contact-section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $spacing-lg $spacing-sm;
+}
+
+.contact-container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+    text-align: center;
+}
+
+.contact-paragraph {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: $color-text;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $color-accent;
+    }
+}
