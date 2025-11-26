@@ -1,0 +1,104 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background-color: rgba(253, 251, 248, 0.8);
+    backdrop-filter: blur(5px);
+
+    .header-container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-link {
+        max-width: 50px;
+
+        img {
+            width: 100%;
+            content: url("../images/hero/fj-logo.png");
+            transition: 0.5s ease-in-out;
+
+            &:hover {
+                content: url("../images/hero/fj-logo-split.png");
+                transition: 0.5s ease-in-out;
+                animation: rotate-indefinitely 5s infinite;
+            }
+        }
+    }
+
+    .desktop-nav {
+        display: none;
+        gap: 2rem;
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+
+        @include md-up {
+            display: flex;
+        }
+
+        .nav-link {
+            color: $color-text;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-accent;
+                transition: color 0.2s ease;
+            }
+        }
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+
+        @include md-up {
+            display: none;
+        }
+
+        .mobile-menu-button {
+            background: none;
+            border: none;
+            color: $color-text;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+    }
+
+    .mobile-menu-dropdown {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: $color-background;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #EFEFEF;
+        z-index: 39;
+
+        @include md-up {
+            display: none !important;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            text-align: center;
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $color-text;
+
+            &:hover {
+                background-color: #f7f7f7;
+            }
+        }
+    }
+}

@@ -1,0 +1,154 @@
+%hidden-gallery-item {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.gallery-section {
+    padding-top: $spacing-lg;
+    padding-bottom: $spacing-lg;
+
+    .section-header {
+        @include section-header;
+    }
+
+    .filter-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 3rem;
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid #ccc;
+            border-radius: 9999px;
+            background-color: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: $color-text;
+
+            &.active {
+                background-color: $color-text;
+                color: $color-background;
+                border-color: $color-text;
+            }
+
+            &:hover:not(.active) {
+                background-color: #eee;
+            }
+        }
+    }
+
+    #gallery {
+        column-count: 1;
+        column-gap: $spacing-sm;
+
+        @include sm-up {
+            column-count: 2;
+        }
+
+        @include md-up {
+            column-count: 2;
+        }
+
+        &.gallery-filtered {
+            @include md-up {
+                column-count: 2;
+            }
+        }
+
+        .gallery-item {
+            margin-bottom: $spacing-sm;
+            display: inline-block;
+            width: 100%;
+            break-inside: avoid-column;
+            overflow: hidden;
+            position: relative;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+            &--hidden {
+                @extend %hidden-gallery-item;
+            }
+
+            .aspect-ratio-container {
+                position: relative;
+                height: 0;
+                width: 100%;
+                overflow: hidden;
+                background-color: $color-light-gray;
+
+                &.ratio-4x3 {
+                    padding-top: 75%;
+                }
+
+                &.ratio-3x4 {
+                    padding-top: 133.33%;
+                }
+
+                .aspect-ratio-content {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    cursor: pointer;
+                    overflow: hidden;
+
+                    .relative-wrapper {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+
+                        &::after {
+                            content: 'View Photo';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: rgba(49, 47, 44, 0.7);
+                            color: white;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                            font-size: 1.125rem;
+                            z-index: 10;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                .relative-wrapper::after {
+                    opacity: 1;
+                }
+
+                img {
+                    transform: scale(1.05);
+                }
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+                display: block;
+
+                &.img-bottom {
+                    object-position: center bottom;
+                }
+            }
+        }
+    }
+
+    &.gallery--loading .gallery-item {
+        @extend %hidden-gallery-item;
+    }
+}
