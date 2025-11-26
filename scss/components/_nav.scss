@@ -40,8 +40,13 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
 
+        @include md-up {
+            display: flex;
+        }
+
         .nav-link {
             color: $color-text;
+            text-decoration: none;
 
             &:hover {
                 color: $color-accent;
@@ -52,6 +57,10 @@
 
     .mobile-nav-toggle {
         display: block;
+
+        @include md-up {
+            display: none;
+        }
 
         .mobile-menu-button {
             background: none;
@@ -73,6 +82,10 @@
         border-top: 1px solid #EFEFEF;
         z-index: 39;
 
+        @include md-up {
+            display: none !important;
+        }
+
         .mobile-nav-link {
             display: block;
             text-align: center;
@@ -86,24 +99,6 @@
             &:hover {
                 background-color: #f7f7f7;
             }
-        }
-    }
-
-    @include md-up {
-        .desktop-nav {
-            display: flex;
-        }
-
-        .mobile-nav-toggle {
-            display: none;
-        }
-
-        .mobile-menu-dropdown {
-            display: none !important;
-        }
-
-        .logo {
-            font-size: 1.5rem;
         }
     }
 }

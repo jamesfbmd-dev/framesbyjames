@@ -59,14 +59,14 @@ body {
 }
 
 /*HELPER CLASSES*/
+.hidden {
+    display: none!important;
+}
+
 .hide-xs {
     @include xs-only {
         display: none !important;
     }
-}
-
-.hidden {
-    display: none;
 }
 
 .hide-sm {
