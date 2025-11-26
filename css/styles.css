@@ -136,21 +136,29 @@ body {
     display: none !important;
   }
 }
+
+.hidden {
+  display: none;
+}
+
 @media (min-width: 561px) and (max-width: 768px) {
   .hide-sm {
     display: none !important;
   }
 }
+
 @media (min-width: 769px) and (max-width: 1040px) {
   .hide-md {
     display: none !important;
   }
 }
+
 @media (min-width: 1041px) {
   .hide-lg {
     display: none !important;
   }
 }
+
 body {
   font-family: "Inter", sans-serif;
   color: #312F2C;
@@ -185,8 +193,7 @@ body {
   background-color: rgba(253, 251, 248, 0.8);
   backdrop-filter: blur(5px);
 }
-
-.header-container {
+.header .header-container {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -195,76 +202,55 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
-.logo-link {
+.header .logo-link {
   max-width: 50px;
 }
-
-.logo-link img {
+.header .logo-link img {
   width: 100%;
   content: url("../images/hero/fj-logo.png");
   transition: 0.5s ease-in-out;
 }
-
-.logo-link img:hover {
+.header .logo-link img:hover {
   content: url("../images/hero/fj-logo-split.png");
-  /*transform: rotate(2deg);*/
   transition: 0.5s ease-in-out;
   animation: rotate-indefinitely 5s infinite;
 }
-
-.desktop-nav {
+.header .desktop-nav {
   display: none;
   gap: 2rem;
-  /* space-x-8 */
   font-size: 0.875rem;
-  /* text-sm */
   letter-spacing: 0.1em;
-  /* tracking-widest */
   text-transform: uppercase;
 }
-
-.desktop-nav .nav-link {
+.header .desktop-nav .nav-link {
   color: #312F2C;
 }
-
-.nav-link:hover {
+.header .desktop-nav .nav-link:hover {
   color: #B49A6C;
   transition: color 0.2s ease;
 }
-
-.mobile-nav-toggle {
+.header .mobile-nav-toggle {
   display: block;
 }
-
-.mobile-menu-button {
+.header .mobile-nav-toggle .mobile-menu-button {
   background: none;
   border: none;
   color: #312F2C;
   cursor: pointer;
   padding: 0.5rem;
 }
-
-.mobile-menu-dropdown {
+.header .mobile-menu-dropdown {
   display: block;
   position: absolute;
   top: 100%;
-  /* Position it right below the header's bottom edge */
   left: 0;
   right: 0;
   background-color: #FDFBF8;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-top: 1px solid #EFEFEF;
   z-index: 39;
-  /* Sit behind the main header content but above page content */
 }
-
-/* Utility class to hide elements */
-.hidden {
-  display: none;
-}
-
-.mobile-nav-link {
+.header .mobile-menu-dropdown .mobile-nav-link {
   display: block;
   text-align: center;
   padding: 0.75rem 0;
@@ -274,29 +260,24 @@ body {
   text-decoration: none;
   color: #312F2C;
 }
-
-.mobile-nav-link:hover {
+.header .mobile-menu-dropdown .mobile-nav-link:hover {
   background-color: #f7f7f7;
 }
-
-/* Media Query for Desktop Nav */
 @media (min-width: 769px) {
-  .desktop-nav {
+  .header .desktop-nav {
     display: flex;
   }
-
-  .mobile-nav-toggle {
+  .header .mobile-nav-toggle {
     display: none;
   }
-
-  .mobile-menu-dropdown {
+  .header .mobile-menu-dropdown {
     display: none !important;
   }
-
-  .logo {
+  .header .logo {
     font-size: 1.5rem;
   }
 }
+
 .hero-section {
   position: relative;
   min-height: 100vh;
@@ -309,16 +290,14 @@ body {
   background-color: #FDFBF8;
   overflow: hidden;
 }
-
-.hero-gradient {
+.hero-section .hero-gradient {
   height: 100%;
   width: 100%;
   z-index: 8;
   position: absolute;
   background: linear-gradient(to top, #0000007a 0%, transparent 12%);
 }
-
-.hero-parallax-layer {
+.hero-section .hero-parallax-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -327,20 +306,16 @@ body {
   object-fit: cover;
   pointer-events: none;
 }
-
-#hero-bg {
+.hero-section #hero-bg {
   z-index: 0;
 }
-
-#hero-parallax-1 {
+.hero-section #hero-parallax-1 {
   z-index: 1;
 }
-
-#hero-parallax-2 {
+.hero-section #hero-parallax-2 {
   z-index: 2;
 }
-
-.hero-title {
+.hero-section .hero-title {
   pointer-events: none;
   font-size: 6rem;
   font-weight: 600;
@@ -356,66 +331,70 @@ body {
   transform: translateZ(0);
 }
 @media (min-width: 561px) {
-  .hero-title {
+  .hero-section .hero-title {
     font-size: 8rem;
   }
 }
 @media (min-width: 769px) {
-  .hero-title {
+  .hero-section .hero-title {
     font-size: 9rem;
   }
 }
 @media (min-width: 1041px) {
-  .hero-title {
+  .hero-section .hero-title {
     font-size: 11rem;
   }
 }
-
-.hero-wave {
+.hero-section .hero-wave {
   position: absolute;
   z-index: 9;
   bottom: -5px;
   width: 100%;
   height: auto;
 }
-.hero-wave svg {
+.hero-section .hero-wave svg {
   max-height: 270px;
   width: 100%;
 }
 @media (min-width: 769px) {
-  .hero-wave {
+  .hero-section .hero-wave {
     bottom: -10px;
   }
 }
 @media (min-width: 1041px) {
-  .hero-wave {
+  .hero-section .hero-wave {
     bottom: -20px;
   }
 }
-
-.hero-arrow {
+.hero-section .hero-arrow {
   z-index: 10;
   position: absolute;
   bottom: 60px;
   animation: arrowDownTwice 5s ease-in-out infinite;
 }
-.hero-arrow a {
+.hero-section .hero-arrow a {
   cursor: pointer;
 }
 @media (min-width: 561px) {
-  .hero-arrow {
+  .hero-section .hero-arrow {
     bottom: 75px;
   }
 }
 @media (min-width: 769px) {
-  .hero-arrow {
+  .hero-section .hero-arrow {
     bottom: 90px;
   }
 }
 @media (min-width: 1041px) {
-  .hero-arrow {
+  .hero-section .hero-arrow {
     bottom: 120px;
   }
+}
+
+.gallery-section.gallery--loading .gallery-item, .gallery-section #gallery .gallery-item--hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
 }
 
 .gallery-section {
@@ -427,65 +406,53 @@ body {
   text-align: center;
   margin-bottom: 3rem;
 }
-
-/* --- FILTER BUTTONS --- */
-.filter-buttons {
+.gallery-section .filter-buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 3rem;
 }
-
-.filter-btn {
+.gallery-section .filter-buttons .filter-btn {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: 1px solid #ccc;
   border-radius: 9999px;
-  /* rounded-full */
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
   color: #312F2C;
 }
-
-.filter-btn.active {
+.gallery-section .filter-buttons .filter-btn.active {
   background-color: #312F2C;
   color: #FDFBF8;
   border-color: #312F2C;
 }
-
-.filter-btn:hover:not(.active) {
+.gallery-section .filter-buttons .filter-btn:hover:not(.active) {
   background-color: #eee;
 }
-
-/* --- GALLERY (TRUE MASONRY) --- */
-/* * Masonry Layout using CSS Multi-Column
- */
-#gallery {
+.gallery-section #gallery {
   column-count: 1;
   column-gap: 1.5rem;
 }
-
 @media (min-width: 561px) {
-  /* sm breakpoint */
-  #gallery {
+  .gallery-section #gallery {
     column-count: 2;
   }
 }
 @media (min-width: 769px) {
-  #gallery {
-    column-count: 2;
-  }
-
-  /* When filtered, use 2 columns to avoid awkward gaps */
-  #gallery.gallery-filtered {
+  .gallery-section #gallery {
     column-count: 2;
   }
 }
-.gallery-item {
+@media (min-width: 769px) {
+  .gallery-section #gallery.gallery-filtered {
+    column-count: 2;
+  }
+}
+.gallery-section #gallery .gallery-item {
   margin-bottom: 1.5rem;
   display: inline-block;
   width: 100%;
@@ -494,36 +461,20 @@ body {
   position: relative;
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
-
-.gallery-item--hidden,
-.gallery--loading .gallery-item {
-  opacity: 0;
-  transform: scale(0.95);
-  pointer-events: none;
-  /* Prevent interaction while hidden */
-}
-
-/* Aspect Ratio Padding Hack */
-.aspect-ratio-container {
+.gallery-section #gallery .gallery-item .aspect-ratio-container {
   position: relative;
   height: 0;
   width: 100%;
   overflow: hidden;
   background-color: #EFEFEF;
 }
-
-.ratio-4x3 {
+.gallery-section #gallery .gallery-item .aspect-ratio-container.ratio-4x3 {
   padding-top: 75%;
-  /* 3 / 4 = 0.75 */
 }
-
-.ratio-3x4 {
+.gallery-section #gallery .gallery-item .aspect-ratio-container.ratio-3x4 {
   padding-top: 133.33%;
-  /* 4 / 3 = 1.3333 */
 }
-
-/* Absolute filler that takes up the space defined by padding */
-.aspect-ratio-content {
+.gallery-section #gallery .gallery-item .aspect-ratio-container .aspect-ratio-content {
   position: absolute;
   top: 0;
   right: 0;
@@ -532,15 +483,12 @@ body {
   cursor: pointer;
   overflow: hidden;
 }
-
-/* CRITICAL FIX: Relative wrapper for correct overlay containment */
-.relative-wrapper {
+.gallery-section #gallery .gallery-item .aspect-ratio-container .aspect-ratio-content .relative-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
 }
-
-.relative-wrapper::after {
+.gallery-section #gallery .gallery-item .aspect-ratio-container .aspect-ratio-content .relative-wrapper::after {
   content: "View Photo";
   position: absolute;
   top: 0;
@@ -557,33 +505,27 @@ body {
   font-size: 1.125rem;
   z-index: 10;
 }
-
-.gallery-item:hover .relative-wrapper::after {
+.gallery-section #gallery .gallery-item:hover .relative-wrapper::after {
   opacity: 1;
 }
-
-.gallery-item img {
+.gallery-section #gallery .gallery-item:hover img {
+  transform: scale(1.05);
+}
+.gallery-section #gallery .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
   display: block;
 }
-
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
-
-.gallery-item .img-bottom {
+.gallery-section #gallery .gallery-item img.img-bottom {
   object-position: center bottom;
 }
-
 .about-section {
   padding: 6rem 1.5rem;
   background-color: #f7f7f7;
 }
-
-.about-container {
+.about-section .about-container {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -592,19 +534,17 @@ body {
   align-items: center;
 }
 @media (min-width: 769px) {
-  .about-container {
+  .about-section .about-container {
     grid-template-columns: 2fr 3fr;
   }
 }
-
-.about-image {
+.about-section .about-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-
-.about-paragraph {
+.about-section .about-paragraph {
   margin-bottom: 1rem;
   color: #555;
   line-height: 1.6;
@@ -616,8 +556,7 @@ body {
   margin-right: auto;
   padding: 6rem 1.5rem;
 }
-
-.contact-container {
+.contact-section .contact-container {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
@@ -625,16 +564,14 @@ body {
   padding-right: 1.5rem;
   text-align: center;
 }
-
-.contact-paragraph {
+.contact-section .contact-paragraph {
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
   color: #555;
   margin-bottom: 2rem;
 }
-
-.contact-button {
+.contact-section .contact-button {
   display: inline-block;
   background-color: #312F2C;
   color: white;
@@ -646,7 +583,7 @@ body {
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
-.contact-button:hover {
+.contact-section .contact-button:hover {
   background-color: #B49A6C;
 }
 
@@ -654,8 +591,7 @@ body {
   background-color: #f7f7f7;
   padding: 2rem 0;
 }
-
-.footer-container {
+.footer .footer-container {
   text-align: center;
   color: #888;
   font-size: 0.875rem;
@@ -682,13 +618,11 @@ body {
   visibility: hidden;
   transition: opacity 0.3s ease;
 }
-
 .lightbox.visible {
   opacity: 1;
   visibility: visible;
 }
-
-.lightbox-content {
+.lightbox .lightbox-content {
   position: relative;
   width: 100%;
   height: 100%;
@@ -697,28 +631,24 @@ body {
   justify-content: space-between;
   gap: 1rem;
 }
-
-.lightbox-header {
+.lightbox .lightbox-header {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
-
-.lightbox-nav-mobile {
+.lightbox .lightbox-nav-mobile {
   display: flex;
   justify-content: center;
   gap: 1rem;
   width: 100%;
 }
-
-.lightbox-nav {
+.lightbox .lightbox-nav {
   display: flex;
   justify-content: center;
   gap: 1rem;
   width: 100%;
 }
-
-.lightbox-body {
+.lightbox .lightbox-body {
   flex-grow: 1;
   min-height: 0;
   width: 100%;
@@ -726,20 +656,33 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 @media (min-width: 769px) {
-  .lightbox-body {
+  .lightbox .lightbox-body {
     justify-content: space-between;
   }
 }
-.lightbox-image {
+.lightbox .lightbox-image {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   border: 10px solid white;
 }
-
-.lightbox-btn {
+@media (min-width: 561px) {
+  .lightbox .lightbox-image {
+    border-width: 15px;
+  }
+}
+@media (min-width: 769px) {
+  .lightbox .lightbox-image {
+    border-width: 20px;
+  }
+}
+@media (min-width: 1041px) {
+  .lightbox .lightbox-image {
+    border-width: 30px;
+  }
+}
+.lightbox .lightbox-btn {
   position: relative;
   color: white;
   border-radius: 50%;
@@ -749,40 +692,10 @@ body {
   background-color: transparent;
   transition: background-color 0.2s ease;
 }
-
-.lightbox-btn:hover {
+.lightbox .lightbox-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
-.lightbox-btn svg {
+.lightbox .lightbox-btn svg {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.close-btn {
-  /* top/right properties are no longer needed */
-}
-
-.prev-btn {
-  /* left property is no longer needed */
-}
-
-.next-btn {
-  /* right property is no longer needed */
-}
-
-@media (min-width: 561px) {
-  .lightbox-image {
-    border-width: 15px;
-  }
-}
-@media (min-width: 769px) {
-  .lightbox-image {
-    border-width: 20px;
-  }
-}
-@media (min-width: 1041px) {
-  .lightbox-image {
-    border-width: 30px;
-  }
 }
