@@ -574,6 +574,11 @@ body {
   object-position: center bottom;
 }
 
+.work-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
 .about-section {
   padding: 6rem 1.5rem;
   background-color: #f7f7f7;
