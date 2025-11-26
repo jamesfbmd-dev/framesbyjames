@@ -9,104 +9,106 @@
     padding: 0 1.5rem;
     background-color: $color-background;
     overflow: hidden;
-}
 
-.hero-gradient {
-    height: 100%;
-    width: 100%;
-    z-index: 8;
-    position: absolute;
-    background: linear-gradient(to top, #0000007a 0%, transparent 12%);
-}
-
-.hero-parallax-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-#hero-bg {
-    z-index: 0;
-}
-#hero-parallax-1 {
-    z-index: 1;
-}
-#hero-parallax-2 {
-    z-index: 2;
-}
-
-.hero-title {
-    pointer-events: none;
-    font-size: 6rem;
-    font-weight: 600;
-    line-height: 0.9;
-    letter-spacing: -0.025em;
-    color: $color-light-gray;
-    padding-bottom: 2.4rem;
-    position: relative;
-    z-index: 10;
-    animation: focus-in-out 14s ease-in-out infinite;
-    animation-fill-mode: both;
-    will-change: transform, filter;
-    transform: translateZ(0);
-
-    @media (min-width: 561px) {
-        font-size: 8rem;
-    }
-
-    @media (min-width: 769px) {
-        font-size: 9rem;
-    }
-
-    @media (min-width: 1041px) {
-        font-size: 11rem;
-    }
-}
-
-.hero-wave {
-    position: absolute;
-    z-index: 9;
-    bottom: -5px;
-    width: 100%;
-    height: auto;
-
-    svg {
-        max-height: 270px;
+    .hero-gradient {
+        height: 100%;
         width: 100%;
+        z-index: 8;
+        position: absolute;
+        background: linear-gradient(to top, #0000007a 0%, transparent 12%);
     }
 
-    @media (min-width: 769px) {
-        bottom: -10px;
+    .hero-parallax-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
     }
 
-    @media (min-width: 1041px) {
-        bottom: -20px;
-    }
-}
-
-.hero-arrow {
-    z-index: 10;
-    position: absolute;
-    bottom: 60px;
-    animation: arrowDownTwice 5s ease-in-out infinite;
-
-    a {
-        cursor: pointer;
+    #hero-bg {
+        z-index: 0;
     }
 
-    @media (min-width: 561px) {
-        bottom: 75px;
+    #hero-parallax-1 {
+        z-index: 1;
     }
 
-    @media (min-width: 769px) {
-        bottom: 90px;
+    #hero-parallax-2 {
+        z-index: 2;
     }
 
-    @media (min-width: 1041px) {
-        bottom: 120px;
+    .hero-title {
+        pointer-events: none;
+        font-size: 6rem;
+        font-weight: 600;
+        line-height: 0.9;
+        letter-spacing: -0.025em;
+        color: $color-light-gray;
+        padding-bottom: 2.4rem;
+        position: relative;
+        z-index: 10;
+        animation: focus-in-out 14s ease-in-out infinite;
+        animation-fill-mode: both;
+        will-change: transform, filter;
+        transform: translateZ(0);
+
+        @include sm-up {
+            font-size: 8rem;
+        }
+
+        @include md-up {
+            font-size: 9rem;
+        }
+
+        @include lg-up {
+            font-size: 11rem;
+        }
+    }
+
+    .hero-wave {
+        position: absolute;
+        z-index: 9;
+        bottom: -5px;
+        width: 100%;
+        height: auto;
+
+        svg {
+            max-height: 270px;
+            width: 100%;
+        }
+
+        @include md-up {
+            bottom: -10px;
+        }
+
+        @include lg-up {
+            bottom: -20px;
+        }
+    }
+
+    .hero-arrow {
+        z-index: 10;
+        position: absolute;
+        bottom: 60px;
+        animation: arrowDownTwice 5s ease-in-out infinite;
+
+        a {
+            cursor: pointer;
+        }
+
+        @include sm-up {
+            bottom: 75px;
+        }
+
+        @include md-up {
+            bottom: 90px;
+        }
+
+        @include lg-up {
+            bottom: 120px;
+        }
     }
 }

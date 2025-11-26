@@ -6,109 +6,104 @@
     z-index: 40;
     background-color: rgba(253, 251, 248, 0.8);
     backdrop-filter: blur(5px);
-}
 
-.header-container {
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo-link {
-    max-width: 50px;
-}
-
-.logo-link img {
-    width: 100%;
-    content: url("../images/hero/fj-logo.png");
-    transition: 0.5s ease-in-out;
-}
-
-.logo-link img:hover {
-    content: url("../images/hero/fj-logo-split.png");
-    /*transform: rotate(2deg);*/
-    transition: 0.5s ease-in-out;
-    animation: rotate-indefinitely 5s infinite;
-}
-
-
-.desktop-nav {
-    display: none;
-    gap: 2rem; /* space-x-8 */
-    font-size: 0.875rem; /* text-sm */
-    letter-spacing: 0.1em; /* tracking-widest */
-    text-transform: uppercase;
-}
-
-.desktop-nav .nav-link {
-    color: $color-text;
-}
-
-.nav-link:hover {
-    color: $color-accent;
-    transition: color 0.2s ease;
-}
-
-.mobile-nav-toggle {
-    display: block;
-}
-
-.mobile-menu-button {
-    background: none;
-    border: none;
-    color: $color-text;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.mobile-menu-dropdown {
-    display: block;
-    position: absolute;
-    top: 100%; /* Position it right below the header's bottom edge */
-    left: 0;
-    right: 0;
-    background-color: $color-background;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid #EFEFEF;
-    z-index: 39; /* Sit behind the main header content but above page content */
-}
-
-/* Utility class to hide elements */
-.hidden {
-    display: none;
-}
-
-.mobile-nav-link {
-    display: block;
-    text-align: center;
-    padding: 0.75rem 0;
-    font-size: 0.875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: $color-text;
-}
-
-.mobile-nav-link:hover {
-    background-color: #f7f7f7;
-}
-
-/* Media Query for Desktop Nav */
-@media (min-width: 769px) {
-    .desktop-nav {
+    .header-container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1rem 1.5rem;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    .mobile-nav-toggle {
+
+    .logo-link {
+        max-width: 50px;
+
+        img {
+            width: 100%;
+            content: url("../images/hero/fj-logo.png");
+            transition: 0.5s ease-in-out;
+
+            &:hover {
+                content: url("../images/hero/fj-logo-split.png");
+                transition: 0.5s ease-in-out;
+                animation: rotate-indefinitely 5s infinite;
+            }
+        }
+    }
+
+    .desktop-nav {
         display: none;
+        gap: 2rem;
+        font-size: 0.875rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+
+        .nav-link {
+            color: $color-text;
+
+            &:hover {
+                color: $color-accent;
+                transition: color 0.2s ease;
+            }
+        }
     }
+
+    .mobile-nav-toggle {
+        display: block;
+
+        .mobile-menu-button {
+            background: none;
+            border: none;
+            color: $color-text;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+    }
+
     .mobile-menu-dropdown {
-        display: none !important;
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: $color-background;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #EFEFEF;
+        z-index: 39;
+
+        .mobile-nav-link {
+            display: block;
+            text-align: center;
+            padding: 0.75rem 0;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $color-text;
+
+            &:hover {
+                background-color: #f7f7f7;
+            }
+        }
     }
-    .logo {
-        font-size: 1.5rem;
+
+    @include md-up {
+        .desktop-nav {
+            display: flex;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+        }
+
+        .mobile-menu-dropdown {
+            display: none !important;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+        }
     }
 }

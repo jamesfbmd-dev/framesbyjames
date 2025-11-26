@@ -1,15 +1,15 @@
 .footer {
     background-color: #f7f7f7;
     padding: 2rem 0;
-}
 
-.footer-container {
-    text-align: center;
-    color: #888;
-    font-size: 0.875rem;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
+    .footer-container {
+        text-align: center;
+        color: #888;
+        font-size: 0.875rem;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: $spacing-sm;
+        padding-right: $spacing-sm;
+    }
 }
