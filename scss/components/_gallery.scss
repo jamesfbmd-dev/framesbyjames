@@ -1,3 +1,12 @@
+.gallery-section {
+    padding-top: $spacing-lg;
+    padding-bottom: $spacing-lg;
+
+    .section-header {
+        @include section-header;
+    }
+}
+
 /* --- FILTER BUTTONS --- */
 .filter-buttons {
     display: flex;
