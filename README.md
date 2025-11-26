@@ -24,7 +24,7 @@ This project uses SASS for styling. To work with the project, you'll need to hav
    This project uses Gulp to compile SASS into CSS. To compile the `scss` files, run the following command in your terminal:
 
    ```bash
-   gulp
+   npx gulp
    ```
 
    This will compile the `scss/styles.scss` file and output the CSS to `css/styles.css`.
