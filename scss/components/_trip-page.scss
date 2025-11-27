@@ -1,0 +1,45 @@
+@import '../variables';
+@import '../mixins';
+
+.trip-page-gallery {
+    // gallery will fill the vertical space between the header and the bottom of the viewport.
+    height: calc(100dvh - #{$header-height});
+    display: flex;
+    flex-direction: column;
+
+    .gallery-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        flex-grow: 1;
+        min-height: 0; // Prevents container from overflowing in column-direction flex parent
+    }
+
+    .gallery-item {
+        flex: 0 0 100%;
+        width: 100%;
+        height: 100%;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            flex-grow: 1;
+            flex-basis: 0;
+            min-height: 0; // Prevents image from overflowing its flex container
+            height: 100%;
+            width: auto;
+            max-width: none;
+        }
+
+        .caption {
+            flex-shrink: 0; // Prevent caption from shrinking
+            color: $color-text;
+            padding-top: $spacing-sm;
+            font-size: 1rem;
+            text-align: center;
+        }
+    }
+}
