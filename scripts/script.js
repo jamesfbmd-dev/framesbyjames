@@ -44,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const arrowLink = document.getElementById('hero-arrow-link');
 
     let currentImageIndex = 0;
-    let currentFilter = 'all';
+    let currentFilterType = 'filter';
+    let currentFilterValue = 'all';
 
 
     // HERO ARROW SCROLL BEHAVIOUR
@@ -108,7 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filters.forEach(filter => {
             filter.addEventListener('click', () => {
+                // Remove active class from all location filters
+                filters.forEach(f => f.classList.remove('active'));
+
+                // Add active class to the clicked filter
+                filter.classList.add('active');
+
                 const location = filter.dataset.location; // only the clicked one
+                currentFilterType = 'location';
+                currentFilterValue = location;
                 renderGallery('location', location); // pass it to your function
             });
         });
@@ -219,29 +228,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateLightboxImage() {
-        // Filter images based on the current filter setting
-        const currentGalleryImages = (currentFilter === 'all') 
-            ? imageData 
-            : imageData.filter(img => img.category.includes(currentFilter));
+        const currentGalleryImages = getFilteredImages();
 
-        // Find the index of the currently viewed image within the filtered list
+        if (currentGalleryImages.length === 0) {
+            closeLightbox();
+            return;
+        }
+
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
         
-        // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
-        if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
+        if (currentLocalIndex === -1) {
             currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
-        } else if (currentGalleryImages.length === 0) {
-             // Handle case where filter returns no images
-             closeLightbox();
-             return;
         }
         
         lightboxImg.src = imageData[currentImageIndex].src;
     }
 
     function showImage(direction) {
-        const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
-        
+        const currentGalleryImages = getFilteredImages();
         if (currentGalleryImages.length === 0) return;
 
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
@@ -257,6 +261,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLightboxImage();
     }
 
+    function getFilteredImages() {
+        if (currentFilterType === 'location') {
+            return (currentFilterValue === 'all') ? imageData : imageData.filter(img => img.location === currentFilterValue);
+        } else { // 'filter' or default
+            return (currentFilterValue === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilterValue));
+        }
+    }
+
 
     /**
      * Event Listeners
@@ -268,7 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const filter = button.dataset.filter;
             if (button.classList.contains('active')) return; // Don't re-filter if already active
 
-            currentFilter = filter;
+            currentFilterType = 'filter';
+            currentFilterValue = filter;
 
             // Update active button state
             filterButtons.forEach(btn => btn.classList.remove('active'));
