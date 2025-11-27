@@ -7,6 +7,10 @@
     background-color: rgba(253, 251, 248, 0.8);
     backdrop-filter: blur(5px);
 
+    &-trips {
+        position: static;
+    }
+
     .header-container {
         max-width: 1280px;
         margin-left: auto;

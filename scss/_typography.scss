@@ -5,6 +5,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.25rem;
+    font-weight: 900;
+}
+
 .font-serif-display {
     font-family: 'Cormorant Garamond', serif;
 }
@@ -20,4 +26,5 @@ body {
 .section-title {
     font-size: 2.25rem; /* 4xl */
     font-weight: 600;
+    text-align: center;
 }

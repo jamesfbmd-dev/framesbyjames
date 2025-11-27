@@ -1,0 +1,93 @@
+// HOME PAGE
+.trips-section {
+    .trips-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-sm;
+
+        a {
+            text-decoration: none;
+        }
+
+        .trip {
+            width: auto;
+            height: 220px;
+            background-position: center;
+            background-size: cover;
+            background-color: rgba(0,0,0,0.25);
+            background-blend-mode: darken;
+            background-size: 100%;
+            transition: 0.2s ease;
+            cursor: pointer;
+
+            &:hover {
+                transition: 0.2s ease;
+                background-size: 105%;
+
+                > .trip-title h2 {
+                    transition: 0.2s ease;
+                    transform: scale(0.96);
+                  }
+            }
+
+            &-title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                position: relative;
+
+                h2 {
+                    font-size: 2.5rem;
+                    z-index: 2;
+                    transition: 0.2s ease;
+                }
+            }
+
+            &.great-ocean-road {
+                background-image: url(../images/photos/photo-21.jpg);
+
+                h2 {
+                    color: #ffde00;
+                    font-family: 'caveat brush';
+                }
+            }
+            &.japan {
+                background-image: url(../images/photos/photo-16.jpg);
+
+                h2 {
+                    color: #ffde00;
+                    font-family: 'Dela Gothic One';
+                }
+            }
+            &.christchurch {
+                background-image: url(../images/photos/photo-3.jpg);
+
+                h2 {
+                    color: #ffde00;
+                    font-family: 'Anton';
+                }
+            }
+        }
+    }
+}
+
+// TRIPS SUBPAGES
+#trips-page-wrapper.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    #trips {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        max-height: 100vh;
+        overflow: hidden;
+        margin: 0 $spacing-lg;
+        padding-bottom: $spacing-sm;
+    }
+}
+
+
