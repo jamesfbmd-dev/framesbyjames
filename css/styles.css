@@ -523,6 +523,31 @@ body {
 .gallery-section #gallery .gallery-item img.img-bottom {
   object-position: center bottom;
 }
+.location-filters {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+.location-filters .location-filter h3 {
+  font-size: 3rem;
+  transition: letter-spacing 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.location-filters .location-filter.australia h3 {
+  font-family: "Sigmar One";
+  line-height: 3.4rem;
+}
+.location-filters .location-filter.japan h3 {
+  font-family: "Dela Gothic One";
+  line-height: 3rem;
+}
+.location-filters .location-filter.new-zealand h3 {
+  font-family: "Piedra";
+  line-height: 3.8rem;
+}
+
 .about-section {
   padding: 6rem 1.5rem;
   background-color: #f7f7f7;

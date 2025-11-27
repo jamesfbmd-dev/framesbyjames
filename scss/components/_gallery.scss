@@ -152,3 +152,60 @@
         @extend %hidden-gallery-item;
     }
 }
+
+.location-filters {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    cursor: pointer;
+
+    .location-filter {
+        h3 {
+            font-size: 3rem;
+            transition: letter-spacing .3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+    }
+
+    .location-filter.australia {
+        h3 {
+            font-family: 'Sigmar One';
+            line-height: 3.4rem;
+        }
+    }
+    .location-filter.japan {
+        h3 {
+            font-family: 'Dela Gothic One';
+            line-height: 3rem;
+        }
+    }
+    .location-filter.new-zealand {
+        h3 {
+            font-family: 'Piedra';
+            line-height: 3.8rem;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

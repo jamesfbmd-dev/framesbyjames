@@ -28,48 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dev.addEventListener('click', () => {
         console.log('Curated')
         renderGallery('all', override)
-    })
-
-
-
-    // Gallery Data with high-contrast placeholders
-
-    //Categories available:
-    // - landscapes
-    // - street
-    // - human nature
-    // - architecture
-
-    // ratio:
-    // '3x4' or '4x3'
-    // Dictates how images appears on masonry
-
-    const imageData = [
-        { id: 1, src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Lyttleton Harbour', ratio: '4x3' },
-        { id: 2, src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Christchurch Hills', ratio: '4x3' },
-        { id: 3, src: 'images/photos/photo-3.jpg', category: ['landscapes', 'human nature'], alt: 'Christchurch Gondola', ratio: '4x3' },
-        { id: 4, src: 'images/photos/photo-4.jpg', category: ['landscapes'], alt: 'Views of New Brighton', ratio: '4x3' },
-        { id: 5, src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Christchurch', ratio: '4x3' },
-        { id: 6, src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Christchurch Hills Path', ratio: '4x3' },
-        { id: 7, src: 'images/photos/photo-7.jpg', category: ['human nature'], alt: 'Land Sea and Boardwalk', ratio: '3x4' },
-        { id: 8, src: 'images/photos/photo-8.jpg', category: ['street', 'architecture'], alt: 'St Kilda Pier Building', ratio: '3x4' },
-        { id: 9, src: 'images/photos/photo-9.jpg', category: ['human nature'], alt: 'St Kilda Pier Steps', ratio: '3x4' },
-        //id: 10,  { src: 'images/photos/photo-10.jpg', category: ['human nature'], alt: 'Melbourne Skyline', ratio: '3x4' },
-        { id: 11, src: 'images/photos/photo-11.jpg', category: ['street'], alt: 'Luna Park', ratio: '3x4' },
-        { id: 12, src: 'images/photos/photo-12.jpg', category: ['architecture'], alt: 'Australian War Memorial', ratio: '3x4' },
-        { id: 13, src: 'images/photos/photo-13.jpg', category: ['landscapes'], alt: 'Engelberg', ratio: '3x4' },
-        { id: 14, src: 'images/photos/photo-14b.jpg', category: ['architecture', 'street'], alt: 'Asakusa Street', ratio: '3x4', positionOverride: 'bottom' },
-        { id: 15, src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
-        { id: 16, src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
-        { id: 17, src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
-        { id: 18, src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
-        { id: 19, src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
-        { id: 20, src: 'images/photos/photo-20.jpg', category: ['landscapes', 'human nature'], alt: 'Kyoto Shrine', ratio: '4x3'},
-        { id: 21, src: 'images/photos/photo-21.jpg', category: ['landscapes'], alt: 'Twelve Apostles', ratio: '4x3'},
-        { id: 22, src: 'images/photos/photo-22.jpg', category: ['landscapes', 'human nature'], alt: 'Great Ocean Road', ratio: '4x3'},
-        { id: 23, src: 'images/photos/photo-23.jpg', category: ['landscapes'], alt: 'Apollo Bay', ratio: '4x3'},
-        { id: 24, src: 'images/photos/photo-24.jpg', category: ['street'], alt: 'Akihabara Street', ratio: '3x4'},
-    ];
+    });
 
     const gallery = document.getElementById('gallery');
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -103,21 +62,78 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    //----------------------------
+    //LOCATION FILTER BEHAVIOUR
+    //----------------------------
+    const filters = document.querySelectorAll('.location-filter');
+
+    // Country letter spacing values
+    let auIncrease = '4px';
+    let auDecrease = '-1.25px';
+    let jpIncrease = '6px';
+    let jpDecrease = '-1.5px';
+    let nzIncrease = '4px';
+    let nzDecrease = '-1.25px';
+
+    filters.forEach(filter => {
+        filter.addEventListener('mouseenter', () => {
+            filters.forEach(f => {
+                const h3 = f.querySelector('h3');
+
+                if (f === filter) {
+                    if (f.classList.contains('australia')) {
+                        h3.style.letterSpacing = auIncrease;
+                    } else if (f.classList.contains('japan')) {
+                        h3.style.letterSpacing = jpIncrease;
+                    } else if (f.classList.contains('new-zealand')) {
+                        h3.style.letterSpacing = nzIncrease;
+                    }
+                } else {
+                    if (f.classList.contains('australia')) {
+                        h3.style.letterSpacing = auDecrease;
+                    }
+                    else if (f.classList.contains('japan')) {
+                        h3.style.letterSpacing = jpDecrease;
+                    }
+                    else if (f.classList.contains('new-zealand')) {
+                        h3.style.letterSpacing = nzDecrease;
+                    }
+                }
+            });
+        });
+
+        filter.addEventListener('mouseleave', () => {
+            filters.forEach(f => f.querySelector('h3').style.letterSpacing = '0.5px');
+        });
+
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const location = filter.dataset.location; // only the clicked one
+                renderGallery('location', location); // pass it to your function
+            });
+        });
+    });
+    //----------------------------
+    // EO LOCATION FILTER BEHAVIOUR
+    //----------------------------
+
     /**
      * Renders the gallery items based on the active filter.
      * Uses the original image data and dynamic element creation.
      */
-    function renderGallery(filter = 'all', override) {
-        gallery.innerHTML = '';
 
+    //Filter is the filter buttons for the type/category of image. Override allows you to pass in an array of ID's to specifically select images.
+    function renderGallery(type, filter = 'all', override = []) {
+        gallery.innerHTML = '';
         let filteredImages;
 
-        // Check if override exists
-        if (override) {
+        if(type == 'location'){
+            filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.location == filter);
+        } else if (type == 'override') {
             filteredImages = imageData.filter(img => override.includes(img.id));
-            console.log(filteredImages);
+        } else if (type == 'filter') {
+            filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category.includes(filter));
         } else {
-            // Filter the images based on the active category
             filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category.includes(filter));
         }
 
@@ -138,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.dataset.fullSrc = data.src;
             // Store the index in the original, unfiltered array for lightbox navigation
             item.dataset.originalIndex = imageData.findIndex(img => img.src === data.src);
-            
+
             // 1. Aspect ratio wrapper (sets height via padding)
             const ratioWrapper = document.createElement('div');
             ratioWrapper.className = `aspect-ratio-container ratio-${data.ratio}`;
@@ -275,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Set the gallery to a "loading" state to hide new items initially
                 gallery.classList.add('gallery--loading');
 
-                renderGallery(filter); // Re-build the gallery content
+                renderGallery('filter', filter); // Re-build the gallery content
 
                 // Use a minimal timeout to allow the browser to apply the 'loading' state
                 // before we remove it to trigger the fade-in transition.
@@ -329,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initial render
-    renderGallery();
+    renderGallery('filter', 'all');
 
     // Hero Section Parallax Effect
     const heroBg = document.getElementById('hero-bg');
