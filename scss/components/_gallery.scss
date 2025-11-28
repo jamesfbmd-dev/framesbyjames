@@ -162,7 +162,7 @@
     .location-filter {
         h3 {
             font-size: 3rem;
-            transition: letter-spacing .3s ease;
+            transition:  0.3s ease;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
@@ -174,10 +174,20 @@
             line-height: 3.4rem;
         }
     }
+    .location-filter.australia.active{
+        h3 {
+            color: darkgoldenrod;
+        }
+    }
     .location-filter.japan {
         h3 {
             font-family: 'Dela Gothic One';
             line-height: 3rem;
+        }
+    }
+    .location-filter.japan.active {
+        h3 {
+            color: maroon;
         }
     }
     .location-filter.new-zealand {
@@ -186,7 +196,13 @@
             line-height: 3.8rem;
         }
     }
+    .location-filter.new-zealand.active {
+        h3 {
+            color: darkblue;
+        }
+    }
 }
+
 
 
 
