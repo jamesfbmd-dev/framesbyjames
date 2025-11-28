@@ -523,6 +523,16 @@ body {
 .gallery-section #gallery .gallery-item img.img-bottom {
   object-position: center bottom;
 }
+.gallery-section .load-more-container {
+  text-align: center;
+  margin-top: 6rem;
+}
+.gallery-section .load-more-container #load-more-btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  display: none;
+}
+
 .location-filters {
   display: flex;
   justify-content: center;

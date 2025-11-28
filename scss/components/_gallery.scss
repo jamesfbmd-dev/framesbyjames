@@ -151,6 +151,18 @@
     &.gallery--loading .gallery-item {
         @extend %hidden-gallery-item;
     }
+
+    .load-more-container {
+        text-align: center;
+        margin-top: $spacing-lg;
+
+        #load-more-btn {
+            // Inherit styles from filter-btn, but with a larger size
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            display: none; // Initially hidden
+        }
+    }
 }
 
 .location-filters {
