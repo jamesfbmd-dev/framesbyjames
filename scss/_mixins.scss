@@ -1,0 +1,43 @@
+@mixin section-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+// Breakpoint mixins for ranges
+@mixin xs-only {
+    @media (min-width: 0px) and (max-width: $breakpoint-xs) {
+        @content;
+    }
+}
+
+@mixin sm-only {
+    @media (min-width: $breakpoint-sm) and (max-width: ($breakpoint-md - 1)) {
+        @content;
+    }
+}
+
+@mixin md-only {
+    @media (min-width: $breakpoint-md) and (max-width: ($breakpoint-lg - 1)) {
+        @content;
+    }
+}
+
+// Breakpoint mixins for min-width
+@mixin sm-up {
+    @media (min-width: $breakpoint-sm) {
+        @content;
+    }
+}
+
+@mixin md-up {
+    @media (min-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin lg-up {
+    @media (min-width: $breakpoint-lg) {
+        @content;
+    }
+}
