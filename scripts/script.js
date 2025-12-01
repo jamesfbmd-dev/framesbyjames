@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     dev.style.height = '30px';
     dev.style.zIndex = '9999';
 
-    const override = [1, 3, 8, 9, 15, 16, 21, 22, 23]
+    const override = [1, 3, 8, 9, 15, 16, 21, 22]
 
     dev.addEventListener('click', () => {
         console.log('Curated')
-        renderGallery('all', override)
+        renderGallery('override', 'all', override)
     });
 
     const gallery = document.getElementById('gallery');
@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(type == 'location'){
             filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.location == filter);
         } else if (type == 'override') {
+            console.log(imageData.filter(img => override.includes(img.id)));
             filteredImages = imageData.filter(img => override.includes(img.id));
         } else if (type == 'filter') {
             filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category.includes(filter));
