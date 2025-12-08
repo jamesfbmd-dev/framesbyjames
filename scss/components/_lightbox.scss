@@ -27,26 +27,60 @@
         flex-direction: column;
         justify-content: space-between;
         gap: 1rem;
-    }
 
-    .lightbox-header {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-    }
+        .lightbox-btn {
+            position: relative;
+            color: white;
+            border-radius: 50%;
+            padding: 0.75rem;
+            border: 2px solid white;
+            cursor: pointer;
+            background-color: transparent;
+            transition: background-color 0.2s ease;
 
-    .lightbox-nav-mobile {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        width: 100%;
-    }
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
 
-    .lightbox-nav {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        width: 100%;
+            svg {
+                display: block;
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+
+        .lightbox-nav-mobile {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .lightbox-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .lightbox-header {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .lightbox-body {
+            flex-grow: 1;
+            min-height: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include md-up {
+                justify-content: space-between;
+            }
+        }
     }
 
     .lightbox-body {
@@ -60,54 +94,35 @@
         @include md-up {
             justify-content: space-between;
         }
-    }
 
-    .lightbox-image-container {
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 0;
-        width: 100%;
-        height: 100%;
-    }
+        .lightbox-image-container {
+            padding: $spacing-sm;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            width: 100%;
+            height: 100%;
 
-    .lightbox-image {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        border: 10px solid white;
+            .lightbox-image {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                border: 10px solid white;
 
-        @include sm-up {
-            border-width: 15px;
-        }
+                @include sm-up {
+                    border-width: 15px;
+                }
 
-        @include md-up {
-            border-width: 20px;
-        }
+                @include md-up {
+                    border-width: 20px;
+                }
 
-        @include lg-up {
-            border-width: 30px;
-        }
-    }
-
-    .lightbox-btn {
-        position: relative;
-        color: white;
-        border-radius: 50%;
-        padding: 0.75rem;
-        border: 2px solid white;
-        cursor: pointer;
-        background-color: transparent;
-        transition: background-color 0.2s ease;
-
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
+                @include lg-up {
+                    border-width: 30px;
+                }
+            }
         }
     }
 }

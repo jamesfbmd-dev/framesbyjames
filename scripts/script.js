@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 22, src: 'images/photos/photo-22.jpg', category: ['landscapes', 'human nature'], alt: 'Great Ocean Road', ratio: '4x3'},
         { id: 23, src: 'images/photos/photo-23.jpg', category: ['landscapes'], alt: 'Apollo Bay', ratio: '4x3'},
         { id: 24, src: 'images/photos/photo-24.jpg', category: ['street'], alt: 'Akihabara Street', ratio: '3x4'},
+        { id: 24, src: 'images/photos/photo-25.jpg', category: ['street'], alt: 'Kyoto Teahouse', ratio: '3x4'}
     ];
 
     const gallery = document.getElementById('gallery');
