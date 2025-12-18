@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dev.style.height = '30px';
     dev.style.zIndex = '9999';
 
-    const override = [1, 3, 8, 9, 15, 16, 21, 22, 23]
+    const override = [1, 3, 8, 9, 15, 16, 21, 22]
 
     dev.addEventListener('click', () => {
         console.log('Curated')
@@ -161,34 +161,66 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
     }
 
+    // function updateLightboxImage() {
+    //     // Filter images based on the current filter setting
+    //     const currentGalleryImages = (currentFilter === 'all')
+    //         ? imageData
+    //         : imageData.filter(img => img.category.includes(currentFilter));
+
+    //     // Find the index of the currently viewed image within the filtered list
+    //     let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
+
+    //     // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
+    //     if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
+    //         currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
+    //     } else if (currentGalleryImages.length === 0) {
+    //          // Handle case where filter returns no images
+    //          closeLightbox();
+    //          return;
+    //     }
+
+    //     let lightboxImagePath;
+    //     let standardRes = imageData[currentImageIndex].src;
+    //     let hires = imageData[currentImageIndex].hiResSrc;
+    //     hires ? lightboxImagePath = hires : lightboxImagePath = standardRes;
+    //     lightboxImg.src = lightboxImagePath;
+
+    // }
+
     function updateLightboxImage() {
         // Filter images based on the current filter setting
-        const currentGalleryImages = (currentFilter === 'all') 
-            ? imageData 
+        const currentGalleryImages = (currentFilter === 'all')
+            ? imageData
             : imageData.filter(img => img.category.includes(currentFilter));
 
         // Find the index of the currently viewed image within the filtered list
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-        
+
         // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
         if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
             currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
         } else if (currentGalleryImages.length === 0) {
-             // Handle case where filter returns no images
-             closeLightbox();
-             return;
+            // Handle case where filter returns no images
+            closeLightbox();
+            return;
         }
-        
-        lightboxImg.src = imageData[currentImageIndex].src;
+
+        // Determine which image path to use
+        const currentImage = imageData[currentImageIndex];
+        const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
+            ? currentImage.hiRes.hiResSrc
+            : currentImage.src;
+
+        lightboxImg.src = lightboxImagePath;
     }
 
     function showImage(direction) {
         const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
-        
+
         if (currentGalleryImages.length === 0) return;
 
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-        
+
         if (direction === 'next') {
             currentLocalIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
         } else if (direction === 'prev') {
