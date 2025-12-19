@@ -125,12 +125,8 @@ const imageData = [
         id: 11,
         src: 'images/photos/photo-11.jpg',
         hiRes: {
-            useHiRes: false,
-            src: 'images/photos/hires/photo-11.jpg'
-        },
-        hiRes: {
-            useHiRes: false,
-            hiResSrc: 'images/photos/hires/photo-11.jpg',
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-11.webp',
         },
         category: ['street'],
         alt: 'Luna Park',
@@ -162,8 +158,8 @@ const imageData = [
         id: 14,
         src: 'images/photos/photo-14b.jpg',
         hiRes: {
-            useHiRes: false,
-            hiResSrc: 'images/photos/hires/photo-14b.jpg',
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-14.webp',
         },
         category: ['architecture', 'street'],
         alt: 'Asakusa Street',

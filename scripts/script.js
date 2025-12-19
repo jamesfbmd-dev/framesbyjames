@@ -153,12 +153,16 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.classList.add('visible');
         lightbox.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+
+        const imageId = imageData[currentImageIndex].id;
+        history.pushState({ imageId: imageId }, '', `#/image/${imageId}`);
     }
 
     function closeLightbox() {
         lightbox.classList.remove('visible');
         lightbox.classList.add('hidden');
         document.body.style.overflow = 'auto';
+        history.replaceState(null, '', window.location.pathname);
     }
 
     // function updateLightboxImage() {
@@ -230,6 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const newGlobalSrc = currentGalleryImages[currentLocalIndex].src;
         currentImageIndex = imageData.findIndex(img => img.src === newGlobalSrc);
         updateLightboxImage();
+
+        const imageId = imageData[currentImageIndex].id;
+        history.replaceState({ imageId: imageId }, '', `#/image/${imageId}`);
     }
 
 
@@ -319,8 +326,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    function handleURLChange() {
+        const hash = window.location.hash;
+        if (hash.startsWith('#/image/')) {
+            const imageId = parseInt(hash.substring(8));
+            if (!isNaN(imageId)) {
+                const imageIndex = imageData.findIndex(img => img.id === imageId);
+                if (imageIndex !== -1) {
+                    currentImageIndex = imageIndex;
+                    updateLightboxImage();
+                    lightbox.classList.add('visible');
+                    lightbox.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        } else {
+            lightbox.classList.remove('visible');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Listen for browser navigation events (back/forward)
+    window.addEventListener('popstate', handleURLChange);
+
     // Initial render
     renderGallery();
+
+    // Check URL on initial load
+    handleURLChange();
 
     // Hero Section Parallax Effect
     const heroBg = document.getElementById('hero-bg');
