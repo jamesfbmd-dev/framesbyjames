@@ -23,53 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     dev.style.height = '30px';
     dev.style.zIndex = '9999';
 
-    const override = [1, 3, 8, 9, 15, 16, 21, 22, 23]
+    const override = [1, 3, 8, 9, 15, 16, 21, 22]
 
     dev.addEventListener('click', () => {
         console.log('Curated')
         renderGallery('all', override)
     })
-
-
-
-    // Gallery Data with high-contrast placeholders
-
-    //Categories available:
-    // - landscapes
-    // - street
-    // - human nature
-    // - architecture
-
-    // ratio:
-    // '3x4' or '4x3'
-    // Dictates how images appears on masonry
-
-    const imageData = [
-        { id: 1, src: 'images/photos/photo-1.jpg', category: ['landscapes'], alt: 'Lyttleton Harbour', ratio: '4x3' },
-        { id: 2, src: 'images/photos/photo-2.jpg', category: ['landscapes'], alt: 'Christchurch Hills', ratio: '4x3' },
-        { id: 3, src: 'images/photos/photo-3.jpg', category: ['landscapes', 'human nature'], alt: 'Christchurch Gondola', ratio: '4x3' },
-        { id: 4, src: 'images/photos/photo-4.jpg', category: ['landscapes'], alt: 'Views of New Brighton', ratio: '4x3' },
-        { id: 5, src: 'images/photos/photo-5.jpg', category: ['landscapes'], alt: 'Christchurch', ratio: '4x3' },
-        { id: 6, src: 'images/photos/photo-6.jpg', category: ['landscapes'], alt: 'Christchurch Hills Path', ratio: '4x3' },
-        { id: 7, src: 'images/photos/photo-7.jpg', category: ['human nature'], alt: 'Land Sea and Boardwalk', ratio: '3x4' },
-        { id: 8, src: 'images/photos/photo-8.jpg', category: ['street', 'architecture'], alt: 'St Kilda Pier Building', ratio: '3x4' },
-        { id: 9, src: 'images/photos/photo-9.jpg', category: ['human nature'], alt: 'St Kilda Pier Steps', ratio: '3x4' },
-        //id: 10,  { src: 'images/photos/photo-10.jpg', category: ['human nature'], alt: 'Melbourne Skyline', ratio: '3x4' },
-        { id: 11, src: 'images/photos/photo-11.jpg', category: ['street'], alt: 'Luna Park', ratio: '3x4' },
-        { id: 12, src: 'images/photos/photo-12.jpg', category: ['architecture'], alt: 'Australian War Memorial', ratio: '3x4' },
-        { id: 13, src: 'images/photos/photo-13.jpg', category: ['landscapes'], alt: 'Engelberg', ratio: '3x4' },
-        { id: 14, src: 'images/photos/photo-14b.jpg', category: ['architecture', 'street'], alt: 'Asakusa Street', ratio: '3x4', positionOverride: 'bottom' },
-        { id: 15, src: 'images/photos/photo-15.jpg', category: ['human nature'], alt: 'Kyoto Pond', ratio: '4x3'},
-        { id: 16, src: 'images/photos/photo-16.jpg', category: ['human nature'], alt: 'Hakone Shrine', ratio: '3x4'},
-        { id: 17, src: 'images/photos/photo-17.jpg', category: ['street'], alt: 'Asakusa Road', ratio: '3x4'},
-        { id: 18, src: 'images/photos/photo-18.jpg', category: ['landscapes'], alt: 'Bondi to Bronte', ratio: '3x4'},
-        { id: 19, src: 'images/photos/photo-19.jpg', category: ['street'], alt: 'Kyoto House', ratio: '3x4'},
-        { id: 20, src: 'images/photos/photo-20.jpg', category: ['landscapes', 'human nature'], alt: 'Kyoto Shrine', ratio: '4x3'},
-        { id: 21, src: 'images/photos/photo-21.jpg', category: ['landscapes'], alt: 'Twelve Apostles', ratio: '4x3'},
-        { id: 22, src: 'images/photos/photo-22.jpg', category: ['landscapes', 'human nature'], alt: 'Great Ocean Road', ratio: '4x3'},
-        { id: 23, src: 'images/photos/photo-23.jpg', category: ['landscapes'], alt: 'Apollo Bay', ratio: '4x3'},
-        { id: 24, src: 'images/photos/photo-24.jpg', category: ['street'], alt: 'Akihabara Street', ratio: '3x4'},
-    ];
 
     const gallery = document.getElementById('gallery');
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -194,42 +153,78 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.classList.add('visible');
         lightbox.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+
+        const imageId = imageData[currentImageIndex].id;
+        history.pushState({ imageId: imageId }, '', `#/image/${imageId}`);
     }
 
     function closeLightbox() {
         lightbox.classList.remove('visible');
         lightbox.classList.add('hidden');
         document.body.style.overflow = 'auto';
+        history.replaceState(null, '', window.location.pathname);
     }
+
+    // function updateLightboxImage() {
+    //     // Filter images based on the current filter setting
+    //     const currentGalleryImages = (currentFilter === 'all')
+    //         ? imageData
+    //         : imageData.filter(img => img.category.includes(currentFilter));
+
+    //     // Find the index of the currently viewed image within the filtered list
+    //     let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
+
+    //     // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
+    //     if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
+    //         currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
+    //     } else if (currentGalleryImages.length === 0) {
+    //          // Handle case where filter returns no images
+    //          closeLightbox();
+    //          return;
+    //     }
+
+    //     let lightboxImagePath;
+    //     let standardRes = imageData[currentImageIndex].src;
+    //     let hires = imageData[currentImageIndex].hiResSrc;
+    //     hires ? lightboxImagePath = hires : lightboxImagePath = standardRes;
+    //     lightboxImg.src = lightboxImagePath;
+
+    // }
 
     function updateLightboxImage() {
         // Filter images based on the current filter setting
-        const currentGalleryImages = (currentFilter === 'all') 
-            ? imageData 
+        const currentGalleryImages = (currentFilter === 'all')
+            ? imageData
             : imageData.filter(img => img.category.includes(currentFilter));
 
         // Find the index of the currently viewed image within the filtered list
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-        
+
         // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
         if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
             currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
         } else if (currentGalleryImages.length === 0) {
-             // Handle case where filter returns no images
-             closeLightbox();
-             return;
+            // Handle case where filter returns no images
+            closeLightbox();
+            return;
         }
-        
-        lightboxImg.src = imageData[currentImageIndex].src;
+
+        // Determine which image path to use
+        const currentImage = imageData[currentImageIndex];
+        const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
+            ? currentImage.hiRes.hiResSrc
+            : currentImage.src;
+
+        lightboxImg.src = lightboxImagePath;
     }
 
     function showImage(direction) {
         const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
-        
+
         if (currentGalleryImages.length === 0) return;
 
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-        
+
         if (direction === 'next') {
             currentLocalIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
         } else if (direction === 'prev') {
@@ -239,6 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const newGlobalSrc = currentGalleryImages[currentLocalIndex].src;
         currentImageIndex = imageData.findIndex(img => img.src === newGlobalSrc);
         updateLightboxImage();
+
+        const imageId = imageData[currentImageIndex].id;
+        history.replaceState({ imageId: imageId }, '', `#/image/${imageId}`);
     }
 
 
@@ -328,8 +326,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    function handleURLChange() {
+        const hash = window.location.hash;
+        if (hash.startsWith('#/image/')) {
+            const imageId = parseInt(hash.substring(8));
+            if (!isNaN(imageId)) {
+                const imageIndex = imageData.findIndex(img => img.id === imageId);
+                if (imageIndex !== -1) {
+                    currentImageIndex = imageIndex;
+                    updateLightboxImage();
+                    lightbox.classList.add('visible');
+                    lightbox.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        } else {
+            lightbox.classList.remove('visible');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Listen for browser navigation events (back/forward)
+    window.addEventListener('popstate', handleURLChange);
+
     // Initial render
     renderGallery();
+
+    // Check URL on initial load
+    handleURLChange();
 
     // Hero Section Parallax Effect
     const heroBg = document.getElementById('hero-bg');
