@@ -348,6 +348,7 @@ body {
   }
 }
 .hero-section .hero-wave {
+  display: none;
   position: absolute;
   z-index: 9;
   bottom: -5px;
