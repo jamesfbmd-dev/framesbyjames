@@ -149,13 +149,27 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function openLightbox(index) {
         currentImageIndex = index;
-        updateLightboxImage();
-        lightbox.classList.add('visible');
-        lightbox.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
 
-        const imageId = imageData[currentImageIndex].id;
-        history.pushState({ imageId: imageId }, '', `#/image/${imageId}`);
+        const currentGalleryImages = (currentFilter === 'all')
+            ? imageData
+            : imageData.filter(img => img.category.includes(currentFilter));
+
+        const currentImage = currentGalleryImages.find(img => img.src === imageData[currentImageIndex].src);
+        const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
+            ? currentImage.hiRes.hiResSrc
+            : currentImage.src;
+
+        // Preload current image first
+        preloadImage(lightboxImagePath, () => {
+            // Once loaded, show lightbox
+            updateLightboxImage();
+            lightbox.classList.add('visible');
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            const imageId = imageData[currentImageIndex].id;
+            history.pushState({ imageId }, '', `#/image/${imageId}`);
+        });
     }
 
     function closeLightbox() {
@@ -165,79 +179,101 @@ document.addEventListener('DOMContentLoaded', () => {
         history.replaceState(null, '', window.location.pathname);
     }
 
-    // function updateLightboxImage() {
-    //     // Filter images based on the current filter setting
-    //     const currentGalleryImages = (currentFilter === 'all')
-    //         ? imageData
-    //         : imageData.filter(img => img.category.includes(currentFilter));
-
-    //     // Find the index of the currently viewed image within the filtered list
-    //     let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-
-    //     // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
-    //     if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
-    //         currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
-    //     } else if (currentGalleryImages.length === 0) {
-    //          // Handle case where filter returns no images
-    //          closeLightbox();
-    //          return;
-    //     }
-
-    //     let lightboxImagePath;
-    //     let standardRes = imageData[currentImageIndex].src;
-    //     let hires = imageData[currentImageIndex].hiResSrc;
-    //     hires ? lightboxImagePath = hires : lightboxImagePath = standardRes;
-    //     lightboxImg.src = lightboxImagePath;
-
-    // }
-
     function updateLightboxImage() {
-        // Filter images based on the current filter setting
         const currentGalleryImages = (currentFilter === 'all')
             ? imageData
             : imageData.filter(img => img.category.includes(currentFilter));
 
-        // Find the index of the currently viewed image within the filtered list
         let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
 
-        // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
         if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
             currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
+            currentLocalIndex = 0;
         } else if (currentGalleryImages.length === 0) {
-            // Handle case where filter returns no images
             closeLightbox();
             return;
         }
 
-        // Determine which image path to use
         const currentImage = imageData[currentImageIndex];
         const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
             ? currentImage.hiRes.hiResSrc
             : currentImage.src;
 
         lightboxImg.src = lightboxImagePath;
+
+        // Preload adjacent images for smooth navigation
+        const nextLocalIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
+        const prevLocalIndex = (currentLocalIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+
+        preloadImage(currentGalleryImages[nextLocalIndex].src, () => {});
+        preloadImage(currentGalleryImages[prevLocalIndex].src, () => {});
     }
 
     function showImage(direction) {
-        const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
+        const currentGalleryImages = (currentFilter === 'all')
+            ? imageData
+            : imageData.filter(img => img.category.includes(currentFilter));
 
         if (currentGalleryImages.length === 0) return;
 
-        let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
+        let currentLocalIndex = currentGalleryImages.findIndex(
+            img => img.src === imageData[currentImageIndex].src
+        );
 
         if (direction === 'next') {
             currentLocalIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
         } else if (direction === 'prev') {
             currentLocalIndex = (currentLocalIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
         }
-        
-        const newGlobalSrc = currentGalleryImages[currentLocalIndex].src;
-        currentImageIndex = imageData.findIndex(img => img.src === newGlobalSrc);
-        updateLightboxImage();
 
-        const imageId = imageData[currentImageIndex].id;
-        history.replaceState({ imageId: imageId }, '', `#/image/${imageId}`);
+        const newGlobalSrc = currentGalleryImages[currentLocalIndex].src;
+        const newGlobalIndex = imageData.findIndex(img => img.src === newGlobalSrc);
+
+        // Fade out
+        lightboxImg.classList.add('fade-out');
+
+        // Once fade-out completes, swap src
+        lightboxImg.addEventListener('transitionend', function onFadeOut(e) {
+            if (e.propertyName !== 'opacity') return;
+
+            lightboxImg.removeEventListener('transitionend', onFadeOut);
+
+            // Preload image first
+            preloadImage(newGlobalSrc, () => {
+                lightboxImg.src = newGlobalSrc;
+
+                // Trigger fade-in
+                lightboxImg.classList.remove('fade-out');
+
+                // Update index and URL
+                currentImageIndex = newGlobalIndex;
+                const imageId = imageData[currentImageIndex].id;
+                history.replaceState({ imageId }, '', `#/image/${imageId}`);
+
+                // Preload adjacent images
+                const nextLocalIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
+                const prevLocalIndex = (currentLocalIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+                preloadImage(currentGalleryImages[nextLocalIndex].src, () => {});
+                preloadImage(currentGalleryImages[prevLocalIndex].src, () => {});
+            });
+        });
     }
+
+
+    // Preload image. Used to ready up the next image for the lightbox, so there is no UI jump/flash when they click next or prev arrows.
+    function preloadImage(imageSource, onImageLoaded) {
+        const preloadedImage = new Image();
+        preloadedImage.src = imageSource;
+
+        preloadedImage.onload = function () {
+            onImageLoaded();
+        };
+
+        preloadedImage.onerror = function () {
+            console.error('Image failed to load:', imageSource);
+        };
+    }
+
 
 
     /**
