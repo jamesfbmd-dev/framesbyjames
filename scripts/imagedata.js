@@ -305,7 +305,18 @@ const imageData = [
             hiResSrc: 'images/photos/hires/photo-27.webp',
         },
         category: ['landscapes'],
-        alt: 'Louis Vuitton Store',
+        alt: 'Winding Coastal Road',
         ratio: '3x4'
+    },
+    {
+        id: 28,
+        src: 'images/photos/photo-28.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-28.webp',
+        },
+        category: ['landscapes'],
+        alt: 'Great Ocean Road - Apostles',
+        ratio: '4x3'
     }
 ];
