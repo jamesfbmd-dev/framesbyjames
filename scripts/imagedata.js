@@ -285,5 +285,38 @@ const imageData = [
         category: ['street'],
         alt: 'Kyoto Teahouse',
         ratio: '3x4'
+    },
+    {
+        id: 26,
+        src: 'images/photos/photo-26.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-26.webp',
+        },
+        category: ['street', 'architecture'],
+        alt: 'Louis Vuitton Store',
+        ratio: '4x3'
+    },
+    {
+        id: 27,
+        src: 'images/photos/photo-27.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-27.webp',
+        },
+        category: ['landscapes'],
+        alt: 'Winding Coastal Road',
+        ratio: '3x4'
+    },
+    {
+        id: 28,
+        src: 'images/photos/photo-28.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-28.webp',
+        },
+        category: ['landscapes'],
+        alt: 'Great Ocean Road - Apostles',
+        ratio: '4x3'
     }
 ];

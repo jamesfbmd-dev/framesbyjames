@@ -13,7 +13,7 @@ This project uses SASS for styling. To work with the project, you'll need to hav
 
 1. **Install Dependencies:**
 
-   Open your terminal and navigate to the project root directory. Then, run the following command to install the required packages:
+   Open your terminal and navigate to the project root directory. Then, run the following command to install the required packages (Node version 8.11.2 works):
 
    ```bash
    npm install
