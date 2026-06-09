@@ -1,3 +1,51 @@
+/**
+ * PRELOADER CONFIGURATION
+ * Set SHOW_PRELOADER_EVERY_TIME to true to show the preloader on every refresh.
+ * Set it to false to only show it to first-time visitors (or until cache/localStorage is cleared).
+ */
+const SHOW_PRELOADER_EVERY_TIME = true;
+
+(function() {
+    const preloader = document.getElementById('preloader');
+    const preloaderBar = document.getElementById('preloader-bar');
+
+    if (!preloader) return;
+
+    const hasVisited = localStorage.getItem('hasVisited');
+
+    if (!SHOW_PRELOADER_EVERY_TIME && hasVisited) {
+        preloader.style.display = 'none';
+        return;
+    }
+
+    // Start progress bar animation
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 30;
+        if (progress > 90) {
+            progress = 90;
+            clearInterval(interval);
+        }
+        if (preloaderBar) {
+            preloaderBar.style.width = `${progress}%`;
+        }
+    }, 200);
+
+    window.addEventListener('load', () => {
+        clearInterval(interval);
+        if (preloaderBar) {
+            preloaderBar.style.width = '100%';
+        }
+
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            if (!SHOW_PRELOADER_EVERY_TIME) {
+                localStorage.setItem('hasVisited', 'true');
+            }
+        }, 700);
+    });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Device scaling detector (should work on modern browsers running Windows)
