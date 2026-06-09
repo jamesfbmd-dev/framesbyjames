@@ -42,7 +42,7 @@ const SHOW_PRELOADER_EVERY_TIME = true;
             if (!SHOW_PRELOADER_EVERY_TIME) {
                 localStorage.setItem('hasVisited', 'true');
             }
-        }, 500);
+        }, 700);
     });
 })();
 
