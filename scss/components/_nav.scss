@@ -15,13 +15,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media (max-height: 600px) {
+            padding: 0.5rem 1.5rem;
+        }
     }
 
     .logo-link {
-        max-width: 50px;
+        width: clamp(32px, 5vh, 50px);
 
         img {
             width: 100%;
+            height: auto;
+            display: block;
             content: url("../images/hero/fj-logo.png");
             transition: 0.5s ease-in-out;
 
