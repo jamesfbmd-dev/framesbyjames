@@ -318,5 +318,16 @@ const imageData = [
         category: ['landscapes'],
         alt: 'Great Ocean Road - Apostles',
         ratio: '4x3'
+    },
+    {
+        id: 29,
+        src: 'images/photos/photo-29.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-29.webp',
+        },
+        category: ['street'],
+        alt: 'Meiji Jingu Sake',
+        ratio: '4x3'
     }
 ];

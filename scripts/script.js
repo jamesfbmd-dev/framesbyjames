@@ -1,3 +1,73 @@
+// =========================
+// =======PRE LOADER========
+// =========================
+
+//Show preloader every time page refreshes
+const SHOW_PRELOADER_EVERY_TIME = false;
+
+// milliseconds that need to pass for the site to consider this a slow load, and to show the preloader
+const SLOW_LOAD_THRESHOLD_MS = 1200;
+
+// Amount of time that must elapse before preloader is shown again
+const RECENT_VISIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
+
+(function () {
+    const preloader = document.getElementById('preloader');
+    const preloaderBar = document.getElementById('preloader-bar');
+
+    if (!preloader) return;
+
+    const now = Date.now();
+    const lastVisit = Number(sessionStorage.getItem('lastVisit') || 0);
+    const isRecentVisit = now - lastVisit < RECENT_VISIT_WINDOW_MS;
+
+    let startTime = performance.now();
+
+    let progress = 0;
+    let interval = setInterval(() => {
+        progress += Math.random() * 25;
+        if (progress > 90) progress = 90;
+
+        if (preloaderBar) {
+            preloaderBar.style.width = `${progress}%`;
+        }
+    }, 180);
+
+    const finish = () => {
+        clearInterval(interval);
+
+        if (preloaderBar) {
+            preloaderBar.style.width = '100%';
+        }
+
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            sessionStorage.setItem('lastVisit', String(Date.now()));
+        }, 500);
+    };
+
+    window.addEventListener('load', () => {
+        const loadTime = performance.now() - startTime;
+
+        const shouldSkip =
+            !SHOW_PRELOADER_EVERY_TIME &&
+            isRecentVisit &&
+            loadTime < SLOW_LOAD_THRESHOLD_MS;
+
+        if (shouldSkip) {
+            preloader.style.display = 'none';
+            sessionStorage.setItem('lastVisit', String(Date.now()));
+            return;
+        }
+
+        finish();
+    });
+})();
+
+// ===============================
+// =======END OF PRE LOADER=======
+// ===============================
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Device scaling detector (should work on modern browsers running Windows)
