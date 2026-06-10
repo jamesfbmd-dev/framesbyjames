@@ -1,50 +1,72 @@
-/**
- * PRELOADER CONFIGURATION
- * Set SHOW_PRELOADER_EVERY_TIME to true to show the preloader on every refresh.
- * Set it to false to only show it to first-time visitors (or until cache/localStorage is cleared).
- */
-const SHOW_PRELOADER_EVERY_TIME = true;
+// =========================
+// =======PRE LOADER========
+// =========================
 
-(function() {
+//Show preloader every time page refreshes
+const SHOW_PRELOADER_EVERY_TIME = false;
+
+// milliseconds that need to pass for the site to consider this a slow load, and to show the preloader
+const SLOW_LOAD_THRESHOLD_MS = 1200;
+
+// Amount of time that must elapse before preloader is shown again
+const RECENT_VISIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
+
+(function () {
     const preloader = document.getElementById('preloader');
     const preloaderBar = document.getElementById('preloader-bar');
 
     if (!preloader) return;
 
-    const hasVisited = localStorage.getItem('hasVisited');
+    const now = Date.now();
+    const lastVisit = Number(sessionStorage.getItem('lastVisit') || 0);
+    const isRecentVisit = now - lastVisit < RECENT_VISIT_WINDOW_MS;
 
-    if (!SHOW_PRELOADER_EVERY_TIME && hasVisited) {
-        preloader.style.display = 'none';
-        return;
-    }
+    let startTime = performance.now();
 
-    // Start progress bar animation
     let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 30;
-        if (progress > 90) {
-            progress = 90;
-            clearInterval(interval);
-        }
+    let interval = setInterval(() => {
+        progress += Math.random() * 25;
+        if (progress > 90) progress = 90;
+
         if (preloaderBar) {
             preloaderBar.style.width = `${progress}%`;
         }
-    }, 200);
+    }, 180);
 
-    window.addEventListener('load', () => {
+    const finish = () => {
         clearInterval(interval);
+
         if (preloaderBar) {
             preloaderBar.style.width = '100%';
         }
 
         setTimeout(() => {
             preloader.classList.add('preloader-hidden');
-            if (!SHOW_PRELOADER_EVERY_TIME) {
-                localStorage.setItem('hasVisited', 'true');
-            }
-        }, 700);
+            sessionStorage.setItem('lastVisit', String(Date.now()));
+        }, 500);
+    };
+
+    window.addEventListener('load', () => {
+        const loadTime = performance.now() - startTime;
+
+        const shouldSkip =
+            !SHOW_PRELOADER_EVERY_TIME &&
+            isRecentVisit &&
+            loadTime < SLOW_LOAD_THRESHOLD_MS;
+
+        if (shouldSkip) {
+            preloader.style.display = 'none';
+            sessionStorage.setItem('lastVisit', String(Date.now()));
+            return;
+        }
+
+        finish();
     });
 })();
+
+// ===============================
+// =======END OF PRE LOADER=======
+// ===============================
 
 document.addEventListener('DOMContentLoaded', () => {
 
