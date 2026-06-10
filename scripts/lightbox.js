@@ -54,13 +54,28 @@ function updateLightboxImage() {
     if (lightboxImg.src !== absoluteImagePath) {
         lightboxImg.classList.add('loading');
 
-        const handleLoad = () => {
-            lightboxImg.classList.remove('loading');
-            lightboxImg.removeEventListener('load', handleLoad);
-        };
+        // Use a small timeout to ensure the fade-out is visible
+        // even if the image is already cached.
+        setTimeout(() => {
+            const handleLoad = () => {
+                lightboxImg.classList.remove('loading');
+                lightboxImg.removeEventListener('load', handleLoad);
+            };
 
-        lightboxImg.addEventListener('load', handleLoad);
-        lightboxImg.src = lightboxImagePath;
+            // Check if complete (for cached images)
+            const tempImg = new Image();
+            tempImg.src = lightboxImagePath;
+
+            if (tempImg.complete) {
+                // Image is cached, wait for the transition to complete (approx 300ms)
+                setTimeout(handleLoad, 50);
+            } else {
+                lightboxImg.addEventListener('load', handleLoad);
+                lightboxImg.addEventListener('error', handleLoad); // Handle errors to remove loading class
+            }
+
+            lightboxImg.src = lightboxImagePath;
+        }, 50);
     } else {
         lightboxImg.src = lightboxImagePath;
         lightboxImg.classList.remove('loading');
