@@ -48,7 +48,40 @@ function updateLightboxImage() {
         ? currentImage.hiRes.hiResSrc
         : currentImage.src;
 
-    lightboxImg.src = lightboxImagePath;
+    // Smooth fade transition logic
+    const absoluteImagePath = new URL(lightboxImagePath, window.location.origin).href;
+
+    if (lightboxImg.src !== absoluteImagePath) {
+        lightboxImg.classList.add('loading');
+
+        const handleLoad = () => {
+            lightboxImg.classList.remove('loading');
+            lightboxImg.removeEventListener('load', handleLoad);
+        };
+
+        lightboxImg.addEventListener('load', handleLoad);
+        lightboxImg.src = lightboxImagePath;
+    } else {
+        lightboxImg.src = lightboxImagePath;
+        lightboxImg.classList.remove('loading');
+    }
+
+    preloadAdjacentImages(currentGalleryImages, currentLocalIndex);
+}
+
+function preloadAdjacentImages(filteredImages, currentIndex) {
+    const nextIndex = (currentIndex + 1) % filteredImages.length;
+    const prevIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
+
+    [nextIndex, prevIndex].forEach(idx => {
+        const imgData = filteredImages[idx];
+        const src = (imgData.hiRes?.useHiRes && imgData.hiRes?.hiResSrc)
+            ? imgData.hiRes.hiResSrc
+            : imgData.src;
+
+        const img = new Image();
+        img.src = src;
+    });
 }
 
 function showImage(direction) {
