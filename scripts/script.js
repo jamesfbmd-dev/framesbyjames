@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('scaling')
     }
 
-
     // Override for showing only curated images (dev use)
     const dev = document.getElementById('dev');
 
@@ -55,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
-
 
     /**
      * Event Listeners
@@ -162,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
 
     // Listen for browser navigation events (back/forward)
     window.addEventListener('popstate', handleURLChange);

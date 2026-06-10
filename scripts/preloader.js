@@ -5,7 +5,7 @@
 (function () {
   const STORAGE_KEY = 'pl_session_seen';
   const MAX_LOAD_TIME_MS = 7000;
-  const FADE_OUT_DELAY_MS = 350;
+  const FADE_OUT_DELAY_MS = 750;
 
   const html = document.documentElement;
   const preloader = document.getElementById('preloader');
