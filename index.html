@@ -20,18 +20,15 @@
         <!-- Styling -->
     <link rel="stylesheet" href="css/styles.css">
 
+    <!-- Force invisibility of preloader before DOM renders -->
+    <style>
+        .preloader { opacity:0; visibility:hidden; }
+    </style>
+
     <script>
-      // Runs synchronously before first paint
-      !function () {
-        try {
-          var last = Number(localStorage.getItem('pl_ts') || 0);
-          if (Date.now() - last > 108e4) { // 30 min in ms
-            document.documentElement.classList.add('pl-active');
-          }
-        } catch (e) {
-          // localStorage blocked (strict private mode) — skip silently
+        if (!sessionStorage.getItem('pl_session_seen')) {
+          document.documentElement.classList.add('pl-active');
         }
-      }();
     </script>
 </head>
 <body class="antialiased">
@@ -163,7 +160,7 @@
 
     <footer class="footer">
         <div class="footer-container">
-            <p>&copy; 2025 Frames by James. All Rights Reserved.</p>
+            <p>&copy; 2026 Frames by James. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -198,8 +195,11 @@
 
     </div>
 
-    <!-- Link to external JavaScript -->
+    <!-- SCRIPTS -->
     <script src="scripts/imagedata.js" defer></script>
+    <script src="scripts/preloader.js" defer></script>
+    <script src="scripts/gallery.js" defer></script>
+    <script src="scripts/lightbox.js" defer></script>
     <script src="scripts/script.js" defer></script>
 </body>
 </html>
