@@ -121,8 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
-    const lightboxPrevMobile = document.getElementById('lightbox-prev-mobile');
-    const lightboxNextMobile = document.getElementById('lightbox-next-mobile');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const arrowLink = document.getElementById('hero-arrow-link');
@@ -374,8 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lightboxPrev && lightboxPrev.addEventListener('click', () => showImage('prev'));
     lightboxNext && lightboxNext.addEventListener('click', () => showImage('next'));
-    lightboxPrevMobile && lightboxPrevMobile.addEventListener('click', () => showImage('prev'));
-    lightboxNextMobile && lightboxNextMobile.addEventListener('click', () => showImage('next'));
     
     // Close lightbox on backdrop click
     lightbox.addEventListener('click', (e) => {
@@ -395,6 +391,28 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowRight') showImage('next');
         }
     });
+
+    // Swipe navigation for touch devices
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const SWIPE_THRESHOLD_PX = 50;
+
+    lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+        if (!lightbox.classList.contains('visible')) return;
+
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) return;
+        if (Math.abs(deltaY) > Math.abs(deltaX)) return; // axis lock
+
+        showImage(deltaX < 0 ? 'next' : 'prev');
+    }, { passive: true });
     
     // Mobile Menu Toggler
     mobileMenuButton.addEventListener('click', () => {
