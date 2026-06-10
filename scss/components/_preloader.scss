@@ -1,21 +1,19 @@
 .preloader {
+    // ── Layout & visual (unchanged) ──────────────────────────
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    z-index: 99999;
     background-color: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 99999;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
 
-    &.preloader-hidden {
-        opacity: 0;
-        visibility: hidden;
-    }
+    // ── Hidden by default — head script adds .pl-active if needed ──
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    // No transition on the base: appearing must be instant, never fading in
 
     .preloader-content {
         display: flex;
@@ -27,7 +25,7 @@
     .preloader-title {
         color: #fff;
         font-family: 'Inter', sans-serif;
-        font-size:  2rem;
+        font-size: 2rem;
         letter-spacing: 2rem;
         text-transform: uppercase;
     }
@@ -56,5 +54,24 @@
         width: 0;
         background-color: #fff;
         transition: width 0.3s ease-out;
+    }
+}
+
+// ── First visit / slow load: reveal immediately, no fade-in ──
+.pl-active .preloader {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+// ── Load complete: fade out ───────────────────────────────────
+.pl-done .preloader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
     }
 }

@@ -1,72 +1,86 @@
 // =========================
-// =======PRE LOADER========
+// ======= PRELOADER =======
 // =========================
 
-//Show preloader every time page refreshes
-const SHOW_PRELOADER_EVERY_TIME = false;
+;(function () {
+  const STORAGE_KEY       = 'pl_ts';
+  const SLOW_THRESHOLD_MS = 1200; // show for return visitors if load exceeds this
+  const FADE_OUT_DELAY_MS = 350;  // pause at 100% before hiding
 
-// milliseconds that need to pass for the site to consider this a slow load, and to show the preloader
-const SLOW_LOAD_THRESHOLD_MS = 1200;
+  const html      = document.documentElement;
+  const preloader = document.getElementById('preloader');
+  const bar       = document.getElementById('preloader-bar');
 
-// Amount of time that must elapse before preloader is shown again
-const RECENT_VISIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
+  if (!preloader) return;
 
-(function () {
-    const preloader = document.getElementById('preloader');
-    const preloaderBar = document.getElementById('preloader-bar');
+  // Was the pl-active class applied by the <head> script?
+  let shown = html.classList.contains('pl-active');
+  let rafId = null;
+  let animStart = null;
 
-    if (!preloader) return;
+  // ── Progress animation ─────────────────────────────────────────
+  // Exponential easing: fast start, asymptotically approaches 90%.
+  // Far smoother than random interval jumps.
+  function step(timestamp) {
+    if (!animStart) animStart = timestamp;
+    const elapsed = timestamp - animStart;
+    const pct = 90 * (1 - Math.exp(-elapsed / 1500));
+    if (bar) bar.style.width = `${pct.toFixed(1)}%`;
+    rafId = requestAnimationFrame(step);
+  }
 
-    const now = Date.now();
-    const lastVisit = Number(sessionStorage.getItem('lastVisit') || 0);
-    const isRecentVisit = now - lastVisit < RECENT_VISIT_WINDOW_MS;
+  function startAnimation() {
+    rafId = requestAnimationFrame(step);
+  }
 
-    let startTime = performance.now();
+  // ── Finish & hide ──────────────────────────────────────────────
+  function finish() {
+    cancelAnimationFrame(rafId);
+    if (bar) bar.style.width = '100%';
 
-    let progress = 0;
-    let interval = setInterval(() => {
-        progress += Math.random() * 25;
-        if (progress > 90) progress = 90;
+    setTimeout(() => {
+      html.classList.remove('pl-active');
+      html.classList.add('pl-done'); // CSS fades it out
+      saveTimestamp();
+    }, FADE_OUT_DELAY_MS);
+  }
 
-        if (preloaderBar) {
-            preloaderBar.style.width = `${progress}%`;
-        }
-    }, 180);
+  function saveTimestamp() {
+    try { localStorage.setItem(STORAGE_KEY, String(Date.now())); }
+    catch (e) {}
+  }
 
-    const finish = () => {
-        clearInterval(interval);
+  // ── Slow-load safety net (return visitors only) ────────────────
+  // If the page hasn't loaded within the threshold, reveal
+  // the preloader — better than a stuck-looking blank page.
+  let slowTimer = null;
 
-        if (preloaderBar) {
-            preloaderBar.style.width = '100%';
-        }
+  if (shown) {
+    startAnimation();
+  } else {
+    slowTimer = setTimeout(() => {
+      shown = true;
+      html.classList.add('pl-active');
+      startAnimation();
+    }, SLOW_THRESHOLD_MS);
+  }
 
-        setTimeout(() => {
-            preloader.classList.add('preloader-hidden');
-            sessionStorage.setItem('lastVisit', String(Date.now()));
-        }, 500);
-    };
+  // ── On load ───────────────────────────────────────────────────
+  window.addEventListener('load', () => {
+    clearTimeout(slowTimer);
 
-    window.addEventListener('load', () => {
-        const loadTime = performance.now() - startTime;
+    if (shown) {
+      finish();      // animate to 100% then fade out
+    } else {
+      saveTimestamp(); // fast return visit — nothing shown, just update
+    }
+  }, { once: true });
 
-        const shouldSkip =
-            !SHOW_PRELOADER_EVERY_TIME &&
-            isRecentVisit &&
-            loadTime < SLOW_LOAD_THRESHOLD_MS;
+}());
 
-        if (shouldSkip) {
-            preloader.style.display = 'none';
-            sessionStorage.setItem('lastVisit', String(Date.now()));
-            return;
-        }
-
-        finish();
-    });
-})();
-
-// ===============================
-// =======END OF PRE LOADER=======
-// ===============================
+// ===========================
+// ===== END OF PRELOADER =====
+// ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
 

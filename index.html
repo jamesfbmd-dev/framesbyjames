@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frames by James | Photography</title>
 
-<!-- Favicon -->
-<link rel="icon" href="/images/assets/favicons/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/assets/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/assets/favicons/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/images/assets/favicons/apple-touch-icon.png">
-<link rel="manifest" href="/images/assets/favicons/site.webmanifest">
+    <!-- Favicon -->
+    <link rel="icon" href="/images/assets/favicons/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/assets/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/images/assets/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/images/assets/favicons/site.webmanifest">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,20 @@
 
         <!-- Styling -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <script>
+      // Runs synchronously before first paint
+      !function () {
+        try {
+          var last = Number(localStorage.getItem('pl_ts') || 0);
+          if (Date.now() - last > 108e4) { // 30 min in ms
+            document.documentElement.classList.add('pl-active');
+          }
+        } catch (e) {
+          // localStorage blocked (strict private mode) — skip silently
+        }
+      }();
+    </script>
 </head>
 <body class="antialiased">
 
@@ -154,39 +168,34 @@
     </footer>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox hidden">
-        <div class="lightbox-content">
-            <div class="lightbox-header">
-                <button id="lightbox-close" class="lightbox-btn close-btn">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" tabindex="-1">
 
-            <div class="lightbox-body">
-                <div class="lightbox-prev-container hide-xs hide-sm">
-                    <button id="lightbox-prev" class="lightbox-btn prev-btn">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                </div>
-                <div class="lightbox-image-container">
-                    <img id="lightbox-img" src="" alt="Full-size view" class="lightbox-image">
-                </div>
-                <div class="lightbox-next-container hide-xs hide-sm">
-                    <button id="lightbox-next" class="lightbox-btn next-btn">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-                </div>
-            </div>
+      <header class="lightbox-header">
+        <button id="lightbox-close" class="lightbox-btn lightbox-close" aria-label="Close lightbox">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </header>
 
-            <div class="lightbox-nav-mobile hide-md hide-lg">
-                <button id="lightbox-prev-mobile" class="lightbox-btn prev-btn">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                </button>
-                <button id="lightbox-next-mobile" class="lightbox-btn next-btn">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
-            </div>
+      <div class="lightbox-stage">
+        <button id="lightbox-prev" class="lightbox-btn lightbox-nav lightbox-nav--prev" aria-label="Previous image">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+
+        <div class="lightbox-media">
+          <img id="lightbox-img" src="" alt="Full-size view" class="lightbox-image">
         </div>
+
+        <button id="lightbox-next" class="lightbox-btn lightbox-nav lightbox-nav--next" aria-label="Next image">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
 
     <!-- Link to external JavaScript -->
