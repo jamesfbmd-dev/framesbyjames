@@ -1,89 +1,3 @@
-// =========================
-// ======= PRELOADER =======
-// =========================
-
-(function () {
-  const STORAGE_KEY       = 'pl_session_seen';
-  const MAX_LOAD_TIME_MS  = 7000; // 7-second maximum safety net
-  const FADE_OUT_DELAY_MS = 350;  // pause at 100% before hiding
-
-  const html      = document.documentElement;
-  const preloader = document.getElementById('preloader');
-  const bar       = document.getElementById('preloader-bar');
-
-  if (!preloader) return;
-
-  // ── Session Storage Check ──────────────────────────────────────
-  // If they have seen the preloader this session, bail out immediately.
-  if (sessionStorage.getItem(STORAGE_KEY)) {
-    html.classList.remove('pl-active');
-    html.classList.add('pl-done');
-    return; // Stop execution, no animation
-  }
-
-  // Otherwise, mark it as seen for next time
-  try {
-    sessionStorage.setItem(STORAGE_KEY, 'true');
-  } catch (e) {
-    // Failsafe for private browsing modes that restrict storage
-  }
-
-  // Ensure the active class is present
-  html.classList.add('pl-active');
-
-  let rafId = null;
-  let animStart = null;
-  let fallbackTimer = null;
-  let isFinished = false;
-
-  // ── Progress animation ─────────────────────────────────────────
-  // Exponential easing: fast start, asymptotically approaches 90%.
-  function step(timestamp) {
-    if (!animStart) animStart = timestamp;
-    const elapsed = timestamp - animStart;
-    const pct = 90 * (1 - Math.exp(-elapsed / 1500));
-    
-    if (bar) bar.style.width = `${pct.toFixed(1)}%`;
-    rafId = requestAnimationFrame(step);
-  }
-
-  function startAnimation() {
-    rafId = requestAnimationFrame(step);
-  }
-
-  // ── Finish & hide ──────────────────────────────────────────────
-  function finish() {
-    if (isFinished) return; // Prevent double-firing
-    isFinished = true;
-
-    cancelAnimationFrame(rafId);
-    if (fallbackTimer) clearTimeout(fallbackTimer);
-    
-    if (bar) bar.style.width = '100%';
-
-    setTimeout(() => {
-      html.classList.remove('pl-active');
-      html.classList.add('pl-done'); // CSS handles the fade out
-    }, FADE_OUT_DELAY_MS);
-  }
-
-  // ── Initialization ─────────────────────────────────────────────
-  startAnimation();
-
-  // The 7-second maximum. If 'load' hasn't fired by now, force it closed.
-  fallbackTimer = setTimeout(() => {
-    finish();
-  }, MAX_LOAD_TIME_MS);
-
-  // Listen for actual page load to finish normally
-  window.addEventListener('load', finish, { once: true });
-
-}());
-
-// ===========================
-// ===== END OF PRELOADER =====
-// ===========================
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // Device scaling detector (should work on modern browsers running Windows)
@@ -119,16 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const gallery = document.getElementById('gallery');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxPrev = document.getElementById('lightbox-prev');
     const lightboxNext = document.getElementById('lightbox-next');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const arrowLink = document.getElementById('hero-arrow-link');
-
-    let currentImageIndex = 0;
-    let currentFilter = 'all';
 
 
     // HERO ARROW SCROLL BEHAVIOUR
@@ -145,183 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
-
-    /**
-     * Renders the gallery items based on the active filter.
-     * Uses the original image data and dynamic element creation.
-     */
-    function renderGallery(filter = 'all', override) {
-        gallery.innerHTML = '';
-
-        let filteredImages;
-
-        // Check if override exists
-        if (override) {
-            filteredImages = imageData.filter(img => override.includes(img.id));
-            console.log(filteredImages);
-        } else {
-            // Filter the images based on the active category
-            filteredImages = (filter === 'all') ? imageData : imageData.filter(img => img.category.includes(filter));
-        }
-
-        // RANDOMISE ORDER OF IMAGES
-        const filteredImagesRandomOrder = [...filteredImages];
-
-        for (let i = filteredImagesRandomOrder.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [filteredImagesRandomOrder[i], filteredImagesRandomOrder[j]] = [filteredImagesRandomOrder[j], filteredImagesRandomOrder[i]];
-        }
-
-        // Use 'filteredImages' if you want to have them appear in order.
-        // Use 'filteredImagesRandomOrder' if you want them to appear in a random order.
-        filteredImagesRandomOrder.forEach((data, index) => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item'; // Styles handled by CSS
-            item.dataset.category = data.category;
-            item.dataset.fullSrc = data.src;
-            // Store the index in the original, unfiltered array for lightbox navigation
-            item.dataset.originalIndex = imageData.findIndex(img => img.src === data.src);
-            
-            // 1. Aspect ratio wrapper (sets height via padding)
-            const ratioWrapper = document.createElement('div');
-            ratioWrapper.className = `aspect-ratio-container ratio-${data.ratio}`;
-
-            // 2. Absolute filler (fills the space created by padding)
-            const contentHolder = document.createElement('div');
-            contentHolder.className = 'aspect-ratio-content';
-
-            // 3. CRITICAL: Relative wrapper (correctly contains image and overlay)
-            const relativeWrapper = document.createElement('div');
-            relativeWrapper.className = 'relative-wrapper';
-
-            const img = document.createElement('img');
-            img.src = data.src;
-            img.loading = 'lazy';
-            img.onerror = function() {
-                // Fallback for visual cue if image fails
-                console.error("Image failed to load: " + this.src);
-                this.style.display = 'none'; 
-                relativeWrapper.style.backgroundColor = '#312F2C'; 
-                relativeWrapper.innerHTML = '<span style="color:white; font-size: 1.125rem; text-transform:uppercase; display:flex; align-items:center; justify-content:center; width:100%; height:100%;">Error</span>';
-            };
-
-            if(data.positionOverride) {
-                if(data.positionOverride == 'bottom') {
-                    img.className = 'img-thumbnail img-bottom';
-                }
-            } else {
-               img.className = 'img-thumbnail'; // Pure CSS class for w-full h-full object-cover
-            }
-
-            img.alt = data.alt;
-            img.loading = 'lazy';
-
-            relativeWrapper.appendChild(img);
-            contentHolder.appendChild(relativeWrapper);
-            ratioWrapper.appendChild(contentHolder);
-            item.appendChild(ratioWrapper);
-            
-            gallery.appendChild(item);
-
-            // ATTACH CLICK LISTENER ONLY TO THE VISIBLE CONTENT AREA
-            contentHolder.addEventListener('click', () => openLightbox(parseInt(item.dataset.originalIndex)));
-        });
-    }
-
-    /**
-     * Lightbox functions
-     */
-    function openLightbox(index) {
-        currentImageIndex = index;
-        updateLightboxImage();
-        lightbox.classList.add('visible');
-        lightbox.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-
-        const imageId = imageData[currentImageIndex].id;
-        history.pushState({ imageId: imageId }, '', `#/image/${imageId}`);
-    }
-
-    function closeLightbox() {
-        lightbox.classList.remove('visible');
-        lightbox.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-        history.replaceState(null, '', window.location.pathname);
-    }
-
-    // function updateLightboxImage() {
-    //     // Filter images based on the current filter setting
-    //     const currentGalleryImages = (currentFilter === 'all')
-    //         ? imageData
-    //         : imageData.filter(img => img.category.includes(currentFilter));
-
-    //     // Find the index of the currently viewed image within the filtered list
-    //     let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-
-    //     // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
-    //     if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
-    //         currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
-    //     } else if (currentGalleryImages.length === 0) {
-    //          // Handle case where filter returns no images
-    //          closeLightbox();
-    //          return;
-    //     }
-
-    //     let lightboxImagePath;
-    //     let standardRes = imageData[currentImageIndex].src;
-    //     let hires = imageData[currentImageIndex].hiResSrc;
-    //     hires ? lightboxImagePath = hires : lightboxImagePath = standardRes;
-    //     lightboxImg.src = lightboxImagePath;
-
-    // }
-
-    function updateLightboxImage() {
-        // Filter images based on the current filter setting
-        const currentGalleryImages = (currentFilter === 'all')
-            ? imageData
-            : imageData.filter(img => img.category.includes(currentFilter));
-
-        // Find the index of the currently viewed image within the filtered list
-        let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-
-        // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
-        if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
-            currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
-        } else if (currentGalleryImages.length === 0) {
-            // Handle case where filter returns no images
-            closeLightbox();
-            return;
-        }
-
-        // Determine which image path to use
-        const currentImage = imageData[currentImageIndex];
-        const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
-            ? currentImage.hiRes.hiResSrc
-            : currentImage.src;
-
-        lightboxImg.src = lightboxImagePath;
-    }
-
-    function showImage(direction) {
-        const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
-
-        if (currentGalleryImages.length === 0) return;
-
-        let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
-
-        if (direction === 'next') {
-            currentLocalIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
-        } else if (direction === 'prev') {
-            currentLocalIndex = (currentLocalIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
-        }
-        
-        const newGlobalSrc = currentGalleryImages[currentLocalIndex].src;
-        currentImageIndex = imageData.findIndex(img => img.src === newGlobalSrc);
-        updateLightboxImage();
-
-        const imageId = imageData[currentImageIndex].id;
-        history.replaceState({ imageId: imageId }, '', `#/image/${imageId}`);
-    }
 
 
     /**
@@ -430,26 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function handleURLChange() {
-        const hash = window.location.hash;
-        if (hash.startsWith('#/image/')) {
-            const imageId = parseInt(hash.substring(8));
-            if (!isNaN(imageId)) {
-                const imageIndex = imageData.findIndex(img => img.id === imageId);
-                if (imageIndex !== -1) {
-                    currentImageIndex = imageIndex;
-                    updateLightboxImage();
-                    lightbox.classList.add('visible');
-                    lightbox.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                }
-            }
-        } else {
-            lightbox.classList.remove('visible');
-            lightbox.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    }
 
     // Listen for browser navigation events (back/forward)
     window.addEventListener('popstate', handleURLChange);
@@ -483,4 +196,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
