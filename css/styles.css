@@ -202,11 +202,18 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-height: 600px) {
+  .header .header-container {
+    padding: 0.5rem 1.5rem;
+  }
+}
 .header .logo-link {
-  max-width: 50px;
+  width: clamp(32px, 5vh, 50px);
 }
 .header .logo-link img {
   width: 100%;
+  height: auto;
+  display: block;
   content: url("../images/hero/fj-logo.png");
   transition: 0.5s ease-in-out;
 }
@@ -593,111 +600,106 @@ body {
 
 .lightbox {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.97);
+  inset: 0;
   z-index: 50;
+  background-color: rgba(255, 255, 255, 0.97);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 1rem 1rem 1rem;
+  flex-direction: column;
+  padding: 0.5rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 @media (min-width: 769px) {
   .lightbox {
-    padding: 1rem 1rem 3rem 1rem;
+    padding: 1rem;
   }
 }
 .lightbox.visible {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
-.lightbox .lightbox-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  .lightbox {
+    transition: none;
+  }
 }
-.lightbox .lightbox-content .lightbox-btn {
-  position: relative;
-  color: #000;
-  padding: 0.75rem;
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  transition: background-color 0.2s ease;
-}
-.lightbox .lightbox-content .lightbox-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.lightbox .lightbox-content .lightbox-btn svg {
-  display: block;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.lightbox .lightbox-content .lightbox-nav-mobile {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-}
-.lightbox .lightbox-content .lightbox-nav {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  width: 100%;
-}
-.lightbox .lightbox-content .lightbox-header {
+.lightbox .lightbox-header {
   display: flex;
   justify-content: flex-end;
+  flex-shrink: 0;
   width: 100%;
-  z-index: 10;
-  position: absolute;
 }
-.lightbox .lightbox-content .lightbox-body {
-  flex-grow: 1;
-  min-height: 0;
-  width: 100%;
+.lightbox .lightbox-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 @media (min-width: 769px) {
-  .lightbox .lightbox-content .lightbox-body {
-    justify-content: space-between;
+  .lightbox .lightbox-btn {
+    width: 3rem;
+    height: 3rem;
   }
 }
-.lightbox .lightbox-body {
-  flex-grow: 1;
-  min-height: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.lightbox .lightbox-btn:hover {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.lightbox .lightbox-btn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+.lightbox .lightbox-btn svg {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  pointer-events: none;
 }
 @media (min-width: 769px) {
-  .lightbox .lightbox-body {
-    justify-content: space-between;
+  .lightbox .lightbox-btn svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
-.lightbox .lightbox-body .lightbox-image-container {
-  padding: 1.5rem;
-  flex-grow: 1;
+.lightbox .lightbox-stage {
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.25rem;
+}
+@media (min-width: 769px) {
+  .lightbox .lightbox-stage {
+    gap: 0.75rem;
+  }
+}
+.lightbox .lightbox-stage .lightbox-media {
+  flex: 1;
   min-width: 0;
-  width: 100%;
-  height: 100%;
+  min-height: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
-.lightbox .lightbox-body .lightbox-image-container .lightbox-image {
+@media (min-width: 1041px) {
+  .lightbox .lightbox-stage .lightbox-media {
+    padding-bottom: 2rem;
+  }
+}
+.lightbox .lightbox-stage .lightbox-media .lightbox-image {
+  display: block;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;

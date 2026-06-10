@@ -21,7 +21,8 @@ const RECENT_VISIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
     const lastVisit = Number(sessionStorage.getItem('lastVisit') || 0);
     const isRecentVisit = now - lastVisit < RECENT_VISIT_WINDOW_MS;
 
-    let startTime = performance.now();
+    // let startTime = performance.now();
+    let startTime = performance.timing?.navigationStart || performance.now();
 
     let progress = 0;
     let interval = setInterval(() => {
