@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frames by James | Photography</title>
 
-<!-- Favicon -->
-<link rel="icon" href="/images/assets/favicons/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/images/assets/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/images/assets/favicons/favicon-16x16.png">
-<link rel="apple-touch-icon" href="/images/assets/favicons/apple-touch-icon.png">
-<link rel="manifest" href="/images/assets/favicons/site.webmanifest">
+    <!-- Favicon -->
+    <link rel="icon" href="/images/assets/favicons/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/assets/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/images/assets/favicons/apple-touch-icon.png">
+    <link rel="manifest" href="/images/assets/favicons/site.webmanifest">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,20 @@
 
         <!-- Styling -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <script>
+      // Runs synchronously before first paint — zero flash
+      !function () {
+        try {
+          var last = Number(localStorage.getItem('pl_ts') || 0);
+          if (Date.now() - last > 108e4) { // 30 min in ms
+            document.documentElement.classList.add('pl-active');
+          }
+        } catch (e) {
+          // localStorage blocked (strict private mode) — skip silently
+        }
+      }();
+    </script>
 </head>
 <body class="antialiased">
 
