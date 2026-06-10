@@ -1,13 +1,10 @@
 // ─── Lightbox ────────────────────────────────────────────────────────────────
 
 .lightbox {
-    // Overlay
     position: fixed;
     inset: 0;
     z-index: 50;
     background-color: rgba(255, 255, 255, 0.97);
-
-    // Layout: stack header above stage
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
@@ -16,35 +13,34 @@
         padding: 1rem;
     }
 
-    // Hidden by default — JS toggles .visible
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease;
+        opacity 0.25s ease,
+        visibility 0.25s ease;
 
     &.visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
 
-    // Respect reduced-motion preference
     @media (prefers-reduced-motion: reduce) {
-    transition: none;
+        transition: none;
     }
 
-    // ─── Header (holds close button) ─────────────────────────────────────────────
+    // ─── Header ──────────────────────────────────────────────────────────────
 
     .lightbox-header {
-      display: flex;
-      justify-content: flex-end;
-      flex-shrink: 0;
-      width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        flex-shrink: 0;
+        width: 100%;
     }
 
-    // ─── Shared button base ───────────────────────────────────────────────────────
+    // ─── Shared button base ───────────────────────────────────────────────────
+
     .lightbox-btn {
         display: flex;
         align-items: center;
@@ -68,7 +64,6 @@
             background-color: rgba(0, 0, 0, 0.07);
         }
 
-        // Modern focus style — only shows on keyboard nav
         &:focus-visible {
             outline: 2px solid #000;
             outline-offset: 2px;
@@ -87,41 +82,65 @@
         }
     }
 
-    // ─── Stage: [prev] [image] [next] ────────────────────────────────────────────
+    // ─── Stage ───────────────────────────────────────────────────────────────
+
     .lightbox-stage {
         flex: 1;
-        min-height: 0; // critical — lets flex child shrink below content size
-        display: flex;
-        align-items: center; // vertically centers nav buttons
-        gap: 0.25rem;
+        min-height: 0;
+        display: grid;
 
-        @include md-up {
+        // Mobile: image top row, prev/next side-by-side below
+        grid-template-areas:
+            "image image"
+            "prev  next";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        gap: 0.5rem;
+
+        @include sm-up {
+            grid-template-areas: "prev image next";
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: 1fr;
+            align-items: center;
             gap: 0.75rem;
         }
+    }
 
-    // ─── Media container ─────────────────────────────────────────────────────────
+    // ─── Nav buttons ─────────────────────────────────────────────────────────
 
-        .lightbox-media {
-            flex: 1;
-            min-width: 0;
-            min-height: 0;
-            align-self: stretch; // overrides parent's center — fills full stage height
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 1rem;
+    .lightbox-nav {
+        justify-self: center;
+        align-self: center;
 
-            @include lg-up {
-                padding-bottom: 2rem;
-            }
+        &--prev { grid-area: prev; }
+        &--next { grid-area: next; }
+    }
 
-            .lightbox-image {
-                display: block;
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
+    // ─── Media container ─────────────────────────────────────────────────────
+
+    .lightbox-media {
+        grid-area: image;
+        min-width: 0;
+        min-height: 0;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        @include lg-up {
+            padding-bottom: 2rem;
         }
     }
-}
 
+    // ─── Image ───────────────────────────────────────────────────────────────
+
+    .lightbox-image {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}

@@ -674,17 +674,33 @@ body {
 .lightbox .lightbox-stage {
   flex: 1;
   min-height: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+  display: grid;
+  grid-template-areas: "image image" "prev  next";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 0.5rem;
 }
-@media (min-width: 769px) {
+@media (min-width: 561px) {
   .lightbox .lightbox-stage {
+    grid-template-areas: "prev image next";
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    align-items: center;
     gap: 0.75rem;
   }
 }
-.lightbox .lightbox-stage .lightbox-media {
-  flex: 1;
+.lightbox .lightbox-nav {
+  justify-self: center;
+  align-self: center;
+}
+.lightbox .lightbox-nav--prev {
+  grid-area: prev;
+}
+.lightbox .lightbox-nav--next {
+  grid-area: next;
+}
+.lightbox .lightbox-media {
+  grid-area: image;
   min-width: 0;
   min-height: 0;
   align-self: stretch;
@@ -692,13 +708,15 @@ body {
   align-items: center;
   justify-content: center;
   padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 @media (min-width: 1041px) {
-  .lightbox .lightbox-stage .lightbox-media {
+  .lightbox .lightbox-media {
     padding-bottom: 2rem;
   }
 }
-.lightbox .lightbox-stage .lightbox-media .lightbox-image {
+.lightbox .lightbox-image {
   display: block;
   max-width: 100%;
   max-height: 100%;
