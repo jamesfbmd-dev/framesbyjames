@@ -59,7 +59,7 @@ function renderGallery(filter = 'all', override) {
             console.error("Image failed to load: " + this.src);
             this.style.display = 'none';
             relativeWrapper.style.backgroundColor = '#312F2C';
-            relativeWrapper.innerHTML = '<span style="color:white; font-size: 1.125rem; text-transform:uppercase; display:flex; align-items:center; justify-content:center; width:100%; height:100%;">Error</span>';
+            relativeWrapper.innerHTML = '<span style="color:white; font-size: 1.125rem; text-transform:uppercase; display:flex; align-items:center; justify-content:center; width:100%; height:100%;">Image not found</span>';
         };
 
         if(data.positionOverride) {

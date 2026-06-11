@@ -16,7 +16,7 @@ const imageData = [
         src: 'images/photos/photo-1.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-1.webp',
+            hiResSrc: 'images/photos/hires/photo-1.jpg',
         },
         category: ['landscapes'],
         alt: 'Lyttleton Harbour',
@@ -27,7 +27,7 @@ const imageData = [
         src: 'images/photos/photo-2.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-2.webp',
+            hiResSrc: 'images/photos/hires/photo-2.jpg',
         },
         category: ['landscapes'],
         alt: 'Christchurch Hills',
@@ -38,7 +38,7 @@ const imageData = [
         src: 'images/photos/photo-3.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-3.webp',
+            hiResSrc: 'images/photos/hires/photo-3.jpg',
         },
         category: ['landscapes', 'human nature'],
         alt: 'Christchurch Gondola',
@@ -126,7 +126,7 @@ const imageData = [
         src: 'images/photos/photo-11.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-11.webp',
+            hiResSrc: 'images/photos/hires/photo-11.jpg',
         },
         category: ['street'],
         alt: 'Luna Park',
@@ -137,7 +137,7 @@ const imageData = [
         src: 'images/photos/photo-12.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-12.webp',
+            hiResSrc: 'images/photos/hires/photo-12.jpg',
         },
         category: ['architecture'],
         alt: 'Australian War Memorial',
@@ -159,7 +159,7 @@ const imageData = [
         src: 'images/photos/photo-14b.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-14.webp',
+            hiResSrc: 'images/photos/hires/photo-14.jpg',
         },
         category: ['architecture', 'street'],
         alt: 'Asakusa Street',
@@ -192,7 +192,7 @@ const imageData = [
         src: 'images/photos/photo-17.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-17.webp',
+            hiResSrc: 'images/photos/hires/photo-17.jpg',
         },
         category: ['street'],
         alt: 'Asakusa Road',
@@ -214,7 +214,7 @@ const imageData = [
         src: 'images/photos/photo-19.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-19.webp',
+            hiResSrc: 'images/photos/hires/photo-19.jpg',
         },
         category: ['street'],
         alt: 'Kyoto House',
@@ -236,7 +236,7 @@ const imageData = [
         src: 'images/photos/photo-21.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-21.webp',
+            hiResSrc: 'images/photos/hires/photo-21.jpg',
         },
         category: ['landscapes'],
         alt: 'Twelve Apostles',
@@ -269,7 +269,7 @@ const imageData = [
         src: 'images/photos/photo-24.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-24.webp',
+            hiResSrc: 'images/photos/hires/photo-24.jpg',
         },
         category: ['street'],
         alt: 'Akihabara Street',
@@ -280,7 +280,7 @@ const imageData = [
         src: 'images/photos/photo-25.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-25.webp',
+            hiResSrc: 'images/photos/hires/photo-25.jpg',
         },
         category: ['street'],
         alt: 'Kyoto Teahouse',
@@ -291,7 +291,7 @@ const imageData = [
         src: 'images/photos/photo-26.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-26.webp',
+            hiResSrc: 'images/photos/hires/photo-26.jpg',
         },
         category: ['street', 'architecture'],
         alt: 'Louis Vuitton Store',
@@ -302,7 +302,7 @@ const imageData = [
         src: 'images/photos/photo-27.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-27.webp',
+            hiResSrc: 'images/photos/hires/photo-27.jpg',
         },
         category: ['landscapes'],
         alt: 'Winding Coastal Road',
@@ -313,7 +313,7 @@ const imageData = [
         src: 'images/photos/photo-28.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-28.webp',
+            hiResSrc: 'images/photos/hires/photo-28.jpg',
         },
         category: ['landscapes'],
         alt: 'Great Ocean Road - Apostles',
@@ -324,7 +324,7 @@ const imageData = [
         src: 'images/photos/photo-29.jpg',
         hiRes: {
             useHiRes: true,
-            hiResSrc: 'images/photos/hires/photo-29.webp',
+            hiResSrc: 'images/photos/hires/photo-29.jpg',
         },
         category: ['street'],
         alt: 'Meiji Jingu Sake',
