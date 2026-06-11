@@ -6,7 +6,7 @@ let currentImageIndex = 0;
 function openLightbox(index) {
     const lightbox = document.getElementById('lightbox');
     currentImageIndex = index;
-    updateLightboxImage();
+    updateLightboxImage('open');
     lightbox.classList.add('visible');
     lightbox.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -23,7 +23,8 @@ function closeLightbox() {
     history.replaceState(null, '', window.location.pathname);
 }
 
-function updateLightboxImage() {
+// 'open' used to determine if this is lightbox opening for the first time.
+function updateLightboxImage(open) {
     const lightboxImg = document.getElementById('lightbox-img');
     // Filter images based on the current filter setting
     const currentGalleryImages = (currentFilter === 'all')
@@ -48,7 +49,26 @@ function updateLightboxImage() {
         ? currentImage.hiRes.hiResSrc
         : currentImage.src;
 
-    lightboxImg.src = lightboxImagePath;
+    //FADE IMAGES OUT AND IN
+    lightboxImg.style.opacity = 0;
+
+    const showImage = () => {
+        lightboxImg.src = lightboxImagePath;
+
+        lightboxImg.decode()
+            .then(() => {
+                lightboxImg.style.opacity = 1;
+            })
+            .catch(() => {
+                lightboxImg.style.opacity = 1;
+            });
+    };
+
+    if (open) {
+        showImage();
+    } else {
+        setTimeout(showImage, 400);
+    }
 }
 
 function showImage(direction) {
