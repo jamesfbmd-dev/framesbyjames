@@ -28,8 +28,8 @@ function updateLightboxImage(open) {
     const lightboxImg = document.getElementById('lightbox-img');
     // Filter images based on the current filter setting
     const currentGalleryImages = (currentFilter === 'all')
-        ? imageData
-        : imageData.filter(img => img.category.includes(currentFilter));
+        ? imageData.filter(img => !img.hidden)
+        : imageData.filter(img => img.category.includes(currentFilter) && !img.hidden);
 
     // Find the index of the currently viewed image within the filtered list
     let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
@@ -72,7 +72,7 @@ function updateLightboxImage(open) {
 }
 
 function showImage(direction) {
-    const currentGalleryImages = (currentFilter === 'all') ? imageData : imageData.filter(img => img.category.includes(currentFilter));
+    const currentGalleryImages = (currentFilter === 'all') ? imageData.filter(img => !img.hidden) : imageData.filter(img => img.category.includes(currentFilter) && !img.hidden);
 
     if (currentGalleryImages.length === 0) return;
 
