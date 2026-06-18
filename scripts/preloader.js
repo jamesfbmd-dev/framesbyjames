@@ -1,8 +1,4 @@
-// =========================
-// ======= PRELOADER =======
-// =========================
-
-(function () {
+export function initPreloader() {
   const STORAGE_KEY = 'pl_session_seen';
   const MAX_LOAD_TIME_MS = 7000;
   const FADE_OUT_DELAY_MS = 750;
@@ -65,4 +61,4 @@
   fallbackTimer = setTimeout(finish, MAX_LOAD_TIME_MS);
 
   window.addEventListener('load', finish, { once: true });
-})();
+}

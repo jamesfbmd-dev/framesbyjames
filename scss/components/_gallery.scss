@@ -62,6 +62,10 @@
         }
 
         .gallery-item {
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
             margin-bottom: $spacing-sm;
             display: inline-block;
             width: 100%;
@@ -69,6 +73,7 @@
             overflow: hidden;
             position: relative;
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            text-align: left;
 
             &--hidden {
                 @extend %hidden-gallery-item;
