@@ -43,19 +43,19 @@
         </div>
     </div>
 
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-container">
-            <a class="logo-link" href="#">
+            <a class="logo-link" href="#" aria-label="Frames by James Home">
                 <img src="images/hero/fj-logo.png" alt="Frames by James logo">
             </a>
-            <nav class="desktop-nav">
+            <nav class="desktop-nav" aria-label="Main navigation">
                 <a href="#work" class="nav-link">Work</a>
                 <!-- <a href="#about" class="nav-link">About</a> -->
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <div class="mobile-nav-toggle">
-                 <button id="mobile-menu-button" class="mobile-menu-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="black" stroke-width="3" stroke-linecap="round">
+                 <button id="mobile-menu-button" class="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" aria-hidden="true">
                       <line x1="5" y1="7" x2="25" y2="7" />
                       <line x1="5" y1="15" x2="25" y2="15" />
                       <line x1="5" y1="23" x2="25" y2="23" />
@@ -63,11 +63,11 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="mobile-menu-dropdown hidden">
+        <nav id="mobile-menu" class="mobile-menu-dropdown hidden" aria-label="Mobile navigation">
             <a href="#work" class="mobile-nav-link">Work</a>
             <!-- <a href="#about" class="mobile-nav-link">About</a> -->
             <a href="#contact" class="mobile-nav-link">Contact</a>
-        </div>
+        </nav>
     </header>
 
     <main>
@@ -113,12 +113,12 @@
                 <h2 class="section-title font-serif-display">Gallery</h2>
             </div>
             
-            <div id="filter-buttons" class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="landscapes">Landscapes</button>
-                <button class="filter-btn" data-filter="street">Street</button>
-                <button class="filter-btn" data-filter="human nature">Humans & Nature</button>
-                <button class="filter-btn" data-filter="architecture">Architecture</button>
+            <div id="filter-buttons" class="filter-buttons" role="group" aria-label="Filter gallery by category">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="landscapes" aria-pressed="false">Landscapes</button>
+                <button class="filter-btn" data-filter="street" aria-pressed="false">Street</button>
+                <button class="filter-btn" data-filter="human nature" aria-pressed="false">Humans & Nature</button>
+                <button class="filter-btn" data-filter="architecture" aria-pressed="false">Architecture</button>
             </div>
 
             <div id="gallery" class="gallery">
@@ -151,14 +151,14 @@
                  <p class="contact-paragraph">
                      I'm currently available for freelance projects and commissions. If you're interested in working together or just want to say hello, feel free to reach out.
                  </p>
-                 <a href="mailto:james.p.fawcett@gmail.com" class="contact-button">
+                 <a href="mailto:james.p.fawcett@gmail.com" class="contact-button" aria-label="Send an email to James">
                     Email Me
                  </a>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="footer-container">
             <p>&copy; 2026 Frames by James. All Rights Reserved.</p>
         </div>
@@ -196,10 +196,6 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="scripts/imagedata.js" defer></script>
-    <script src="scripts/preloader.js" defer></script>
-    <script src="scripts/gallery.js" defer></script>
-    <script src="scripts/lightbox.js" defer></script>
-    <script src="scripts/script.js" defer></script>
+    <script src="scripts/script.js" type="module"></script>
 </body>
 </html>

@@ -1,60 +1,74 @@
+import { getCurrentFilter, renderGallery } from './gallery.js';
+
+let imageData = [];
 let currentImageIndex = 0;
 
-/**
- * Lightbox functions
- */
-function openLightbox(index) {
+export function setLightboxData(data) {
+    imageData = data;
+}
+
+let lastFocusedElement;
+
+export function openLightbox(index) {
     const lightbox = document.getElementById('lightbox');
+    lastFocusedElement = document.activeElement;
     currentImageIndex = index;
-    updateLightboxImage('open');
+    updateLightboxImage(true);
     lightbox.classList.add('visible');
     lightbox.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 
     const imageId = imageData[currentImageIndex].id;
     history.pushState({ imageId: imageId }, '', `#/image/${imageId}`);
+
+    // Focus close button initially for accessibility
+    const closeBtn = document.getElementById('lightbox-close');
+    if (closeBtn) closeBtn.focus();
 }
 
-function closeLightbox() {
+export function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
     lightbox.classList.remove('visible');
     lightbox.classList.add('hidden');
     document.body.style.overflow = 'auto';
     history.replaceState(null, '', window.location.pathname);
+
+    if (lastFocusedElement) {
+        lastFocusedElement.focus();
+    }
 }
 
-// 'open' used to determine if this is lightbox opening for the first time.
 function updateLightboxImage(open) {
     const lightboxImg = document.getElementById('lightbox-img');
-    // Filter images based on the current filter setting
+    const currentImage = imageData[currentImageIndex];
+    if (lightboxImg && currentImage) {
+        lightboxImg.alt = currentImage.alt;
+    }
+    const currentFilter = getCurrentFilter();
+
     const currentGalleryImages = (currentFilter === 'all')
         ? imageData.filter(img => !img.hidden)
         : imageData.filter(img => img.category.includes(currentFilter) && !img.hidden);
 
-    // Find the index of the currently viewed image within the filtered list
     let currentLocalIndex = currentGalleryImages.findIndex(img => img.src === imageData[currentImageIndex].src);
 
-    // If the current image is not in the filtered list (e.g., filter changed while lightbox was closed)
     if (currentLocalIndex === -1 && currentGalleryImages.length > 0) {
         currentImageIndex = imageData.findIndex(img => img.src === currentGalleryImages[0].src);
     } else if (currentGalleryImages.length === 0) {
-        // Handle case where filter returns no images
         closeLightbox();
         return;
     }
 
-    // Determine which image path to use
-    const currentImage = imageData[currentImageIndex];
-    const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
-        ? currentImage.hiRes.hiResSrc
-        : currentImage.src;
+    const imgData = imageData[currentImageIndex];
+    const lightboxImagePath = (imgData.hiRes?.useHiRes && imgData.hiRes?.hiResSrc)
+        ? imgData.hiRes.hiResSrc
+        : imgData.src;
 
-    //FADE IMAGES OUT AND IN
     lightboxImg.style.opacity = 0;
 
     const showImage = () => {
         lightboxImg.src = lightboxImagePath;
-
         lightboxImg.decode()
             .then(() => {
                 lightboxImg.style.opacity = 1;
@@ -71,7 +85,8 @@ function updateLightboxImage(open) {
     }
 }
 
-function showImage(direction) {
+export function showImage(direction) {
+    const currentFilter = getCurrentFilter();
     const currentGalleryImages = (currentFilter === 'all') ? imageData.filter(img => !img.hidden) : imageData.filter(img => img.category.includes(currentFilter) && !img.hidden);
 
     if (currentGalleryImages.length === 0) return;
@@ -92,24 +107,20 @@ function showImage(direction) {
     history.replaceState({ imageId: imageId }, '', `#/image/${imageId}`);
 }
 
-function handleURLChange() {
-    const lightbox = document.getElementById('lightbox');
+export function handleURLChange() {
     const hash = window.location.hash;
     if (hash.startsWith('#/image/')) {
         const imageId = parseInt(hash.substring(8));
         if (!isNaN(imageId)) {
             const imageIndex = imageData.findIndex(img => img.id === imageId);
             if (imageIndex !== -1) {
-                currentImageIndex = imageIndex;
-                updateLightboxImage();
-                lightbox.classList.add('visible');
-                lightbox.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
+                openLightbox(imageIndex);
             }
         }
     } else {
-        lightbox.classList.remove('visible');
-        lightbox.classList.add('hidden');
-        document.body.style.overflow = 'auto';
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox && lightbox.classList.contains('visible')) {
+            closeLightbox();
+        }
     }
 }
