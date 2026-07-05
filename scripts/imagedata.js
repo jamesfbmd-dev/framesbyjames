@@ -339,5 +339,16 @@ const imageData = [
         category: ['street'],
         alt: 'Meiji Jingu Sake',
         ratio: '4x3'
+    },
+        {
+        id: 30,
+        src: 'images/photos/photo-30.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-30.jpg',
+        },
+        category: ['human nature', 'architecture'],
+        alt: 'Shed at Lavender Farm',
+        ratio: '4x3'
     }
 ];
