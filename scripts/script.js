@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dev.style.height = '30px';
     dev.style.zIndex = '9999';
 
-    const override = [1, 3, 8, 9, 15, 16, 21, 22]
+    const override = [1, 2, 3, 7, 8, 9, 15, 21, 22, 25, 28, 30]
 
     dev.addEventListener('click', () => {
         console.log('Curated')
