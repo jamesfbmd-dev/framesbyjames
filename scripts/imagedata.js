@@ -350,5 +350,17 @@ const imageData = [
         category: ['human nature', 'architecture'],
         alt: 'Shed at Lavender Farm',
         ratio: '4x3'
+    },
+    {
+        id: 31,
+        src: 'images/photos/photo-31.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-31.jpg',
+        },
+        category: ['human nature', 'architecture'],
+        alt: 'Converted Barn',
+        ratio: '4x3',
+        hidden: true
     }
 ];
