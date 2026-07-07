@@ -730,6 +730,26 @@ body {
   transition: opacity 0.4s ease-in-out;
 }
 
+@keyframes logo-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  68% {
+    transform: rotate(375deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .preloader {
   position: fixed;
   inset: 0;
@@ -756,12 +776,11 @@ body {
   letter-spacing: 2rem;
   text-transform: uppercase;
 }
-.preloader .preloader-text {
-  color: #fff;
-  font-family: "Inter", sans-serif;
-  font-size: 1rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
+.preloader .preloader-text img {
+  width: 100px;
+  height: 100px;
+  transition: 0.5s ease-in-out;
+  animation: logo-rotation 3s infinite;
 }
 .preloader .preloader-bar-container {
   width: 200px;
