@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderGallery('all', override)
     })
 
+    const navBar = document.getElementById('navbar')
     const gallery = document.getElementById('gallery');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const lightbox = document.getElementById('lightbox');
@@ -38,6 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const arrowLink = document.getElementById('hero-arrow-link');
+
+
+    //Navbar opacity
+    function updateNavbar() {
+        if (window.scrollY === 0) {
+            navBar.classList.add('header-transparent');
+        } else {
+            navBar.classList.remove('header-transparent');
+        }
+    }
+
+    document.addEventListener('scroll', updateNavbar);
 
 
     // HERO ARROW SCROLL BEHAVIOUR

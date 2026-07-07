@@ -362,5 +362,17 @@ const imageData = [
         alt: 'Converted Barn',
         ratio: '4x3',
         hidden: true
+    },
+        {
+        id: 32,
+        src: 'images/photos/photo-32.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-32.jpg',
+        },
+        category: ['human nature'],
+        alt: 'House by lake in Kyoto',
+        ratio: '4x3',
+        hidden: true
     }
 ];
