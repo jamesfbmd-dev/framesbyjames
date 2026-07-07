@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Navbar opacity
     function updateNavbar() {
-        if (window.scrollY === 0) {
-            navBar.classList.add('header-transparent');
+        if (window.scrollY > 20) {
+            navBar.classList.add('header-scrolled');
         } else {
-            navBar.classList.remove('header-transparent');
+            navBar.classList.remove('header-scrolled');
         }
     }
-
+    document.addEventListener('load', updateNavbar);
     document.addEventListener('scroll', updateNavbar);
 
 

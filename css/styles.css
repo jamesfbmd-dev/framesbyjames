@@ -190,13 +190,14 @@ body {
   left: 0;
   right: 0;
   z-index: 40;
-  background-color: rgba(253, 251, 248, 0.8);
-  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0);
   transition: 0.2s ease-in-out;
 }
-.header-transparent {
-  background-color: rgba(255, 255, 255, 0);
+.header-scrolled {
+  background-color: rgba(253, 251, 248, 0.8);
   transition: 0.2s ease-in-out;
+  backdrop-filter: blur(5px);
 }
 .header .header-container {
   max-width: 1280px;
@@ -212,22 +213,22 @@ body {
     padding: 0.5rem 1.5rem;
   }
 }
-.header .logo-link {
+.header .header-container .logo-link {
   width: clamp(32px, 5vh, 50px);
 }
-.header .logo-link img {
+.header .header-container .logo-link img {
   width: 100%;
   height: auto;
   display: block;
   content: url("../images/hero/fj-logo.png");
   transition: 0.5s ease-in-out;
 }
-.header .logo-link img:hover {
+.header .header-container .logo-link img:hover {
   content: url("../images/hero/fj-logo-split.png");
   transition: 0.5s ease-in-out;
   animation: rotate-indefinitely 5s infinite;
 }
-.header .desktop-nav {
+.header .header-container .desktop-nav {
   display: none;
   gap: 2rem;
   font-size: 0.875rem;
@@ -235,27 +236,27 @@ body {
   text-transform: uppercase;
 }
 @media (min-width: 769px) {
-  .header .desktop-nav {
+  .header .header-container .desktop-nav {
     display: flex;
   }
 }
-.header .desktop-nav .nav-link {
+.header .header-container .desktop-nav .nav-link {
   color: #312F2C;
   text-decoration: none;
 }
-.header .desktop-nav .nav-link:hover {
+.header .header-container .desktop-nav .nav-link:hover {
   color: #B49A6C;
   transition: color 0.2s ease;
 }
-.header .mobile-nav-toggle {
+.header .header-container .mobile-nav-toggle {
   display: block;
 }
 @media (min-width: 769px) {
-  .header .mobile-nav-toggle {
+  .header .header-container .mobile-nav-toggle {
     display: none;
   }
 }
-.header .mobile-nav-toggle .mobile-menu-button {
+.header .header-container .mobile-nav-toggle .mobile-menu-button {
   background: none;
   border: none;
   color: #312F2C;

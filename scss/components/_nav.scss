@@ -4,13 +4,14 @@
     left: 0;
     right: 0;
     z-index: 40;
-    background-color: rgba(253, 251, 248, 0.8);
-    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0);
     transition: 0.2s ease-in-out;
 
-    &-transparent {
-        background-color: rgba(255, 255, 255, 0);
+    &-scrolled {
+        background-color: rgba(253, 251, 248, 0.8);
         transition: 0.2s ease-in-out;
+        backdrop-filter: blur(5px);        
     }
 
     .header-container {
@@ -25,61 +26,61 @@
         @media (max-height: 600px) {
             padding: 0.5rem 1.5rem;
         }
-    }
 
-    .logo-link {
-        width: clamp(32px, 5vh, 50px);
+        .logo-link {
+            width: clamp(32px, 5vh, 50px);
 
-        img {
-            width: 100%;
-            height: auto;
-            display: block;
-            content: url("../images/hero/fj-logo.png");
-            transition: 0.5s ease-in-out;
-
-            &:hover {
-                content: url("../images/hero/fj-logo-split.png");
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+                content: url("../images/hero/fj-logo.png");
                 transition: 0.5s ease-in-out;
-                animation: rotate-indefinitely 5s infinite;
+
+                &:hover {
+                    content: url("../images/hero/fj-logo-split.png");
+                    transition: 0.5s ease-in-out;
+                    animation: rotate-indefinitely 5s infinite;
+                }
             }
         }
-    }
 
-    .desktop-nav {
-        display: none;
-        gap: 2rem;
-        font-size: 0.875rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-
-        @include md-up {
-            display: flex;
-        }
-
-        .nav-link {
-            color: $color-text;
-            text-decoration: none;
-
-            &:hover {
-                color: $color-accent;
-                transition: color 0.2s ease;
-            }
-        }
-    }
-
-    .mobile-nav-toggle {
-        display: block;
-
-        @include md-up {
+        .desktop-nav {
             display: none;
+            gap: 2rem;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+
+            @include md-up {
+                display: flex;
+            }
+
+            .nav-link {
+                color: $color-text;
+                text-decoration: none;
+
+                &:hover {
+                    color: $color-accent;
+                    transition: color 0.2s ease;
+                }
+            }
         }
 
-        .mobile-menu-button {
-            background: none;
-            border: none;
-            color: $color-text;
-            cursor: pointer;
-            padding: 0.5rem;
+        .mobile-nav-toggle {
+            display: block;
+
+            @include md-up {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                background: none;
+                border: none;
+                color: $color-text;
+                cursor: pointer;
+                padding: 0.5rem;
+            }
         }
     }
 
