@@ -13,6 +13,13 @@
   const preloader = document.getElementById('preloader');
   const bar = document.getElementById('preloader-bar');
 
+  // Array of images (element id's) that must load before the preloader completes.
+  const REQUIRED_IMAGES = [
+    'hero-bg',
+    'hero-parallax-1',
+    'hero-parallax-2'
+  ];
+
   if (!preloader) return;
 
   // Already seen during this browser session?
@@ -33,16 +40,21 @@
   let isFinished = false;
 
   function step(timestamp) {
-    if (!animStart) animStart = timestamp;
+      if (!animStart) animStart = timestamp;
 
-    const elapsed = timestamp - animStart;
-    const pct = 90 * (1 - Math.exp(-elapsed / 1500));
+      const elapsed = timestamp - animStart;
 
-    if (bar) {
-      bar.style.width = `${pct.toFixed(1)}%`;
-    }
+      // Slowly progress towards 90% while loading
+      const pct = Math.min(
+          90,
+          20 + (70 * (1 - Math.exp(-elapsed / 5000)))
+      );
 
-    rafId = requestAnimationFrame(step);
+      if (bar) {
+          bar.style.width = `${pct.toFixed(1)}%`;
+      }
+
+      rafId = requestAnimationFrame(step);
   }
 
   function finish() {
@@ -66,7 +78,32 @@
 
   fallbackTimer = setTimeout(finish, MAX_LOAD_TIME_MS);
 
-  window.addEventListener('load', () => {
+  // Wait for any images defined in the REQUIRED_IMAGES array to load 
+  function waitForImages() {
+      const images = REQUIRED_IMAGES.map(id => {
+          const img = document.getElementById(id);
+
+          return new Promise(resolve => {
+              if (!img) {
+                  resolve();
+                  return;
+              }
+
+              if (img.complete && img.naturalWidth > 0) {
+                  resolve();
+                  return;
+              }
+
+              img.addEventListener('load', resolve, { once: true });
+              img.addEventListener('error', resolve, { once: true });
+          });
+      });
+
+      return Promise.all(images);
+  }
+
+  window.addEventListener('load', async () => {
+    await waitForImages();
     const elapsed = performance.now() - startTime;
     const remaining = Math.max(0, MIN_LOAD_TIME_MS - elapsed);
 
