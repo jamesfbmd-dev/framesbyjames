@@ -373,6 +373,6 @@ const imageData = [
         category: ['human nature'],
         alt: 'House by lake in Kyoto',
         ratio: '4x3',
-        hidden: true
+        hidden: false
     }
 ];
