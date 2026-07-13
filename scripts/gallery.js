@@ -19,17 +19,23 @@ function getGalleryImages(filter, override) {
     if (override) {
         return imageData.filter(image =>
             override.includes(image.id) &&
-            !image.hidden
+            !image.hidden &&
+            !image.takenOnMobile
         );
     }
 
     if (filter === 'all') {
-        return imageData.filter(image => !image.hidden);
+        return imageData.filter(image => !image.hidden && !image.takenOnMobile);
+    }
+
+    if (filter === 'mobile') {
+        return imageData.filter(image => !image.hidden && image.takenOnMobile);
     }
 
     return imageData.filter(image =>
         image.category.includes(filter) &&
-        !image.hidden
+        !image.hidden &&
+        !image.takenOnMobile
     );
 }
 

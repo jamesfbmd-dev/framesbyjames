@@ -157,7 +157,7 @@ const imageData = [
         category: ['landscapes'],
         alt: 'Engelberg',
         ratio: '3x4',
-        hidden: true
+        takenOnMobile: true
     },
     {
         id: 14,
@@ -214,7 +214,7 @@ const imageData = [
         category: ['landscapes'],
         alt: 'Bondi to Bronte',
         ratio: '3x4',
-        hidden: true
+        takenOnMobile: true
     },
     {
         id: 19,
@@ -363,7 +363,7 @@ const imageData = [
         ratio: '4x3',
         hidden: true
     },
-        {
+    {
         id: 32,
         src: 'images/photos/photo-32.jpg',
         hiRes: {
@@ -374,5 +374,161 @@ const imageData = [
         alt: 'House by lake in Kyoto',
         ratio: '4x3',
         hidden: false
+    },
+    {
+        id: 33,
+        src: 'images/photos/photo-33.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-33.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Sky Tower',
+        ratio: '3x4',
+        takenOnMobile: false
+    },
+        {
+        id: 34,
+        src: 'images/photos/photo-34.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-34.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Hamburg canal',
+        ratio: '3x4',
+        takenOnMobile: true
+    },
+        {
+        id: 35,
+        src: 'images/photos/photo-35.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-35.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Nyhavn, Copenhagen',
+        ratio: '4x3',
+        takenOnMobile: true
+    },
+        {
+        id: 36,
+        src: 'images/photos/photo-36.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-36.jpg',
+        },
+        category: ['human nature', 'street'],
+        alt: 'Shed in rice field, Indonesia',
+        ratio: '3x4',
+        takenOnMobile: false
+    },
+        {
+        id: 37,
+        src: 'images/photos/photo-37.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-37.jpg',
+        },
+        category: ['landscapes'],
+        alt: 'Rugged Wellington coastline',
+        ratio: '3x4',
+        takenOnMobile: true
+    },
+        {
+        id: 38,
+        src: 'images/photos/photo-38.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-38.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Roman church',
+        ratio: '3x4',
+        takenOnMobile: false
+    },
+        {
+        id: 39,
+        src: 'images/photos/photo-39.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-39.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Milanese architecture',
+        ratio: '3x4',
+        takenOnMobile: false
+    },
+        {
+        id: 40,
+        src: 'images/photos/photo-40.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-40.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Wat Arun Temple in Bangkok',
+        ratio: '3x4',
+        takenOnMobile: true
+    },
+        {
+        id: 41,
+        src: 'images/photos/photo-41.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-41.jpg',
+        },
+        category: ['landscapes'],
+        alt: 'Mu Ko Ang Thong National Park',
+        ratio: '3x4',
+        takenOnMobile: true
+    },
+        {
+        id: 42,
+        src: 'images/photos/photo-42.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-42.jpg',
+        },
+        category: ['architecture'],
+        alt: 'Melbourne Skyline',
+        ratio: '4x3',
+        takenOnMobile: true
+    },
+        {
+        id: 43,
+        src: 'images/photos/photo-43.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-43.jpg',
+        },
+        category: ['human nature'],
+        alt: 'Yoshikien garden',
+        ratio: '3x4',
+        takenOnMobile: false
+    },
+        {
+        id: 44,
+        src: 'images/photos/photo-44.jpg',
+        hiRes: {
+            useHiRes: true,
+            hiResSrc: 'images/photos/hires/photo-44.jpg',
+        },
+        category: ['human nature'],
+        alt: 'Lighthouse at Port Melbourne',
+        ratio: '3x4',
+        takenOnMobile: false
+    },
+        {
+        id: 45,
+        src: 'images/photos/photo-45.jpg',
+        hiRes: {
+            useHiRes: false,
+            hiResSrc: '',
+        },
+        category: ['human nature'],
+        alt: 'Bridge over stream',
+        ratio: '3x4',
+        takenOnMobile: true
     }
 ];
