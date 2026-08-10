@@ -1,4 +1,15 @@
+let imageData = [];
 let currentFilter = 'all';
+
+fetch('./data/imageData.json')
+    .then(response => response.json())
+    .then(data => {
+        imageData = data;
+        renderGallery();
+    })
+    .catch(error => {
+        console.error('Failed to load imageData.json:', error);
+    });
 
 function renderGallery(filter = 'all', override) {
     const gallery = document.getElementById('gallery');

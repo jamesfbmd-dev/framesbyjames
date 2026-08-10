@@ -28,3 +28,24 @@ This project uses SASS for styling. To work with the project, you'll need to hav
    ```
 
    This will compile the `scss/styles.scss` file and output the CSS to `css/styles.css`.
+
+
+## Gallery JSON File Example
+
+{
+   "id": 2, - Self Explanatory
+   "src": "images/photos/photo-2.jpg", - File path
+   "hiRes": {
+      "useHiRes": true, - Use a hires version of the image in the lightbox
+      "hiResSrc": "images/photos/hires/photo-2.jpg" - File path for hi res image
+   },
+   "category": ["landscapes", "street"], - Which category(s) this will show under on the gallery
+   "alt": "Christchurch Hills", - Alt text
+   "ratio": "4x3" - Dictates how image will appear on masonry (3x4 or 4x3)
+}
+
+Categories available:
+ - landscapes
+ - street
+ - human nature
+ - architecture
