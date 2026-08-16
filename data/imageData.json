@@ -374,5 +374,17 @@
         "alt": "Market sweet stand",
         "ratio": "3x4",
         "hidden": false
+    },
+    {
+        "id": 34,
+        "src": "images/photos/photo-34.jpg",
+        "hiRes": {
+            "useHiRes": true,
+            "hiResSrc": "images/photos/hires/photo-34.jpg"
+        },
+        "category": ["landscapes"],
+        "alt": "The Nobbies",
+        "ratio": "4x3",
+        "hidden": false
     }
 ]
