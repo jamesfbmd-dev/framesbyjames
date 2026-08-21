@@ -23,6 +23,14 @@ function closeLightbox() {
     history.replaceState(null, '', window.location.pathname);
 }
 
+// Load image into browser cache so it can be displayed in DOM rapidly.
+function preloadImage(image) {
+    const img = new Image();
+    img.src = (image.hiRes?.useHiRes && image.hiRes?.hiResSrc)
+        ? image.hiRes.hiResSrc
+        : image.src;
+}
+
 // 'open' used to determine if this is lightbox opening for the first time.
 function updateLightboxImage(open) {
     const lightboxImg = document.getElementById('lightbox-img');
@@ -43,8 +51,18 @@ function updateLightboxImage(open) {
         return;
     }
 
-    // Determine which image path to use
-    const currentImage = imageData[currentImageIndex];
+    const prevIndex = (currentLocalIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+    const nextIndex = (currentLocalIndex + 1) % currentGalleryImages.length;
+
+    // Determine which image path to use for current, prev, and next images
+    const currentImage = currentGalleryImages[currentLocalIndex];
+    const prevImage = currentGalleryImages[prevIndex];
+    const nextImage = currentGalleryImages[nextIndex];
+
+    preloadImage(currentImage);
+    preloadImage(prevImage);
+    preloadImage(nextImage);
+
     const lightboxImagePath = (currentImage.hiRes?.useHiRes && currentImage.hiRes?.hiResSrc)
         ? currentImage.hiRes.hiResSrc
         : currentImage.src;
@@ -67,7 +85,7 @@ function updateLightboxImage(open) {
     if (open) {
         showImage();
     } else {
-        setTimeout(showImage, 400);
+        setTimeout(showImage, 300);
     }
 }
 

@@ -5,7 +5,14 @@ fetch('./data/imageData.json')
     .then(response => response.json())
     .then(data => {
         imageData = data;
+        
+        // 1. Render the gallery now that we have data
         renderGallery();
+        
+        // 2. Check the URL for a deep-linked image and open the lightbox if needed
+        if (typeof handleURLChange === 'function') {
+            handleURLChange();
+        }
     })
     .catch(error => {
         console.error('Failed to load imageData.json:', error);
