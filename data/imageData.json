@@ -419,8 +419,20 @@
             "hiResSrc": "images/photos/hires/photo-37.jpg"
         },
         "category": ["street"],
-        "alt": "Royal Arcade",
+        "alt": "Royal Arcade, Melbourne",
         "ratio": "3x4",
+        "hidden": false
+    },
+    {
+        "id": 38,
+        "src": "images/photos/photo-38.jpg",
+        "hiRes": {
+            "useHiRes": true,
+            "hiResSrc": "images/photos/hires/photo-38.jpg"
+        },
+        "category": ["architecture"],
+        "alt": "Bolte Bridge",
+        "ratio": "4x3",
         "hidden": false
     }
 ]
