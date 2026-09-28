@@ -395,6 +395,7 @@
             "hiResSrc": "images/photos/hires/photo-35.jpg"
         },
         "category": ["street"],
+        "location": "Melbourne",
         "alt": "Lucy Liu",
         "ratio": "3x4",
         "hidden": true
@@ -407,6 +408,7 @@
             "hiResSrc": "images/photos/hires/photo-36.jpg"
         },
         "category": ["street"],
+        "location": "Docklands",
         "alt": "Docklands Tramboat",
         "ratio": "4x3",
         "hidden": false
@@ -419,6 +421,7 @@
             "hiResSrc": "images/photos/hires/photo-37.jpg"
         },
         "category": ["street"],
+        "location": "Melbourne",
         "alt": "Royal Arcade, Melbourne",
         "ratio": "3x4",
         "hidden": false
