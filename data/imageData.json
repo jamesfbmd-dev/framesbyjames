@@ -386,5 +386,41 @@
         "alt": "The Nobbies",
         "ratio": "4x3",
         "hidden": false
+    },
+    {
+        "id": 35,
+        "src": "images/photos/photo-35.jpg",
+        "hiRes": {
+            "useHiRes": true,
+            "hiResSrc": "images/photos/hires/photo-35.jpg"
+        },
+        "category": ["street"],
+        "alt": "Lucy Liu",
+        "ratio": "3x4",
+        "hidden": true
+    },
+    {
+        "id": 36,
+        "src": "images/photos/photo-36.jpg",
+        "hiRes": {
+            "useHiRes": true,
+            "hiResSrc": "images/photos/hires/photo-36.jpg"
+        },
+        "category": ["street"],
+        "alt": "Docklands Tramboat",
+        "ratio": "4x3",
+        "hidden": false
+    },
+    {
+        "id": 37,
+        "src": "images/photos/photo-37.jpg",
+        "hiRes": {
+            "useHiRes": true,
+            "hiResSrc": "images/photos/hires/photo-37.jpg"
+        },
+        "category": ["street"],
+        "alt": "Royal Arcade",
+        "ratio": "3x4",
+        "hidden": false
     }
 ]
