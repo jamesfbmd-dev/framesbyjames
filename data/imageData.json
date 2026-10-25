@@ -437,5 +437,29 @@
         "alt": "Bolte Bridge",
         "ratio": "4x3",
         "hidden": false
+    },
+    {
+        "id": 39,
+        "src": "images/photos/IMG_1558.jpeg"
+        "hiRes": {
+            "useHiRes": false,
+            "hiResSrc": "images/photos/hires/photo-38.jpg"
+        },
+        "category": ["architecture"],
+        "alt": "Bolte Bridge",
+        "ratio": "4x3",
+        "hidden": false
+    },
+    {
+        "id": 40,
+        "src": "images/photos/IMG_1559.jpeg",
+        "hiRes": {
+            "useHiRes": false,
+            "hiResSrc": "images/photos/hires/photo-38.jpg"
+        },
+        "category": ["architecture"],
+        "alt": "Bolte Bridge",
+        "ratio": "4x3",
+        "hidden": false
     }
 ]
