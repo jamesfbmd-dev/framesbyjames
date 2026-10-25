@@ -440,26 +440,26 @@
     },
     {
         "id": 39,
-        "src": "images/photos/photo-39.jpg",
+        "src": "images/photos/IMG_1558.jpeg"
         "hiRes": {
             "useHiRes": false,
-            "hiResSrc": "images/photos/hires/photo-39.jpg"
+            "hiResSrc": "images/photos/hires/photo-38.jpg"
         },
-        "category": ["landscapes"],
+        "category": ["architecture"],
         "alt": "Bolte Bridge",
-        "ratio": "3x4",
+        "ratio": "4x3",
         "hidden": false
     },
     {
         "id": 40,
-        "src": "images/photos/photo-40.jpg",
+        "src": "images/photos/IMG_1559.jpeg",
         "hiRes": {
             "useHiRes": false,
-            "hiResSrc": "images/photos/hires/photo-40.jpg"
+            "hiResSrc": "images/photos/hires/photo-38.jpg"
         },
-        "category": ["landscapes"],
+        "category": ["architecture"],
         "alt": "Bolte Bridge",
-        "ratio": "3x4",
+        "ratio": "4x3",
         "hidden": false
     }
 ]
