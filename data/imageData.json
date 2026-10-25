@@ -445,9 +445,9 @@
             "useHiRes": false,
             "hiResSrc": "images/photos/hires/photo-38.jpg"
         },
-        "category": ["architecture"],
+        "category": ["landscapes"],
         "alt": "Bolte Bridge",
-        "ratio": "4x3",
+        "ratio": "3x4",
         "hidden": false
     },
     {
@@ -457,9 +457,9 @@
             "useHiRes": false,
             "hiResSrc": "images/photos/hires/photo-38.jpg"
         },
-        "category": ["architecture"],
+        "category": ["landscapes"],
         "alt": "Bolte Bridge",
-        "ratio": "4x3",
+        "ratio": "3x4",
         "hidden": false
     }
 ]
