@@ -440,7 +440,7 @@
     },
     {
         "id": 39,
-        "src": "images/photos/IMG_1558.jpeg"
+        "src": "images/photos/IMG_1558.jpeg",
         "hiRes": {
             "useHiRes": false,
             "hiResSrc": "images/photos/hires/photo-38.jpg"
