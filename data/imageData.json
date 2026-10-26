@@ -440,25 +440,25 @@
     },
     {
         "id": 39,
-        "src": "images/photos/IMG_1558.jpeg",
+        "src": "images/photos/photo-39.jpg",
         "hiRes": {
             "useHiRes": false,
-            "hiResSrc": "images/photos/hires/photo-38.jpg"
+            "hiResSrc": "images/photos/hires/photo-39.jpg"
         },
         "category": ["landscapes"],
-        "alt": "Bolte Bridge",
+        "alt": "Grampians National Park",
         "ratio": "3x4",
         "hidden": false
     },
     {
         "id": 40,
-        "src": "images/photos/IMG_1559.jpeg",
+        "src": "images/photos/photo-40.jpg",
         "hiRes": {
             "useHiRes": false,
-            "hiResSrc": "images/photos/hires/photo-38.jpg"
+            "hiResSrc": "images/photos/hires/photo-40.jpg"
         },
         "category": ["landscapes"],
-        "alt": "Bolte Bridge",
+        "alt": "Trentham Falls",
         "ratio": "3x4",
         "hidden": false
     }
